@@ -9,8 +9,8 @@ class PrismStones {
   void usePrismStone() {
     if (stoneCount > 0) {
       prismStones[stoneCount - 1] = new PrismStones();
-      prismStones[stoneCount - 1].prismStoneX = ballX;
-      prismStones[stoneCount - 1].prismStoneY = ballY;
+      //prismStones[stoneCount - 1].prismStoneX = ballX;
+      //prismStones[stoneCount - 1].prismStoneY = ballY;
       stoneCount--;
     }
   }

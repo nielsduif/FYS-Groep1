@@ -1,12 +1,22 @@
+/*main
+ setup
+ grid.start();
+ 
+ draw
+ grid.update();
+ */
+
 class Grid {
   int cols, rows;
-  int w = 500;
+  int w = 100;
 
   ArrayList<Cell> grid = new ArrayList<Cell>();
 
   Cell current;
 
   ArrayList<Cell> stack = new ArrayList<Cell>();
+
+  int executed;
 
   void start() {
     cols = floor(width/w);
@@ -32,6 +42,11 @@ class Grid {
     current.visited = true;
     if (stack.size() > 0) {
       current.highlight();
+      executed++;
+    } else if (executed > 1) {
+      //function jordy
+      println("bruh");
+      executed=0;
     }
 
     // STEP 1
