@@ -1,7 +1,8 @@
 Grid grid = new Grid();
 
 void setup() {
-  size(1920, 1080);
+  size(1600, 800);
+  tileSet.loadTileImages();
   grid.start();
 }
 

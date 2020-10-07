@@ -1,14 +1,6 @@
-/*main
- setup
- grid.start();
- 
- draw
- grid.update();
- */
-
 class Grid {
   int cols, rows;
-  int w = 100;
+  int w = 75;
 
   ArrayList<Cell> grid = new ArrayList<Cell>();
 
@@ -44,9 +36,7 @@ class Grid {
       current.highlight();
       executed++;
     } else if (executed > 1) {
-      //function jordy
-      println("bruh");
-      executed=0;
+      tileSet.giveCellsID();
     }
 
     // STEP 1

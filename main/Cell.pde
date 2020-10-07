@@ -1,4 +1,6 @@
 class Cell {
+  int tileID;
+  
   int x, y, w;
   boolean[] walls = {true, true, true, true};
   boolean visited = false;
