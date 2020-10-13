@@ -1,7 +1,13 @@
-void setup(){
-  size(1920,1080);
-  noCursor();
+// global variables
+Player player;
+void setup()
+{
+  size(500, 500);
+  player= new Player();
 }
 
-void draw(){
+void draw()
+{
+  background(0);
+  player.update();
 }
