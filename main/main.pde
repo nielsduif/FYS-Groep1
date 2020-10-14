@@ -12,6 +12,7 @@ void setup() {
 
 void updateGame() {  
   grid.update();
+  tileSet.updateExit();
   pathFinding.update();
   player.update();
   player.draw();
