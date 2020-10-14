@@ -12,7 +12,12 @@ void setup() {
 
 void updateGame() {  
   grid.update();
+<<<<<<< HEAD
   pathFinding.draw();
+=======
+  tileSet.updateExit();
+  pathFinding.update();
+>>>>>>> jordy
   player.update();
   player.draw();
   prismStone.updatePrismStones();

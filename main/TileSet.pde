@@ -1,8 +1,9 @@
 TileSet tileSet = new TileSet();
 
-class TileSet { 
+class TileSet {
   int tileAmount = 17;
   int randomTile;
+  boolean drawExit;
   boolean tileAccepted = false;
   boolean exitGateOpen = false;
   boolean idGiven = false;
@@ -23,17 +24,15 @@ class TileSet {
 
   void updateMazeTiles() {
     background(0);
-
-    float tileLocationX = floor(player.x / grid.w);
-    float tileLocationY = floor(player.y / grid.w);
+    drawExit = false;
 
     for (int i=0; i < grid.grid.size(); i++) {
-      if (tileLocationX == grid.grid.get(i).x && tileLocationY == grid.grid.get(i).y) {
+      if (player.tileLocationX == grid.grid.get(i).x && player.tileLocationY == grid.grid.get(i).y) {
         drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
         drawTilesInView(i, grid.grid.get(i).walls[0], grid.grid.get(i).walls[1], grid.grid.get(i).walls[2], grid.grid.get(i).walls[3]);
       }
-      if (tileLocationX == grid.grid.get(randomTile).x && tileLocationY == grid.grid.get(randomTile).y) {
-        updateExit();
+      if (player.tileLocationX == grid.grid.get(randomTile).x && player.tileLocationY == grid.grid.get(randomTile).y) {
+        drawExit = true;
       }
     }
     giveRandomTileExit();
@@ -51,7 +50,7 @@ class TileSet {
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, grid.grid.get(nextTile).walls[1], true, true);
       if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
-        updateExit();
+        drawExit = true;
       }
     }
     if (pWallD == false) {
@@ -64,7 +63,7 @@ class TileSet {
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, true, true, grid.grid.get(nextTile).walls[3]);
       if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
-        updateExit();
+        drawExit = true;
       }
     }
   }
@@ -121,17 +120,19 @@ class TileSet {
   }
 
   void updateExit() {
-    if (tileAccepted == true) {
-      if (exitGateOpen == false) {
-        drawTile(15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
-      } else {
-        drawTile(16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+    if (drawExit == true) {
+      if (tileAccepted == true) {
+        if (exitGateOpen == false) {
+          drawTile(15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+        } else {
+          drawTile(16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+        }
       }
     }
   }
 
   void drawVisionBlur() {
     int size = 25;
-    image(visionFade, player.x - (grid.w * size / 2), player.y - (grid.w * size / 2), grid.w * size, grid.w * size);
+    //image(visionFade, player.x - (grid.w * size / 2), player.y - (grid.w * size / 2), grid.w * size, grid.w * size);
   }
 }
