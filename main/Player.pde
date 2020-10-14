@@ -4,7 +4,7 @@ class Player
 {
   float x = 150;
   float y = 100;
-  float speed = 2;
+  float speed = 5;
   boolean A, S, Z, X;
 
   void update()
@@ -19,16 +19,16 @@ class Player
   }
 
   void Move() {
-    if (keysPressed[37] && x > 25) {
+    if (keysPressed[37]) {
       x-=speed;
     }  
-    if (keysPressed[39] && x < width - 25) {
+    if (keysPressed[39]) {
       x+=speed;
     }  
-    if (keysPressed[38] && y > 25) {
+    if (keysPressed[38]) {
       y-=speed;
     }  
-    if (keysPressed[40] && y < height - 25) {
+    if (keysPressed[40]) {
       y+=speed;
     }
   }

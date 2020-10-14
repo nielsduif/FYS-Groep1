@@ -44,6 +44,7 @@ class Grid {
 
     // STEP 1
     Cell next = current.checkNeighbors();
+
     if (next != null) {
       next.visited = true;
 
