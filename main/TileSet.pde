@@ -3,6 +3,9 @@ TileSet tileSet = new TileSet();
 class TileSet {
   int tileAmount = 17;
   int randomTile;
+  int visionCapCount;
+  int visionCap = 2;
+  int capU, capR, capD, capL;
   boolean drawExit;
   boolean tileAccepted = false;
   boolean exitGateOpen = false;
@@ -25,7 +28,7 @@ class TileSet {
   void updateMazeTiles() {
     background(0);
     drawExit = false;
-
+    capU = capR = capD = capL = 0;
     for (int i=0; i < grid.grid.size(); i++) {
       if (player.tileLocationX == grid.grid.get(i).x && player.tileLocationY == grid.grid.get(i).y) {
         drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
@@ -40,12 +43,14 @@ class TileSet {
   }
 
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
-    if (pWallU == false) {
+    if (pWallU == false && capU < visionCap) {
+      capU++;
       int nextTile = pTileID - grid.cols;
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, grid.grid.get(nextTile).walls[0], true, true, true);
     }
-    if (pWallR == false) {
+    if (pWallR == false && capR < visionCap) {
+      capR++;
       int nextTile = pTileID + 1;
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, grid.grid.get(nextTile).walls[1], true, true);
@@ -53,12 +58,14 @@ class TileSet {
         drawExit = true;
       }
     }
-    if (pWallD == false) {
+    if (pWallD == false && capD < visionCap) {
+      capD++;
       int nextTile = pTileID + grid.cols;
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, true, grid.grid.get(nextTile).walls[2], true);
     }
-    if (pWallL == false) {
+    if (pWallL == false && capL < visionCap) {
+      capL++;
       int nextTile = pTileID - 1;
       drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, true, true, grid.grid.get(nextTile).walls[3]);
