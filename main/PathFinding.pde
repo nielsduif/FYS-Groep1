@@ -9,7 +9,7 @@ class PathFinding {
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5;
     Ey = spawnCell.y * spawnCell.w + spawnCell.w * .5;
     Ew = spawnCell.w;
-    println("spawning enemie at " + Ex + "x", Ey+"y");
+    println("spawning enemy at " + Ex + "x", Ey+"y");
   }
 
   void update() {

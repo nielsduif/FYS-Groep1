@@ -17,7 +17,6 @@ void updateGame() {
 
 void drawGame() {
   background(100);
-  
 }
 
 void draw() {
@@ -29,6 +28,11 @@ void draw() {
 void keyPressed() {  
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true
+  //for (int i =0; i < KEY_LIMIT; i++) {
+  //  if (keysPressed[i]==true) {
+  //    println(i);
+  //  }
+  //}
 }
 
 //..and with each key Released vice versa
