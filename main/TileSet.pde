@@ -1,9 +1,6 @@
 TileSet tileSet = new TileSet();
 
 class TileSet { 
-
-  float x, y;
-
   int tileAmount = 17;
   int randomTile;
   boolean tileAccepted = false;
@@ -16,6 +13,7 @@ class TileSet {
     for (int i = 0; i < tileAmount; i++) {
       tileImages[i] = loadImage("Tile" + i + ".png");
     }
+    prismStone.prismStoneImage = loadImage("PrismStone.png");
     visionFade = loadImage("Fade.png");
   }
 
@@ -26,17 +24,15 @@ class TileSet {
   void updateMazeTiles() {
     background(0);
 
-    x = mouseX;
-    y = mouseY;
-    x = floor(x / grid.w);
-    y = floor(y / grid.w);
+    float tileLocationX = floor(player.x / grid.w);
+    float tileLocationY = floor(player.y / grid.w);
 
     for (int i=0; i < grid.grid.size(); i++) {
-      if (x == grid.grid.get(i).x && y == grid.grid.get(i).y) {
+      if (tileLocationX == grid.grid.get(i).x && tileLocationY == grid.grid.get(i).y) {
         drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
         drawTilesInView(i, grid.grid.get(i).walls[0], grid.grid.get(i).walls[1], grid.grid.get(i).walls[2], grid.grid.get(i).walls[3]);
       }
-      if (x == grid.grid.get(randomTile).x && y == grid.grid.get(randomTile).y) {
+      if (tileLocationX == grid.grid.get(randomTile).x && tileLocationY == grid.grid.get(randomTile).y) {
         updateExit();
       }
     }
@@ -136,6 +132,6 @@ class TileSet {
 
   void drawVisionBlur() {
     int size = 25;
-    image(visionFade, mouseX - (grid.w * size / 2), mouseY - (grid.w * size / 2), grid.w * size, grid.w * size);
+    image(visionFade, player.x - (grid.w * size / 2), player.y - (grid.w * size / 2), grid.w * size, grid.w * size);
   }
 }

@@ -1,7 +1,10 @@
+PrismStones prismStone = new PrismStones();
+
 class PrismStones {
   int stoneCount = 10;
   PImage prismStoneImage;
   boolean prismStoneUsed = false;
+  int prismStonePixelSize = (grid.w / 3) - 10;
   PrismStones[] prismStones = new PrismStones[stoneCount];
 
   float prismStoneX, prismStoneY;
@@ -9,17 +12,16 @@ class PrismStones {
   void usePrismStone() {
     if (stoneCount > 0) {
       prismStones[stoneCount - 1] = new PrismStones();
-      //prismStones[stoneCount - 1].prismStoneX = PlayerX;
-      //prismStones[stoneCount - 1].prismStoneY = PlayerY;
+      prismStones[stoneCount - 1].prismStoneX = player.x - prismStonePixelSize / 2;
+      prismStones[stoneCount - 1].prismStoneY = player.y - prismStonePixelSize / 2;
       stoneCount--;
     }
   }
 
   void updatePrismStones() {
-    int prismStonePixelSize = 50;
+    checkInputPrismStone();
     for (int i = 0; i < prismStones.length; i++) {
       if (prismStones[i] != null) {
-        imageMode(CENTER);
         image(prismStoneImage, prismStones[i].prismStoneX, prismStones[i].prismStoneY, prismStonePixelSize, prismStonePixelSize);
       }
     }
@@ -31,28 +33,18 @@ class PrismStones {
     }
     stoneCount = 10;
   }
+
+
+  void checkInputPrismStone() {
+    if (keysPressed[65]) {
+      if (prismStoneUsed == false) {
+        prismStone.usePrismStone();
+        prismStoneUsed = true;
+        println(stoneCount);
+      }
+    }
+    if (!keysPressed[65]) {
+      prismStoneUsed = false;
+    }
+  }
 }
-
-
-//PrismStones prismStoneTest = new PrismStones();
-
-//  prismStoneImage = loadImage("PrismStone.png");
-
-//  prismStoneTest.updatePrismStones();
-
-/*if (keyPressed) {
- if (key == 'e'|| key == 'E') {
- if (prismStoneUsed == false) {
- prismStoneTest.usePrismStone();
- prismStoneUsed = true;
- println(stoneCount);
- }
- }
- }
- }
- 
- void keyReleased() {
- if (key == 'e'|| key == 'E') {
- prismStoneUsed = false;
- }
- */
