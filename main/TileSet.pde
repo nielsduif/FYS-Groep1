@@ -2,21 +2,75 @@ TileSet tileSet = new TileSet();
 
 class TileSet { 
 
+  float x, y;
+
   int tileAmount = 17;
   int randomTile;
   boolean tileAccepted = false;
   boolean exitGateOpen = false;
   boolean idGiven = false;
   PImage[] tileImages = new PImage[tileAmount];
+  PImage visionFade;
 
   void loadTileImages() {
     for (int i = 0; i < tileAmount; i++) {
       tileImages[i] = loadImage("Tile" + i + ".png");
     }
+    visionFade = loadImage("Fade.png");
   }
 
   void drawTile(int pTileID, float pPosX, float pPosY, int pTilePixelSize) {
     image(tileImages[pTileID], pPosX, pPosY, pTilePixelSize, pTilePixelSize);
+  }
+
+  void updateMazeTiles() {
+    background(0);
+
+    x = mouseX;
+    y = mouseY;
+    x = floor(x / grid.w);
+    y = floor(y / grid.w);
+
+    for (int i=0; i < grid.grid.size(); i++) {
+      if (x == grid.grid.get(i).x && y == grid.grid.get(i).y) {
+        drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
+        drawTilesInView(i, grid.grid.get(i).walls[0], grid.grid.get(i).walls[1], grid.grid.get(i).walls[2], grid.grid.get(i).walls[3]);
+      }
+      if (x == grid.grid.get(randomTile).x && y == grid.grid.get(randomTile).y) {
+        updateExit();
+      }
+    }
+    giveRandomTileExit();
+    drawVisionBlur();
+  }
+
+  void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
+    if (pWallU == false) {
+      int nextTile = pTileID - grid.cols;
+      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTilesInView(nextTile, grid.grid.get(nextTile).walls[0], true, true, true);
+    }
+    if (pWallR == false) {
+      int nextTile = pTileID + 1;
+      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTilesInView(nextTile, true, grid.grid.get(nextTile).walls[1], true, true);
+      if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
+        updateExit();
+      }
+    }
+    if (pWallD == false) {
+      int nextTile = pTileID + grid.cols;
+      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTilesInView(nextTile, true, true, grid.grid.get(nextTile).walls[2], true);
+    }
+    if (pWallL == false) {
+      int nextTile = pTileID - 1;
+      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTilesInView(nextTile, true, true, true, grid.grid.get(nextTile).walls[3]);
+      if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
+        updateExit();
+      }
+    }
   }
 
   void giveCellsID() {
@@ -58,10 +112,6 @@ class TileSet {
         idGiven = true;
       }
     }
-    for (int i=0; i < grid.grid.size(); i++) {
-      drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
-    }
-    giveRandomTileExit();
   }
 
   void giveRandomTileExit() {
@@ -72,7 +122,9 @@ class TileSet {
         println("exit bevindt zich op: x" + grid.grid.get(randomTile).x + "y" + grid.grid.get(randomTile).y);
       } else giveRandomTileExit();
     }
+  }
 
+  void updateExit() {
     if (tileAccepted == true) {
       if (exitGateOpen == false) {
         drawTile(15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
@@ -80,5 +132,10 @@ class TileSet {
         drawTile(16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
       }
     }
+  }
+
+  void drawVisionBlur() {
+    int size = 25;
+    image(visionFade, mouseX - (grid.w * size / 2), mouseY - (grid.w * size / 2), grid.w * size, grid.w * size);
   }
 }

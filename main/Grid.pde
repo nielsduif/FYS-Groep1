@@ -39,6 +39,7 @@ class Grid {
       executed++;
     } else if (executed > 1) {
       tileSet.giveCellsID();
+      tileSet.updateMazeTiles();
     }
 
     // STEP 1
