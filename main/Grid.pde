@@ -1,6 +1,8 @@
+Grid grid = new Grid();
+
 class Grid {
   int cols, rows;
-  int w = 75;
+  int w = 100;
 
   ArrayList<Cell> grid = new ArrayList<Cell>();
 
