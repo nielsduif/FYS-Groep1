@@ -3,8 +3,9 @@ PathFinding pathFinding = new PathFinding();
 class PathFinding {
   float Ex, Ey, Ew;
   Cell current;
-  ArrayList<Cell> path = new ArrayList<Cell>();
-
+  
+  float speed = 3, curSpeed;
+  
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size())));
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5;
@@ -15,10 +16,7 @@ class PathFinding {
   }
 
   void update() {
-    Cell next = current.checkNeighbors();
-    if (next!=null) {
     
-    }
   }
 
   void draw() {
