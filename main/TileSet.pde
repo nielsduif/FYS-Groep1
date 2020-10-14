@@ -37,7 +37,7 @@ class TileSet {
       }
     }
     giveRandomTileExit();
-    drawVisionBlur();
+    //drawVisionBlur();
   }
 
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
@@ -115,7 +115,7 @@ class TileSet {
       randomTile = int(random(grid.grid.size()));
       if (grid.grid.get(randomTile).walls[0] == true && grid.grid.get(randomTile).tileID != 2 && grid.grid.get(randomTile).tileID != 3 && grid.grid.get(randomTile).tileID != 11 && grid.grid.get(randomTile).tileID != 12) {
         tileAccepted = true;
-        println("exit bevindt zich op: x" + grid.grid.get(randomTile).x + "y" + grid.grid.get(randomTile).y);
+        println("exit: " + grid.grid.get(randomTile).x + "x " + grid.grid.get(randomTile).y + "y");
       } else giveRandomTileExit();
     }
   }

@@ -40,7 +40,6 @@ class PrismStones {
       if (prismStoneUsed == false) {
         prismStone.usePrismStone();
         prismStoneUsed = true;
-        println(stoneCount);
       }
     }
     if (!keysPressed[65]) {

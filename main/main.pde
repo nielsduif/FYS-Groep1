@@ -12,7 +12,7 @@ void setup() {
 
 void updateGame() {  
   grid.update();
-  pathFinding.update();
+  pathFinding.draw();
   player.update();
   player.draw();
   prismStone.updatePrismStones();
@@ -20,7 +20,6 @@ void updateGame() {
 
 void drawGame() {
   background(100);
-  player.draw();
 }
 
 void draw() {
