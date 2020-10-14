@@ -2,6 +2,8 @@ TileSet tileSet = new TileSet();
 
 class TileSet { 
 
+  float x, y;
+
   int tileAmount = 17;
   int randomTile;
   boolean tileAccepted = false;
@@ -23,6 +25,12 @@ class TileSet {
 
   void updateMazeTiles() {
     background(0);
+
+    x = mouseX;
+    y = mouseY;
+    x = floor(x / grid.w);
+    y = floor(y / grid.w);
+
     for (int i=0; i < grid.grid.size(); i++) {
       if (x == grid.grid.get(i).x && y == grid.grid.get(i).y) {
         drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
