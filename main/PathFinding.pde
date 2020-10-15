@@ -4,7 +4,9 @@ class PathFinding {
   float Ex, Ey, Ew;
   Cell current;
 
-  float speed = 3;
+  float speed = 1;
+
+  ArrayList<Cell> path = new ArrayList<Cell>();
 
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size())));
@@ -16,22 +18,22 @@ class PathFinding {
   }
 
   void update() {
-    //currentcell calc
-    for (int i=0; i<grid.grid.size(); i++) {
-      if (grid.grid.get(i).x == floor(Ex / grid.w) && grid.grid.get(i).y == floor(Ey / grid.w)) {
-        current = grid.grid.get(i);
-      }
+    current = grid.grid.get(Ex / grid.w, Ey / grid.w);
+    
+    println(Ex,Ey);
+    Cell top    = grid.grid.get(grid.index(current.x,current.y - 1));
+    //Cell right  = grid.grid.get(grid.index(int(Ex+1), int(Ey)));
+    //Cell bottom = grid.grid.get(grid.index(int(Ex), int(Ey+1)));
+    //Cell left   = grid.grid.get(grid.index(int(Ex-1), int(Ey)));
+
+    //println(current.walls[0], grid.grid.get(grid.index(current.x, current.y-1)).walls[2]);
+    if (!current.walls[0] && !grid.grid.get(grid.index(current.x, current.y-1)).walls[2]) {
+      Ey-=speed;
+    } else {
+      //println("bro");
     }
 
-    if (current.walls[0]) {
-      Ey += speed;
-    } else if (current.walls[1]) {
-      Ex -= speed;
-    } else if (current.walls[2]) {
-      Ey -= speed;
-    } else if(current.walls[3]) {
-      Ex += speed;
-    }
+    rect(top.x, top.y, 20, 20);
   }
 
   void draw() {

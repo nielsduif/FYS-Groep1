@@ -1,10 +1,11 @@
 class Cell {
   int tileID;
-  
+
   int x, y, w;
   boolean[] walls = {true, true, true, true};
   boolean visited = false;
   boolean isDrawn;
+  boolean path = false;
 
   Cell(int _x, int _y, int _w) {
     x = _x;

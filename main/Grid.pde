@@ -9,7 +9,7 @@ class Grid {
   Cell current;
 
   ArrayList<Cell> stack = new ArrayList<Cell>();
-  
+
   boolean doneGenerating;
 
   void start() {
@@ -52,15 +52,12 @@ class Grid {
       current = next;
     } else if (stack.size() > 0) {
       current = stack.remove(stack.size()-1);
-    }
-    
-    if (stack.size() > 0) {
       current.highlight();
       doneGenerating = false;
     } else {
       doneGenerating = true;
       tileSet.giveCellsID();
-      tileSet.updateMazeTiles();
+      //tileSet.updateMazeTiles();
     }
   }
 
