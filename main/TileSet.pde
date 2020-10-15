@@ -3,7 +3,6 @@ TileSet tileSet = new TileSet();
 class TileSet {
   int tileAmount = 17;
   int randomTile;
-  int visionCapCount;
   int visionCap = 2;
   int capU, capR, capD, capL;
   boolean drawExit;
@@ -21,17 +20,21 @@ class TileSet {
     visionFade = loadImage("Fade.png");
   }
 
-  void drawTile(int pTileID, float pPosX, float pPosY, int pTilePixelSize) {
-    image(tileImages[pTileID], pPosX, pPosY, pTilePixelSize, pTilePixelSize);
+  void drawTile(int pTileID, int pTileImageID, float pPosX, float pPosY, int pTilePixelSize) {
+    grid.grid.get(pTileID).isDrawn = true;
+    image(tileImages[pTileImageID], pPosX, pPosY, pTilePixelSize, pTilePixelSize);
   }
 
   void updateMazeTiles() {
     background(0);
+    for (int i=0; i < grid.grid.size(); i++) {
+      grid.grid.get(i).isDrawn = false;
+    }
     drawExit = false;
     capU = capR = capD = capL = 0;
     for (int i=0; i < grid.grid.size(); i++) {
       if (player.tileLocationX == grid.grid.get(i).x && player.tileLocationY == grid.grid.get(i).y) {
-        drawTile(grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
+        drawTile(i, grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
         drawTilesInView(i, grid.grid.get(i).walls[0], grid.grid.get(i).walls[1], grid.grid.get(i).walls[2], grid.grid.get(i).walls[3]);
       }
       if (player.tileLocationX == grid.grid.get(randomTile).x && player.tileLocationY == grid.grid.get(randomTile).y) {
@@ -46,13 +49,13 @@ class TileSet {
     if (pWallU == false && capU < visionCap) {
       capU++;
       int nextTile = pTileID - grid.cols;
-      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTile(nextTile, grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, grid.grid.get(nextTile).walls[0], true, true, true);
     }
     if (pWallR == false && capR < visionCap) {
       capR++;
       int nextTile = pTileID + 1;
-      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTile(nextTile, grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, grid.grid.get(nextTile).walls[1], true, true);
       if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
         drawExit = true;
@@ -61,13 +64,13 @@ class TileSet {
     if (pWallD == false && capD < visionCap) {
       capD++;
       int nextTile = pTileID + grid.cols;
-      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTile(nextTile, grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, true, grid.grid.get(nextTile).walls[2], true);
     }
     if (pWallL == false && capL < visionCap) {
       capL++;
       int nextTile = pTileID - 1;
-      drawTile(grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
+      drawTile(nextTile, grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, true, true, true, grid.grid.get(nextTile).walls[3]);
       if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
         drawExit = true;
@@ -130,9 +133,9 @@ class TileSet {
     if (drawExit == true) {
       if (tileAccepted == true) {
         if (exitGateOpen == false) {
-          drawTile(15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+          drawTile(randomTile, 15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
         } else {
-          drawTile(16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+          drawTile(randomTile, 16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
         }
       }
     }
