@@ -18,22 +18,42 @@ class PathFinding {
   }
 
   void update() {
-    current = grid.grid.get(Ex / grid.w, Ey / grid.w);
-    
-    println(Ex,Ey);
-    Cell top    = grid.grid.get(grid.index(current.x,current.y - 1));
-    //Cell right  = grid.grid.get(grid.index(int(Ex+1), int(Ey)));
-    //Cell bottom = grid.grid.get(grid.index(int(Ex), int(Ey+1)));
-    //Cell left   = grid.grid.get(grid.index(int(Ex-1), int(Ey)));
-
-    //println(current.walls[0], grid.grid.get(grid.index(current.x, current.y-1)).walls[2]);
-    if (!current.walls[0] && !grid.grid.get(grid.index(current.x, current.y-1)).walls[2]) {
-      Ey-=speed;
-    } else {
-      //println("bro");
+    for (int i=0; i<grid.grid.size(); i++) {
+      if (grid.grid.get(i).x == floor(Ex / grid.w) && grid.grid.get(i).y == floor(Ey / grid.w)) {
+        current = grid.grid.get(i);
+      }
     }
 
-    rect(top.x, top.y, 20, 20);
+    ArrayList<Cell> pathNeighbors = new ArrayList<Cell>();
+
+    Cell top    = grid.grid.get(grid.index(current.x, current.y - 1));
+    Cell right  = grid.grid.get(grid.index(current.x + 1, current.y));
+    Cell bottom = grid.grid.get(grid.index(current.x, current.y + 1));
+    Cell left   = grid.grid.get(grid.index(current.x - 1, current.y));
+
+    if (!current.walls[0] && !top.walls[2]) {
+      pathNeighbors.add(top);
+    }  
+    if (!current.walls[1] && !bottom.walls[3]) {
+      pathNeighbors.add(right);
+    }  
+    if (!current.walls[2] && !right.walls[0]) {
+      pathNeighbors.add(bottom);
+    }  
+    if (!current.walls[3] && !left.walls[1]) {
+      pathNeighbors.add(left);
+    }
+
+    fill(100, 100, 100, 50);
+    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
+    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
+    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
+    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
+
+    for (int i=0; i<pathNeighbors.size(); i++) {
+      fill(0, 255, 0, 50);
+      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+    }
   }
 
   void draw() {
