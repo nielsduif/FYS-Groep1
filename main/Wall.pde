@@ -6,6 +6,6 @@ class Wall {
     wallY = random(0, height);
   }
   void updateWall() {
-    rect(wallX, wallY, wallW, wallH);
+    //rect(wallX, wallY, wallW, wallH);
   }
 }
