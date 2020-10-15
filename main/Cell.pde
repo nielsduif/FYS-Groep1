@@ -42,7 +42,7 @@ class Cell {
 
   void highlight() {
     noStroke();
-    fill(255, 100, 255);
+    fill(255);
     rect(x * w, y * w, w, w);
   }
 

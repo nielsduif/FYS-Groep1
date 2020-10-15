@@ -12,16 +12,18 @@ void setup() {
 
 void updateGame() {  
   grid.update();
-  pathFinding.draw();
-  tileSet.updateExit();
-  pathFinding.update();
-  player.update();
-  player.draw();
-  prismStone.updatePrismStones();
+  if (grid.executed > 0) {
+    pathFinding.draw();
+    tileSet.updateExit();
+    pathFinding.update();
+    player.update();
+    player.draw();
+    prismStone.updatePrismStones();
+  }
 }
 
 void drawGame() {
-  background(100);
+  background(255);
 }
 
 void draw() {
