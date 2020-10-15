@@ -12,7 +12,7 @@ void setup() {
 
 void updateGame() {  
   grid.update();
-  if (grid.executed > 0) {
+  if (grid.doneGenerating) {
     pathFinding.draw();
     tileSet.updateExit();
     pathFinding.update();

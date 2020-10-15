@@ -9,10 +9,11 @@ class Grid {
   Cell current;
 
   ArrayList<Cell> stack = new ArrayList<Cell>();
-
-  int executed;
+  
+  boolean doneGenerating;
 
   void start() {
+    doneGenerating = false;
     cols = floor(width/w);
     rows = floor(height/w);
 
@@ -33,14 +34,7 @@ class Grid {
       grid.get(i).show();
     }
 
-    current.visited = true;
-    if (stack.size() > 0) {
-      current.highlight();
-      executed++;
-    } else if (executed > 1) {
-      tileSet.giveCellsID();
-      tileSet.updateMazeTiles();
-    }
+    current.visited = true; 
 
     // STEP 1
     Cell next = current.checkNeighbors();
@@ -58,6 +52,15 @@ class Grid {
       current = next;
     } else if (stack.size() > 0) {
       current = stack.remove(stack.size()-1);
+    }
+    
+    if (stack.size() > 0) {
+      current.highlight();
+      doneGenerating = false;
+    } else {
+      doneGenerating = true;
+      tileSet.giveCellsID();
+      tileSet.updateMazeTiles();
     }
   }
 

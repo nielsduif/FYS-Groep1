@@ -23,11 +23,14 @@ class PathFinding {
       }
     }
 
-    if (Ex > player.x) {
+    if (current.walls[0]) {
+      Ey += speed;
+    } else if (current.walls[1]) {
       Ex -= speed;
-    }
-    if (Ey > player.y) {
+    } else if (current.walls[2]) {
       Ey -= speed;
+    } else if(current.walls[3]) {
+      Ex += speed;
     }
   }
 
