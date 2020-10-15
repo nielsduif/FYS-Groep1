@@ -4,6 +4,7 @@ class Cell {
   int x, y, w;
   boolean[] walls = {true, true, true, true};
   boolean visited = false;
+  boolean isDrawn;
 
   Cell(int _x, int _y, int _w) {
     x = _x;

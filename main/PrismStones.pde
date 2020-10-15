@@ -8,12 +8,15 @@ class PrismStones {
   PrismStones[] prismStones = new PrismStones[stoneCount];
 
   float prismStoneX, prismStoneY;
+  float prismStoneTileX, prismStoneTileY;
 
   void usePrismStone() {
     if (stoneCount > 0) {
       prismStones[stoneCount - 1] = new PrismStones();
       prismStones[stoneCount - 1].prismStoneX = player.x - prismStonePixelSize / 2;
       prismStones[stoneCount - 1].prismStoneY = player.y - prismStonePixelSize / 2;
+      prismStones[stoneCount - 1].prismStoneTileX = floor(prismStones[stoneCount - 1].prismStoneX / grid.w);
+      prismStones[stoneCount - 1].prismStoneTileY = floor(prismStones[stoneCount - 1].prismStoneY / grid.w);
       stoneCount--;
     }
   }
@@ -22,7 +25,11 @@ class PrismStones {
     checkInputPrismStone();
     for (int i = 0; i < prismStones.length; i++) {
       if (prismStones[i] != null) {
-        image(prismStoneImage, prismStones[i].prismStoneX, prismStones[i].prismStoneY, prismStonePixelSize, prismStonePixelSize);
+        for (int j = 0; j < grid.grid.size(); j++) {
+          if (grid.grid.get(j).x == prismStones[i].prismStoneTileX && grid.grid.get(j).y == prismStones[i].prismStoneTileY && grid.grid.get(j).isDrawn == true) {
+            image(prismStoneImage, prismStones[i].prismStoneX, prismStones[i].prismStoneY, prismStonePixelSize, prismStonePixelSize);
+          }
+        }
       }
     }
   }
