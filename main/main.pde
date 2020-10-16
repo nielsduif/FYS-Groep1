@@ -1,13 +1,15 @@
 // Arrays of booleans for Keyboard handling. One boolean for each keyCode
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
+PFont font;
 
 void setup() {
   size(1600, 800);
   tileSet.loadTileImages();
   grid.start();
   pathFinding.start();
-  frameRate(120);
+  font = createFont("Minecraftia-Regular.ttf", 32);
+  textFont(font);
 }
 
 void updateGame() {  
@@ -17,8 +19,9 @@ void updateGame() {
     tileSet.updateExit();
     pathFinding.update();
     player.update();
-    player.draw();
     prismStone.updatePrismStones();
+    player.draw();
+    prismStone.prismStoneUI();
   }
 }
 

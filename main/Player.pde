@@ -2,12 +2,14 @@ Player player = new Player();
 
 class Player
 {
+  PImage playerImage;
   float x = grid.w * .5; 
   float y = grid.w * .5;
   float prevX = x, prevY = y;
   float tileLocationX;
   float tileLocationY;
   float playerW = (grid.w / 3) - 10;
+  float playerH = playerW * 2;
   float speed = 3;
   boolean A, S, Z, X;
 
@@ -19,8 +21,10 @@ class Player
 
   void draw()
   {
-    fill(0, 255, 0);
-    circle(x, y, playerW);
+    imageMode(CENTER);
+    //circle(x, y, playerW); COLLISION REFRENCE
+    image(playerImage, x, y - playerH / 2, playerW, playerH);
+    imageMode(CORNER);
   }
 
   void move() {
@@ -60,10 +64,10 @@ class Player
         }
 
         if (
-          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
-          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
+          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
+          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
           x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y + playerW / 2 >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3) ||
-          x + playerW / 2>=(grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y + playerW / 2 >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
+          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y + playerW / 2 >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
           ) {
           corner = true;
         }
@@ -72,7 +76,7 @@ class Player
     if (x - playerW / 2 <= wallL || x + playerW / 2 >= wallR) {
       x = prevX;
     }
-    if (y <= wallU || y + playerW / 2 >= wallD) {
+    if (y - playerW / 2 <= wallU || y + playerW / 2 >= wallD) {
       y = prevY;
     }
     if (corner == true) {

@@ -41,7 +41,6 @@ class PrismStones {
     stoneCount = 10;
   }
 
-
   void checkInputPrismStone() {
     if (keysPressed[65]) {
       if (prismStoneUsed == false) {
@@ -50,7 +49,12 @@ class PrismStones {
       }
     }
     if (!keysPressed[65]) {
-      prismStoneUsed = false;
+      prismStoneUsed = false;  
     }
+  }
+
+  void prismStoneUI() {
+    fill(255);
+    text("Prismstones: " + stoneCount, width - 325, 64);
   }
 }
