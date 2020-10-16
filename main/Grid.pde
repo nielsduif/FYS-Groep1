@@ -63,7 +63,7 @@ class Grid {
           int randomTileX = int(random(grid.size() - 1));      
           removeWalls(grid.get(randomTileX), grid.get(randomTileX + 1));
           int randomTileY = int(random(grid.size() - cols));
-          if (randomTileY % cols != 0 || randomTileY % cols != 15) {
+          if (randomTileY % cols != 0 || randomTileY % cols != cols) {
             removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
           }
           deletedWalls = true;
