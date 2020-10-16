@@ -57,7 +57,7 @@ class Grid {
     } else {
       doneGenerating = true;
       tileSet.giveCellsID();
-      //tileSet.updateMazeTiles();
+      tileSet.updateMazeTiles();
     }
   }
 

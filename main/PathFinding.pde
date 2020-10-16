@@ -8,6 +8,10 @@ class PathFinding {
 
   ArrayList<Cell> path = new ArrayList<Cell>();
 
+  Cell nextCell = null;
+  boolean random = false;
+  float destX, destY;
+
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size())));
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5;
@@ -34,14 +38,33 @@ class PathFinding {
     if (!current.walls[0] && !top.walls[2]) {
       pathNeighbors.add(top);
     }  
-    if (!current.walls[1] && !bottom.walls[3]) {
+    if (!current.walls[1] && !right.walls[3]) {
       pathNeighbors.add(right);
     }  
-    if (!current.walls[2] && !right.walls[0]) {
+    if (!current.walls[2] && !bottom.walls[0]) {
       pathNeighbors.add(bottom);
     }  
     if (!current.walls[3] && !left.walls[1]) {
       pathNeighbors.add(left);
+    }
+
+    if (pathNeighbors.size() > 0 && !random) {
+      int r = floor(random(pathNeighbors.size()));
+      nextCell = pathNeighbors.get(r);
+      nextCell.path = true;
+      random = true;
+    }
+
+    if (nextCell != null && Ex < nextCell.x * grid.w + grid.w * .5) {
+      Ex += speed;
+    } else if (nextCell != null && Ex > nextCell.x * grid.w + grid.w * .5) {
+      Ex -= speed;
+    } else if (nextCell != null && Ey < nextCell.y * grid.w + grid.w * .5) {
+      Ey += speed;
+    } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5) {
+      Ey -= speed;
+    } else {
+      random=false;
     }
 
     fill(100, 100, 100, 50);
