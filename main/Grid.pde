@@ -60,10 +60,12 @@ class Grid {
       doneGenerating = true;
       if (deletedWalls == false) {
         for (int i = deletedWallsCount; i > 0; i--) {
-          int randomTileX = int(random(grid.size() -1));      
-          int randomTileY = int(random(grid.size() - cols));
+          int randomTileX = int(random(grid.size() - 1));      
           removeWalls(grid.get(randomTileX), grid.get(randomTileX + 1));
-          removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
+          int randomTileY = int(random(grid.size() - cols));
+          if (randomTileY % cols != 0 || randomTileY % cols != 15) {
+            removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
+          }
           deletedWalls = true;
         }
       }
