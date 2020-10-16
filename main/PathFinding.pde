@@ -8,9 +8,9 @@ class PathFinding {
   float Ex, Ey, Ew;
   Cell current;
 
-  float speed = 1;
+  float speed = 5;
 
-  ArrayList<Cell> path = new ArrayList<Cell>();
+  Cell lastCell;
 
   Cell nextCell = null;
   boolean random = false;
@@ -52,10 +52,16 @@ class PathFinding {
       pathNeighbors.add(left);
     }
 
-    if (pathNeighbors.size() > 0 && !random) {
+    if (pathNeighbors.size() > 1 && !random) {
       int r = floor(random(pathNeighbors.size()));
-      nextCell = pathNeighbors.get(r);
-      nextCell.path = true;
+      if (pathNeighbors.get(r) != lastCell) {
+        lastCell = current;
+        nextCell = pathNeighbors.get(r);
+        random = true;
+      }
+    } else if (pathNeighbors.size() == 1 && !random) {
+      nextCell = pathNeighbors.get(0);
+      lastCell = current;
       random = true;
     }
 
@@ -68,24 +74,12 @@ class PathFinding {
     } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5) {
       Ey -= speed;
     } else {
-      random=false;
-    }
-
-    fill(100, 100, 100, 50);
-    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
-    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
-    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
-    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
-
-    for (int i=0; i<pathNeighbors.size(); i++) {
-      fill(0, 255, 0, 50);
-      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+      random = false;
     }
   }
 
   void draw() {
     imageMode(CENTER);
-    //circle(Ex, Ey, Ew);  collision reference
     image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
     imageMode(CORNER);
     circle(Ex, Ey, Ew);
