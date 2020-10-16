@@ -18,6 +18,7 @@ class TileSet {
     }
     prismStone.prismStoneImage = loadImage("PrismStone.png");
     visionFade = loadImage("Fade.png");
+    player.playerImage = loadImage("player.png");
   }
 
   void drawTile(int pTileID, int pTileImageID, float pPosX, float pPosY, int pTilePixelSize) {
@@ -131,7 +132,7 @@ class TileSet {
 
   void updateExit() {
     if (drawExit == true) {
-      if (tileAccepted == true) {
+      if (tileAccepted == true) {  
         if (exitGateOpen == false) {
           drawTile(randomTile, 15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
         } else {
