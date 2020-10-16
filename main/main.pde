@@ -15,11 +15,11 @@ void setup() {
 void updateGame() {  
   grid.update();
   if (grid.doneGenerating) {
-    pathFinding.draw();
     tileSet.updateExit();
+    prismStone.updatePrismStones();
+    pathFinding.draw();
     pathFinding.update();
     player.update();
-    prismStone.updatePrismStones();
     player.draw();
     prismStone.prismStoneUI();
   }

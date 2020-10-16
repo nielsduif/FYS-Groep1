@@ -19,6 +19,7 @@ class TileSet {
     prismStone.prismStoneImage = loadImage("PrismStone.png");
     visionFade = loadImage("Fade.png");
     player.playerImage = loadImage("player.png");
+    pathFinding.monsterImage = loadImage("monster.png");
   }
 
   void drawTile(int pTileID, int pTileImageID, float pPosX, float pPosY, int pTilePixelSize) {

@@ -21,8 +21,10 @@ class Player
 
   void draw()
   {
+    fill(50, 50, 50, 100);
+    circle(x, y, playerW); // player shadow
     imageMode(CENTER);
-    //circle(x, y, playerW); COLLISION REFRENCE
+    //circle(x, y, playerW); collision reference
     image(playerImage, x, y - playerH / 2, playerW, playerH);
     imageMode(CORNER);
   }
@@ -66,8 +68,8 @@ class Player
         if (
           x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
           x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
-          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y + playerW / 2 >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3) ||
-          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y + playerW / 2 >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
+          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3) ||
+          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
           ) {
           corner = true;
         }
@@ -76,7 +78,7 @@ class Player
     if (x - playerW / 2 <= wallL || x + playerW / 2 >= wallR) {
       x = prevX;
     }
-    if (y - playerW / 2 <= wallU || y + playerW / 2 >= wallD) {
+    if (y - playerW / 2 <= wallU || y >= wallD) {
       y = prevY;
     }
     if (corner == true) {

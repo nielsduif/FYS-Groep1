@@ -1,6 +1,10 @@
 PathFinding pathFinding = new PathFinding();
 
 class PathFinding {
+  PImage monsterImage;
+  float monsterW = (grid.w / 3) - 5;
+  float monsterH = monsterW * 2;
+
   float Ex, Ey, Ew;
   Cell current;
 
@@ -80,7 +84,10 @@ class PathFinding {
   }
 
   void draw() {
-    fill(255, 0, 0);
+    imageMode(CENTER);
+    //circle(Ex, Ey, Ew);  collision reference
+    image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+    imageMode(CORNER);
     circle(Ex, Ey, Ew);
   }
 }
