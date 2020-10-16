@@ -64,7 +64,6 @@ class Player
         if (grid.grid.get(i).walls[3] == true) {
           wallL = (grid.w * grid.grid.get(i).x) + (grid.w / 3);
         }
-
         if (
           x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
           x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
@@ -85,11 +84,7 @@ class Player
       x = prevX;
       y = prevY;
     }
-    if (prevX != x) {
-      prevX = x;
-    }
-    if (prevY != y) {
-      prevY = y;
-    }
+    prevX = x;
+    prevY = y;
   }
 }

@@ -22,7 +22,7 @@ class Grid {
     println(cols + " x " + rows + " = " + cols * rows + " cells");
 
     //cells
-    for (int y=0; y< rows; y++) {
+    for (int y=0; y < rows; y++) {
       for (int x=0; x < cols; x++) {
         Cell cell = new Cell(x, y, w);
         grid.add(cell);

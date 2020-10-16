@@ -79,9 +79,16 @@ class PathFinding {
   }
 
   void draw() {
-    imageMode(CENTER);
-    image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
-    imageMode(CORNER);
-    circle(Ex, Ey, Ew);
+    int monsterTileX = floor(Ex / grid.w);
+    int monsterTileY = floor(Ey/ grid.w);
+    //println(monsterTileX + "; " + monsterTileY);
+    for (int i = 0; i < grid.grid.size(); i++) {
+      if (grid.grid.get(i).x == monsterTileX && grid.grid.get(i).y == monsterTileY && grid.grid.get(i).isDrawn == true) {
+        imageMode(CENTER);
+        image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+        imageMode(CORNER);
+        circle(Ex, Ey, Ew);
+      }
+    }
   }
 }
