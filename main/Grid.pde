@@ -3,7 +3,7 @@ Grid grid = new Grid();
 class Grid {
   int cols, rows;
   int w = 100;
-  int deletedWallsCount = 5;
+  int deletedWallsCount = 10;
   boolean deletedWalls;
 
   ArrayList<Cell> grid = new ArrayList<Cell>();
@@ -60,12 +60,8 @@ class Grid {
       doneGenerating = true;
       if (deletedWalls == false) {
         for (int i = deletedWallsCount; i > 0; i--) {
-          int randomTileX = int(random(grid.size() - 1));      
-          removeWalls(grid.get(randomTileX), grid.get(randomTileX + 1));
           int randomTileY = int(random(grid.size() - cols));
-          if (randomTileY % cols != 0 || randomTileY % cols != cols) {
-            removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
-          }
+          removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
           deletedWalls = true;
         }
       }
