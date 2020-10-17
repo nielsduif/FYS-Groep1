@@ -76,6 +76,8 @@ class PathFinding {
           nextCell = bottom;
         } else if (current.x > floor(player.x / grid.w) && left != null) {
           nextCell = left;
+        } else {
+          println("player and enemy in the sale tile! add ouchy to player", frameCount);
         }
       }
     }
