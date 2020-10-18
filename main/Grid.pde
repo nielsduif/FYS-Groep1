@@ -59,11 +59,16 @@ class Grid {
     } else {
       doneGenerating = true;
       if (deletedWalls == false) {
-        for (int i = deletedWallsCount; i > 0; i--) {
+        for (int i = deletedWallsCount; i > 0; ) {
           int randomTileY = int(random(grid.size() - cols));
-          removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
-          deletedWalls = true;
+          if (grid.get(randomTileY).walls[2] == true) {
+            removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
+            i++;
+          } else {
+            i--;
+          }
         }
+        deletedWalls = true;
       }
       tileSet.giveCellsID();
       tileSet.updateMazeTiles();
