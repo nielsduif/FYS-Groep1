@@ -10,6 +10,8 @@ void setup() {
   pathFinding.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
+  keys.createKeys();
+  coins.createCoin();
 }
 
 void updateGame() {  
@@ -22,6 +24,8 @@ void updateGame() {
     player.update();
     player.draw();
     prismStone.prismStoneUI();
+    keys.updateKeys();
+    coins.updateCoin();
   }
 }
 
