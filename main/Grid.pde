@@ -3,7 +3,7 @@ Grid grid = new Grid();
 class Grid {
   int cols, rows;
   int w = 100;
-  int deletedWallsCount = 5;
+  int deletedWallsCount = 10;
   boolean deletedWalls;
 
   ArrayList<Cell> grid = new ArrayList<Cell>();
@@ -59,13 +59,16 @@ class Grid {
     } else {
       doneGenerating = true;
       if (deletedWalls == false) {
-        for (int i = deletedWallsCount; i > 0; i--) {
-          int randomTileX = int(random(grid.size() -1));      
+        for (int i = deletedWallsCount; i > 0; ) {
           int randomTileY = int(random(grid.size() - cols));
-          removeWalls(grid.get(randomTileX), grid.get(randomTileX + 1));
-          removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
-          deletedWalls = true;
+          if (grid.get(randomTileY).walls[2] == true) {
+            removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));
+            i++;
+          } else {
+            i--;
+          }
         }
+        deletedWalls = true;
       }
       tileSet.giveCellsID();
       tileSet.updateMazeTiles();
