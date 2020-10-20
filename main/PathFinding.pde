@@ -78,7 +78,7 @@ class PathFinding {
           nextCell = left;
         } else {
           if (Ex == player.x && Ey == player.y) {
-            println("hit", frameCount);
+            gameOver.showGameOver();
           } else {
             nextCell = null;
             if (Ex < player.x) {
