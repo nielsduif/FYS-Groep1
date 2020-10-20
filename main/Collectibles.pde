@@ -13,7 +13,6 @@ class CoinHandler {
           int randomGetal = int(random(grid.grid.size()));
           if (randomGetal == keyHandler.keys[j].keyLocation) {
             createCoin();
-            println( "<3");
           } else {
             coins[i].coinX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
             coins[i].coinY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;

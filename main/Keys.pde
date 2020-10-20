@@ -9,7 +9,6 @@ class KeyHandler {
       for (int i = 0; i < keyAmount; i++) {
         keys[i] = new Keys();
         int randomGetal = int(random(grid.grid.size()/3 * (i + 1)));
-        println ( randomGetal);
         keys[i].keyLocation = randomGetal;
         keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
         keys[i].keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
