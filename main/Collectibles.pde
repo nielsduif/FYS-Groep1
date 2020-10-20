@@ -1,25 +1,45 @@
-Collectibles coins = new Collectibles();
-class Collectibles {
-  float coinX, coinY, d;
+CoinHandler coinHandler = new CoinHandler();
+boolean createCoinOnce;
+class CoinHandler {
+  int coinAmount = 10;
+  Coin[] coins = new Coin[coinAmount];
   int score;
+
   void createCoin() {
-    int randomGetal = int(random(grid.grid.size()));
-    coinX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
-    coinY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
-    d = 15;
-    score = 0;
+    if (createCoinOnce == false) {
+      for (int i = 0; i < coinAmount; i++) {
+        coins[i] = new Coin();
+        for (int j = 0; j < keyHandler.keyAmount; j++) {
+          int randomGetal = int(random(grid.grid.size()));
+          if (randomGetal == keyHandler.keys[j].keyLocation) {
+            createCoin();
+          } else {
+            coins[i].coinX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+            coins[i].coinY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+            coins[i].d = 15;
+            score = 0;
+          }
+        }
+      }
+      createCoinOnce = true;
+    }
   }
 
   void updateCoin() {
-    float afstandX = abs(coinX - player.x);
-    float afstandY = abs(coinY - player.y);
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < coinAmount; i++) {
+      float afstandX = abs(coins[i].coinX - player.x);
+      float afstandY = abs(coins[i].coinY - player.y);
       fill(255, 255, 0);
-      circle(coinX, coinY, d);
-      if (afstandX <= d/2 + player.playerW/2 && afstandY <= d/2 + player.playerW) {
+      circle(coins[i].coinX, coins[i].coinY, coins[i].d);
+      if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) {
         score += 10;
-        coinX = -10;
+        coins[i].coinX = -10;
       }
     }
   }
+}
+
+class Coin {
+  float coinX, coinY, d;
+  int coinLocation;
 }
