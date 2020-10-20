@@ -8,6 +8,8 @@ void setup() {
   grid.start();
   pathFinding.start();
   frameRate(120);
+  keys.createKeys();
+  coins.createCoin();
 }
 
 void updateGame() {  
@@ -19,6 +21,8 @@ void updateGame() {
     player.update();
     player.draw();
     prismStone.updatePrismStones();
+    keys.updateKeys();
+    coins.updateCoin();
   }
 }
 
