@@ -10,13 +10,13 @@ void setup() {
   pathFinding.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
-  keys.createKeys();
-  coins.createCoin();
 }
 
 void updateGame() {  
   grid.update();
   if (grid.doneGenerating) {
+    keyHandler.createKeys();
+    coinHandler.createCoin();
     tileSet.updateExit();
     prismStone.updatePrismStones();
     pathFinding.draw();
@@ -24,8 +24,8 @@ void updateGame() {
     player.update();
     player.draw();
     prismStone.prismStoneUI();
-    keys.updateKeys();
-    coins.updateCoin();
+    keyHandler.updateKeys();
+    coinHandler.updateCoin();
   }
 }
 

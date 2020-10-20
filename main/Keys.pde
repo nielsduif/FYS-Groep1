@@ -1,30 +1,43 @@
-Keys keys = new Keys();
-class Keys {
-  float keyX, keyY, d;
-  int count;
-  boolean exitOpen;
+KeyHandler keyHandler = new KeyHandler();
+boolean createKeyOnce;
+class KeyHandler {
+  int keyAmount = 3;
+  Keys[] keys = new Keys[keyAmount];
+  int count = 0;
   void createKeys() {
-    int randomGetal = int(random(grid.grid.size()));
-    keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
-    keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
-    d = 10;
-    count = 0;
+    if (createKeyOnce == false) {
+      for (int i = 0; i < keyAmount; i++) {
+        keys[i] = new Keys();
+        int randomGetal = int(random(grid.grid.size()/3 * (i + 1)));
+        println ( randomGetal);
+        keys[i].keyLocation = randomGetal;
+        keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+        keys[i].keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+        keys[i].d = 10;
+        createKeyOnce = true;
+      }
+    }
   }
 
   void updateKeys() {
-    float afstandX = abs(keyX - player.x);
-    float afstandY = abs(keyY - player.y);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < keyAmount; i++) {
+      float afstandX = abs(keys[i].keyX - player.x);
+      float afstandY = abs(keys[i].keyY - player.y);
+
       fill(255);
-      circle(keyX, keyY, d);
-      if (afstandX <= d/2 + player.playerW/2 && afstandY <= d/2 + player.playerW/2) {
-        count += 1;
-        keyX = -10;
+      circle(keys[i].keyX, keys[i].keyY, keys[i].d);
+      if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) {
+        keys[i].keyX = -10;
+        count++;
       }
     }
-    if (count == 3) {
-      exitOpen = true;
+    if (count == keyAmount) {
+      tileSet.exitGateOpen = true;
       println ("exit open");
     }
   }
+}
+class Keys {
+  float keyX, keyY, d;
+  int keyLocation;
 }
