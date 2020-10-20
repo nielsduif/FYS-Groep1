@@ -26,6 +26,7 @@ void updateGame() {
     prismStone.prismStoneUI();
     keys.updateKeys();
     coins.updateCoin();
+    score.draw();
   }
 }
 

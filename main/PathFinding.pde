@@ -77,7 +77,21 @@ class PathFinding {
         } else if (current.x > floor(player.x / grid.w) && left != null) {
           nextCell = left;
         } else {
-          println("player and enemy in the sale tile! add ouchy to player", frameCount);
+          if (Ex == player.x && Ey == player.y) {
+            println("hit", frameCount);
+          } else {
+            nextCell = null;
+            if (Ex < player.x) {
+              Ex += speed;
+            } else if (Ex > player.x) {
+              Ex -= speed;
+            }
+            if (Ey < player.y) {
+              Ey += speed;
+            } else if (Ey > player.y) {
+              Ey -= speed;
+            }
+          }
         }
       }
     }
@@ -90,31 +104,32 @@ class PathFinding {
       Ey += speed;
     } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5) {
       Ey -= speed;
-    } else {
+    } else if (nextCell != null) {
       random = false;
     }
 
-    fill(255, 50);
-    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
-    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
-    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
-    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
+    //debug monster
+    //fill(255, 50);
+    //rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
+    //rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
+    //rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
+    //rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
 
-    for (int i = 0; i < pathNeighbors.size(); i++) {
-      fill(0, 255, 0, 50);
-      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
-    }
+    //for (int i = 0; i < pathNeighbors.size(); i++) {
+    //  fill(0, 255, 0, 50);
+    //  rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+    //}
 
-    fill(0, 0, 255, 50);
-    rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
-    if (!inSight) {
-      fill(255, 0, 0, 50);
-    } else {
-      fill(255, 255, 0, 50);
-    }
-    if (nextCell != null) {
-      rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
-    }
+    //fill(0, 0, 255, 50);
+    //rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
+    //if (!inSight) {
+    //  fill(255, 0, 0, 50);
+    //} else {
+    //  fill(255, 255, 0, 50);
+    //}
+    //if (nextCell != null) {
+    //  rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
+    //}
   }
 
   void draw() {
