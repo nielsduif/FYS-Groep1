@@ -5,7 +5,7 @@ PFont font;
 
 void setup() {
   size(1600, 800);
-  tileSet.loadTileImages();
+  imageLoader.loadTileImages();
   grid.start();
   pathFinding.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
