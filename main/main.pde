@@ -19,14 +19,14 @@ void updateGame() {
     coinHandler.createCoin();
     tileSet.updateExit();
     prismStone.updatePrismStones();
+    coinHandler.updateCoin();
+    keyHandler.updateKeys();
     pathFinding.draw();
     pathFinding.update();
     player.update();
     player.draw();
     prismStone.prismStoneUI();
     score.draw();
-    keyHandler.updateKeys();
-    coinHandler.updateCoin();
   }
 }
 

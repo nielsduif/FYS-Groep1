@@ -55,6 +55,6 @@ class PrismStones {
 
   void prismStoneUI() {
     fill(255);
-    text("Prismstones: " + stoneCount, width - 325, 64);
+    text("Prismstones: " + stoneCount, width - 325, 65);
   }
 }

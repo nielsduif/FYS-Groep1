@@ -1,6 +1,9 @@
 CoinHandler coinHandler = new CoinHandler();
 boolean createCoinOnce;
 class CoinHandler {
+  PImage coinImage;
+  int coinW = 10;
+  int coinH = 11;
   int coinAmount = 10;
   Coin[] coins = new Coin[coinAmount];
   int score;
@@ -29,8 +32,11 @@ class CoinHandler {
     for (int i = 0; i < coinAmount; i++) {
       float afstandX = abs(coins[i].coinX - player.x);
       float afstandY = abs(coins[i].coinY - player.y);
-      fill(255, 255, 0);
-      circle(coins[i].coinX, coins[i].coinY, coins[i].d);
+      //fill(255, 255, 0);
+      imageMode(CENTER);
+      image(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
+      imageMode(CORNER);
+      //circle(coins[i].coinX, coins[i].coinY, coins[i].d);
       if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) {
         score += 10;
         coins[i].coinX = -10;

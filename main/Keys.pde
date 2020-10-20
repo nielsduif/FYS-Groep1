@@ -1,6 +1,9 @@
 KeyHandler keyHandler = new KeyHandler();
 boolean createKeyOnce;
 class KeyHandler {
+  PImage keyImage;
+  int keyH = 15;
+  int keyW = 7;
   int keyAmount = 3;
   Keys[] keys = new Keys[keyAmount];
   int count = 0;
@@ -23,8 +26,10 @@ class KeyHandler {
       float afstandX = abs(keys[i].keyX - player.x);
       float afstandY = abs(keys[i].keyY - player.y);
 
-      fill(255);
-      circle(keys[i].keyX, keys[i].keyY, keys[i].d);
+      imageMode(CENTER);
+      image(keyImage, keys[i].keyX, keys[i].keyY, grid.w * keyW / 60, grid.w * keyH / 60);
+      imageMode(CORNER);
+      //circle(keys[i].keyX, keys[i].keyY, keys[i].d);
       if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) {
         keys[i].keyX = -10;
         count++;
