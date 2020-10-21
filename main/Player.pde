@@ -10,7 +10,7 @@ class Player
   float tileLocationY;
   float playerW = (grid.w / 3) - 10;
   float playerH = playerW * 2;
-  float speed = 3;
+  float speed = 3 * grid.w / 100;
   boolean A, S, Z, X;
 
   void update()

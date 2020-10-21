@@ -12,7 +12,7 @@ class CoinHandler {
       for (int i = 0; i < coinAmount; i++) {
         coins[i] = new Coin();
         for (int j = 0; j < keyHandler.keyAmount; j++) {
-          int randomGetal = int(random(grid.grid.size()));
+          int randomGetal = int(random(1, grid.grid.size()));
           if (randomGetal == keyHandler.keys[j].keyLocation) {
             createCoin();
           } else {

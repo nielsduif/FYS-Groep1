@@ -8,7 +8,7 @@ class PathFinding {
   float Ex, Ey, Ew;
   Cell current;
 
-  float speed = 2;
+  float speed = 2 * grid.w / 100;
 
   Cell lastCell;
 
