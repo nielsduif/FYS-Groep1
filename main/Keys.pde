@@ -23,16 +23,15 @@ class KeyHandler {
 
   void updateKeys() {
     for (int i = 0; i < keyAmount; i++) {
-      float afstandX = abs(keys[i].keyX - player.x);
-      float afstandY = abs(keys[i].keyY - player.y);
-
-      imageMode(CENTER);
-      image(keyImage, keys[i].keyX, keys[i].keyY, grid.w * keyW / 60, grid.w * keyH / 60);
-      imageMode(CORNER);
-      //circle(keys[i].keyX, keys[i].keyY, keys[i].d);
-      if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) {
-        keys[i].keyX = -10;
-        count++;
+      for (int j = 0; j < grid.grid.size(); j++) {
+        float afstandX = abs(keys[i].keyX - player.x);
+        float afstandY = abs(keys[i].keyY - player.y);
+        player.drawObjectInView(keyImage, keys[i].keyX, keys[i].keyY, grid.w * keyW / 60, grid.w * keyH / 60);
+        //circle(keys[i].keyX, keys[i].keyY, keys[i].d);
+        if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) {
+          keys[i].keyX = -10;
+          count++;
+        }
       }
     }
     if (count == keyAmount) {

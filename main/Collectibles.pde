@@ -28,13 +28,9 @@ class CoinHandler {
 
   void updateCoin() {
     for (int i = 0; i < coinAmount; i++) {
+      player.drawObjectInView(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
       float afstandX = abs(coins[i].coinX - player.x);
       float afstandY = abs(coins[i].coinY - player.y);
-      //fill(255, 255, 0);
-      imageMode(CENTER);
-      image(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
-      imageMode(CORNER);
-      //circle(coins[i].coinX, coins[i].coinY, coins[i].d);
       if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) {
         score.score += 10;
         coins[i].coinX = -10;

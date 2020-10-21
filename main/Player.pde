@@ -87,4 +87,16 @@ class Player
     prevX = x;
     prevY = y;
   }
+
+  void drawObjectInView(PImage pImage, float pObjectX, float pObjectY, float pObjectW, float pObjectH) {
+    for (int i = 0; i < grid.grid.size(); i++) {
+      float objectTileX = floor(pObjectX / grid.w);
+      float objectTileY = floor(pObjectY / grid.w);
+      if (grid.grid.get(i).x == objectTileX && grid.grid.get(i).y == objectTileY && grid.grid.get(i).isDrawn == true) {
+        imageMode(CENTER);
+        image(pImage, pObjectX, pObjectY, pObjectW, pObjectH);
+        imageMode(CORNER);
+      }
+    }
+  }
 }

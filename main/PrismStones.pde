@@ -25,11 +25,7 @@ class PrismStones {
     checkInputPrismStone();
     for (int i = 0; i < prismStones.length; i++) {
       if (prismStones[i] != null) {
-        for (int j = 0; j < grid.grid.size(); j++) {
-          if (grid.grid.get(j).x == prismStones[i].prismStoneTileX && grid.grid.get(j).y == prismStones[i].prismStoneTileY && grid.grid.get(j).isDrawn == true) {
-            image(prismStoneImage, prismStones[i].prismStoneX, prismStones[i].prismStoneY, prismStonePixelSize, prismStonePixelSize);
-          }
-        }
+        player.drawObjectInView(prismStoneImage, prismStones[i].prismStoneX, prismStones[i].prismStoneY, prismStonePixelSize, prismStonePixelSize);
       }
     }
   }
@@ -49,7 +45,7 @@ class PrismStones {
       }
     }
     if (!keysPressed[65]) {
-      prismStoneUsed = false;  
+      prismStoneUsed = false;
     }
   }
 
