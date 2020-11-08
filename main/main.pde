@@ -6,14 +6,17 @@ PFont font;
 void setup() {
   size(1600, 800);
   imageLoader.loadTileImages();
-  grid.start();
+  //grid.start();
+  levelSizer.generateStart();
+  println(grid.w, player.x);
   pathFinding.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
 }
 
 void updateGame() {  
-  grid.update();
+  //grid.update();
+  levelSizer.generateUpdate();
   if (grid.doneGenerating) {
     keyHandler.createKeys();
     coinHandler.createCoin();
@@ -40,7 +43,10 @@ void draw() {
 }
 
 // Keyboard handling...
-void keyPressed() {  
+void keyPressed() {   
+  if (key == 'q') {
+    levelSizer.rescaleLevel();
+  }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true
 }

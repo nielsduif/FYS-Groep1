@@ -1,8 +1,8 @@
 /*
 author: Niels Duivenvoorden[500847100]
-purpose:   class die het gehele grid maakt, oftewel het daadwerkelijke speelveld
-           bevat ook een functie die kijkt naar de omliggende cellen, om te kijken waar het willekeurige pad 'naartoe' kan voortbewegen
-*/
+ purpose:   class die het gehele grid maakt, oftewel het daadwerkelijke speelveld
+ bevat ook een functie die kijkt naar de omliggende cellen, om te kijken waar het willekeurige pad 'naartoe' kan voortbewegen
+ */
 
 //het grid object aanmaken
 Grid grid = new Grid();
@@ -12,7 +12,7 @@ class Grid {
   int w = 100; //breedte van 1 grid cell
   int deletedWallsCount = 10; //aantal willekeurige muren dat verwijdert zal worden
   boolean deletedWalls;
-  
+
   //aanmaken van een lijst met alle cellen erin
   ArrayList<Cell> grid = new ArrayList<Cell>();
 
@@ -42,6 +42,7 @@ class Grid {
     }
     current = grid.get(0); //huidige cell is waar het doolhof begint, oftewel positie (0,0)
   }
+
 
   void update() {
     //tekenen van alle cellen in de lijst
