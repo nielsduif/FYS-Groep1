@@ -1,7 +1,7 @@
 /*
 author(s): Niels Duivenvoorden [500847100]
-purpose:   This script makes an enemy, places it on a random location in the grid and also does the pathfinding for the enemy
-*/
+ purpose:   This script makes an enemy, places it on a random location in the grid and also does the pathfinding for the enemy
+ */
 
 //aanmaken object
 PathFinding pathFinding = new PathFinding();
@@ -14,12 +14,12 @@ class PathFinding {
   float Ex, Ey, Ew; //posities
   Cell current; //huidige cell van de enemy
 
-  float speed = 2 * grid.w / 100; //snelheid op basis van de spelgrootte
+  float speed = 5 * grid.w / 100; //snelheid op basis van de spelgrootte
 
   Cell lastCell; //cell van vorige bezochte cell
 
   Cell nextCell = null; //volgende cell
-  boolean random = false;
+  boolean moving = false;
 
   boolean inSight = false; //speler en vijand zien elkander
 
@@ -39,7 +39,7 @@ class PathFinding {
       }
     }
 
-    //lijst boovoor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
+    //lijst voor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
     ArrayList<Cell> pathNeighbors = new ArrayList<Cell>();
 
     Cell top    = grid.grid.get(grid.index(current.x, current.y - 1));
@@ -61,49 +61,20 @@ class PathFinding {
     }
 
     if (!inSight) { //zien de speler en vijand elkaar niet
-      if (pathNeighbors.size() > 1 && !random) { //bepalen volgende cell
+      if (pathNeighbors.size() > 1 && !moving) { //bepalen volgende cell
         int r = floor(random(pathNeighbors.size()));
         if (pathNeighbors.get(r) != lastCell) {
           lastCell = current; //laatst bezochte cell bijwerken
           nextCell = pathNeighbors.get(r); //volgende cell bepalen
-          random = true; 
+          moving = true;
         }
-      } else if (pathNeighbors.size() == 1 && !random) {
+      } else if (pathNeighbors.size() == 1 && !moving) {
         nextCell = pathNeighbors.get(0);
         lastCell = current;
-        random = true;
+        moving = true;
       }
-    } else if (pathNeighbors.size() > 0) { //vijand ziet speler
-      for (int i = 0; i < pathNeighbors.size(); i++) {
-        //bepaling volgende cell mgv positie speler
-        if (current.y > floor(player.y / grid.w) && top != null) {
-          nextCell = top;
-        } else if (current.x < floor(player.x / grid.w) && right != null) {
-          nextCell = right;
-        } else if (current.y < floor(player.y / grid.w) && bottom != null) {
-          nextCell = bottom;
-        } else if (current.x > floor(player.x / grid.w) && left != null) {
-          nextCell = left;
-        } else { 
-          if (Ex == player.x && Ey == player.y) { //speler en vijand zijn op zelfde positie
-            gameOver.showGameOver();
-          } else {
-            nextCell = null;
-            if (Ex < player.x) {
-              Ex += speed;
-            } else if (Ex > player.x) {
-              Ex -= speed;
-            }
-            if (Ey < player.y) {
-              Ey += speed;
-            } else if (Ey > player.y) {
-              Ey -= speed;
-            }
-          }
-        }
-      }
-    }
-
+    } 
+    
     //movement vijand WIP
     if (nextCell != null && Ex < nextCell.x * grid.w + grid.w * .5) {
       Ex += speed;
@@ -114,7 +85,7 @@ class PathFinding {
     } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5) {
       Ey -= speed;
     } else if (nextCell != null) {
-      random = false;
+      moving = false;
     }
 
     //debug monster
