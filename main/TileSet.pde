@@ -1,3 +1,8 @@
+/*
+author(s): Jordy Wolf [500848484]
+ purpose:   This script gives all the maze tiles their images, handles which tiles are in view and handles the exit gate. 
+ */
+
 TileSet tileSet = new TileSet();
 
 class TileSet {
@@ -33,6 +38,7 @@ class TileSet {
       }
     }
     giveRandomTileExit();
+    //drawVisionBlur();
   }
 
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
@@ -123,11 +129,23 @@ class TileSet {
     if (drawExit == true) {
       if (tileAccepted == true) {  
         if (exitGateOpen == false) {
-          drawTile(randomTile, 15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+          tileSet.drawTile(randomTile, 15, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
         } else {
-          drawTile(randomTile, 16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+          tileSet.drawTile(randomTile, 16, grid.grid.get(randomTile).x * grid.grid.get(randomTile).w, grid.grid.get(randomTile).y * grid.grid.get(randomTile).w, grid.grid.get(randomTile).w);
+          if (player.tileLocationX == grid.grid.get(randomTile).x && player.tileLocationY == grid.grid.get(randomTile).y) { // collision check for player into the exit gate
+            textAlign(CENTER, CENTER);
+            fill(255);
+            textSize(30);
+            text("Press S to enter the Exit Gate", width/2, height/2);
+            if (keysPressed[83]) {
+              escape();
+            }
+          }
         }
       }
     }
+  }
+  void escape() {
+    print("BROOO HIILY SHIIEEET JIJ BENT ECGT GEODTTTT");
   }
 }

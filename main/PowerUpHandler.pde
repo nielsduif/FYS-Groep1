@@ -1,3 +1,8 @@
+/*
+author(s): Jordy Wolf [500848484]
+purpose:   This script handles with all the powerups.
+*/
+
 class PowerUpHandler {
   int powerupID;
 
