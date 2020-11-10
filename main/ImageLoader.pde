@@ -1,5 +1,11 @@
+/*
+author(s): Jordy Wolf [500848484]
+purpose:   This script loads in all images needed for the game.
+*/
+
 ImageLoader imageLoader = new ImageLoader();
 
+//The ImageLoader class 
 class ImageLoader {
 
   void loadTileImages() {

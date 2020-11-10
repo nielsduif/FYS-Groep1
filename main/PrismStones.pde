@@ -1,3 +1,8 @@
+/*
+author(s): Jordy Wolf [500848484]
+purpose:   This script makes you able to use prism stones and keeps track of how many you have, UI included.
+*/
+
 PrismStones prismStone = new PrismStones();
 
 class PrismStones {
@@ -5,6 +10,7 @@ class PrismStones {
   PImage prismStoneImage;
   boolean prismStoneUsed = false;
   int prismStonePixelSize = (grid.w / 3) - 10;
+  int textY = 60;
   PrismStones[] prismStones = new PrismStones[stoneCount];
 
   float prismStoneX, prismStoneY;
@@ -51,6 +57,8 @@ class PrismStones {
 
   void prismStoneUI() {
     fill(255);
-    text("Prismstones: " + stoneCount, width - 325, 65);
+    textAlign(CORNER);
+    textSize(30);
+    text("Prismstones: " + stoneCount, width - 325, textY);
   }
 }
