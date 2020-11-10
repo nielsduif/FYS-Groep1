@@ -2,6 +2,9 @@ KeyHandler keyHandler = new KeyHandler();
 boolean createKeyOnce;
 //Maak class aan om de keys aan te maken en te updaten
 class KeyHandler {
+  PImage keyImage;
+  int keyH = 15;
+  int keyW = 7;
   int keyAmount = 3;
   Keys[] keys = new Keys[keyAmount];
   int count = 3;
@@ -20,24 +23,33 @@ class KeyHandler {
   }
 
   void updateKeys() {
-    //Laat zien hoeveel keys je nog moet vinden en laat het zien dat de exit opent als je alle keys hebt
-    if (count == 0) {
-      text("Exit is open!", width - 325, prismStone.textY + score.textSpace*2);
-      tileSet.exitGateOpen = true;
-    } else {
-      text("Keys needed: " + count, width - 325, prismStone.textY + score.textSpace*2);
-    }
     for (int i = 0; i < keyAmount; i++) { //Maak de keys aan
       if (keys[i] != null) {
         float afstandX = abs(keys[i].keyX - player.x);
         float afstandY = abs(keys[i].keyY - player.y);
-        fill(255);
-        circle(keys[i].keyX, keys[i].keyY, keys[i].d);
+        //fill(255);
+        //circle(keys[i].keyX, keys[i].keyY, keys[i].d);
+        player.drawObjectInView(keyImage, keys[i].keyX, keys[i].keyY, grid.w * keyW / 60, grid.w * keyH / 60);
+        //circle(keys[i].keyX, keys[i].keyY, keys[i].d);
         if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) { //Check of de player over de key heen loopt
           count--; //Verlaag aantal benodigde keys met 1
           keys[i] = null; //Verwijder de key
         }
       }
+    }
+  }
+
+  void updateKeyUI() {
+    //Laat zien hoeveel keys je nog moet vinden en laat het zien dat de exit opent als je alle keys hebt
+    if (count == 0) {
+      fill(255);
+      textSize(30);
+      text("Exit is open!", width - 325, prismStone.textY + score.textSpace*2);
+      tileSet.exitGateOpen = true;
+    } else {
+      fill(255);
+      textSize(30);
+      text("Keys needed: " + count, width - 325, prismStone.textY + score.textSpace*2);
     }
   }
 }

@@ -4,6 +4,9 @@ boolean createCoinOnce;
 //Maak de class aan voor het maken en updaten van de coins
 class CoinHandler {
   int coinAmount = 10;
+  PImage coinImage;
+  int coinW = 10;
+  int coinH = 11;
   Coin[] coins = new Coin[coinAmount];
 
   void createCoin() {
@@ -30,8 +33,9 @@ class CoinHandler {
       if (coins[i] != null) {
         float afstandX = abs(coins[i].coinX - player.x);
         float afstandY = abs(coins[i].coinY - player.y);
-        fill(255, 255, 0);
-        circle(coins[i].coinX, coins[i].coinY, coins[i].d);
+        //fill(255, 255, 0);
+        //circle(coins[i].coinX, coins[i].coinY, coins[i].d);
+        player.drawObjectInView(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
         if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) { //Check of speler over coin heen loopt
           score.score += 10; //Verhoog de score
           coins[i] = null; //Verwijder de coin
