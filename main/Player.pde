@@ -10,7 +10,7 @@ class Player
   float tileLocationY;
   float playerW = (grid.w / 3) - 10;
   float playerH = playerW * 2;
-  float speed = 3;
+  float speed = 3 * grid.w / 100;
   boolean A, S, Z, X;
 
   void update()
@@ -86,5 +86,17 @@ class Player
     }
     prevX = x;
     prevY = y;
+  }
+
+  void drawObjectInView(PImage pImage, float pObjectX, float pObjectY, float pObjectW, float pObjectH) {
+    for (int i = 0; i < grid.grid.size(); i++) {
+      float objectTileX = floor(pObjectX / grid.w);
+      float objectTileY = floor(pObjectY / grid.w);
+      if (grid.grid.get(i).x == objectTileX && grid.grid.get(i).y == objectTileY && grid.grid.get(i).isDrawn == true) {
+        imageMode(CENTER);
+        image(pImage, pObjectX, pObjectY, pObjectW, pObjectH);
+        imageMode(CORNER);
+      }
+    }
   }
 }

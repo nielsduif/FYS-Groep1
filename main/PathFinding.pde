@@ -8,7 +8,7 @@ class PathFinding {
   float Ex, Ey, Ew;
   Cell current;
 
-  float speed = 2;
+  float speed = 2 * grid.w / 100;
 
   Cell lastCell;
 
@@ -141,6 +141,7 @@ class PathFinding {
         imageMode(CENTER);
         image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
         imageMode(CORNER);
+        fill(50, 50, 50, 100);
         circle(Ex, Ey, Ew);
       } else if (grid.grid.get(i).x == monsterTileX && grid.grid.get(i).y == monsterTileY && grid.grid.get(i).isDrawn == false) {
         inSight = false;

@@ -33,7 +33,6 @@ class TileSet {
       }
     }
     giveRandomTileExit();
-    //drawVisionBlur();
   }
 
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {

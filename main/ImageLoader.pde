@@ -9,5 +9,7 @@ class ImageLoader {
     prismStone.prismStoneImage = loadImage("PrismStone.png");
     player.playerImage = loadImage("player.png");
     pathFinding.monsterImage = loadImage("monster.png");
+    coinHandler.coinImage = loadImage("Coin.png");
+    keyHandler.keyImage = loadImage("Key.png");
   }
 }
