@@ -27,11 +27,12 @@ class GameOver {
     text("Press 'x' to quit", quitX, quitY);
 
     if (keyPressed) {
-      if (key == 'z' || key == 'Z'){
-       //ga naar beginscherm 
+      if (key == 'z' || key == 'Z') {
+        //ga naar beginscherm
       }
       if (key == 'x' || key == 'X') {
         exit();
       }
     }
   }
+}
