@@ -5,6 +5,7 @@ author(s): Jordy Wolf [500848484]
 
 TileSet tileSet = new TileSet();
 
+//Tileset class om de tileset in te laden en alle tiles de juiste images te geven
 class TileSet {
   int tileAmount = 17;
   int randomTile;
@@ -16,19 +17,21 @@ class TileSet {
   boolean idGiven = false;
   PImage[] tileImages = new PImage[tileAmount];
 
+  //Functie om een tile te drawen, geef het ID mee van de image en de X en Y positie
   void drawTile(int pTileID, int pTileImageID, float pPosX, float pPosY, int pTilePixelSize) {
     grid.grid.get(pTileID).isDrawn = true;
     image(tileImages[pTileImageID], pPosX, pPosY, pTilePixelSize, pTilePixelSize);
   }
 
+  //Functie om de tiles door te geven die gedrawed moeten worden
   void updateMazeTiles() {
     background(0);
-    for (int i=0; i < grid.grid.size(); i++) {
+    for (int i = 0; i < grid.grid.size(); i++) {
       grid.grid.get(i).isDrawn = false;
     }
     drawExit = false;
     capU = capR = capD = capL = 0;
-    for (int i=0; i < grid.grid.size(); i++) {
+    for (int i = 0; i < grid.grid.size(); i++) {
       if (player.tileLocationX == grid.grid.get(i).x && player.tileLocationY == grid.grid.get(i).y) {
         drawTile(i, grid.grid.get(i).tileID, grid.grid.get(i).x * grid.grid.get(i).w, grid.grid.get(i).y * grid.grid.get(i).w, grid.grid.get(i).w);
         drawTilesInView(i, grid.grid.get(i).walls[0], grid.grid.get(i).walls[1], grid.grid.get(i).walls[2], grid.grid.get(i).walls[3]);
@@ -40,7 +43,8 @@ class TileSet {
     giveRandomTileExit();
     //drawVisionBlur();
   }
-
+  
+  //Functie die in elke richting gelooped word tot er een muur is en drawed dan de tiles in visie.
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
     if (pWallU == false && capU < visionCap) {
       capU++;
@@ -74,6 +78,7 @@ class TileSet {
     }
   }
 
+  //Functie die bij elke tile checken waar de muren zitten en geeft het juiste ID aan de tile
   void giveCellsID() {
     if (idGiven == false) {
       for (int i=0; i < grid.grid.size(); i++) {
@@ -115,6 +120,7 @@ class TileSet {
     }
   }
 
+  //Functie om een willekeurige tile te kiezen en hem te checken of de exit gate daar valide kan staan, zo niet looped hij tot de tile geaccepteerd is.
   void giveRandomTileExit() {
     if (tileAccepted == false) {
       randomTile = int(random(grid.grid.size()));
@@ -125,6 +131,7 @@ class TileSet {
     }
   }
 
+  //Functie die de exit gate drawed en checked of hij open of dicht is
   void updateExit() {
     if (drawExit == true) {
       if (tileAccepted == true) {  
@@ -146,6 +153,6 @@ class TileSet {
     }
   }
   void escape() {
-    print("BROOO HIILY SHIIEEET JIJ BENT ECGT GEODTTTT");
+    print("Hier komt wat er moet gebeuren bij een escape");
   }
 }
