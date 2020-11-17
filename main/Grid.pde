@@ -9,7 +9,7 @@ Grid grid = new Grid();
 
 class Grid {
   int cols, rows; //aantal colommen en rijen
-  int w; //breedte van 1 grid cell
+  int w = 100; //breedte van 1 grid cell
   int deletedWallsCount = 10; //aantal willekeurige muren dat verwijdert zal worden
   boolean deletedWalls;
 

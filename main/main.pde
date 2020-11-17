@@ -32,7 +32,6 @@ void updateGame() {
     keyHandler.updateKeyUI();
     score.draw();
   }
-  println("i am the klassenvertegenwoordiger hello");
 }
 
 void drawGame() {

@@ -1,4 +1,4 @@
-int[] cellSizePerLevel= {200, 100, 50};
+int[] cellSizePerLevel= {100, 100, 100};
 int currentSize = 0;
 
 LevelSizer levelSizer = new LevelSizer();
