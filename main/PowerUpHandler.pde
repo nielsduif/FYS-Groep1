@@ -30,7 +30,8 @@ class PowerUpHandler {
   }
 
   void powerupRadar() {
-   
+    grid.showWalls = true;
+    grid.startTimer = frameCount;
   }
 
   void powerupWhistle() {

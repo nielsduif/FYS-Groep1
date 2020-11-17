@@ -13,6 +13,7 @@ class Grid {
   int deletedWallsCount = 10; //aantal willekeurige muren dat verwijdert zal worden
   boolean deletedWalls;
   boolean showWalls = false;
+  int powerUpFrames = 180, startTimer;
 
   //aanmaken van een lijst met alle cellen erin
   ArrayList<Cell> grid = new ArrayList<Cell>();
@@ -85,6 +86,10 @@ class Grid {
     if (showWalls) {
       for (int i=0; i < grid.size(); i++) {
         grid.get(i).show();
+      }
+      if (frameCount > startTimer + powerUpFrames) {
+        showWalls = false;
+        startTimer = 0;
       }
     }
   }
