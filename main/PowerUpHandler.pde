@@ -1,5 +1,5 @@
 /*
-author(s): Jordy Wolf [500848484]
+author(s): Jordy Wolf [500848484], Tiara Vrossink [500857262]
 purpose:   This script handles with all the powerups.
 */
 
@@ -34,9 +34,12 @@ class PowerUpHandler {
   void powerupWhistle() {
   }
 
+//Tiara
   void powerupPotion() {
+    player.speed = player.speed * 2;
   }
 
   void powerupArrow() {
+    
   }
 }
