@@ -32,7 +32,6 @@ void updateGame() {
     keyHandler.updateKeyUI();
     score.draw();
   }
-  println("bruh moment test");
 }
 
 void drawGame() {
