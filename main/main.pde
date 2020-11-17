@@ -46,7 +46,7 @@ void draw() {
 // Keyboard handling...
 void keyPressed() {   
   if (key == 'q') {
-    levelSizer.rescaleLevel();
+    powerUpHandler.powerupRadar();
   }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true

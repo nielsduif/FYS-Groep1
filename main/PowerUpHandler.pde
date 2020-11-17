@@ -1,7 +1,8 @@
 /*
 author(s): Jordy Wolf [500848484]
-purpose:   This script handles with all the powerups.
-*/
+ purpose:   This script handles with all the powerups.
+ */
+PowerUpHandler powerUpHandler = new PowerUpHandler();
 
 class PowerUpHandler {
   int powerupID;
@@ -29,6 +30,7 @@ class PowerUpHandler {
   }
 
   void powerupRadar() {
+   
   }
 
   void powerupWhistle() {

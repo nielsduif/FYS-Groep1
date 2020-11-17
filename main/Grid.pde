@@ -12,6 +12,7 @@ class Grid {
   int w = 100; //breedte van 1 grid cell
   int deletedWallsCount = 10; //aantal willekeurige muren dat verwijdert zal worden
   boolean deletedWalls;
+  boolean showWalls = false;
 
   //aanmaken van een lijst met alle cellen erin
   ArrayList<Cell> grid = new ArrayList<Cell>();
@@ -44,12 +45,7 @@ class Grid {
   }
 
 
-  void update() {
-    //tekenen van alle cellen in de lijst
-    for (int i=0; i < grid.size(); i++) {
-      grid.get(i).show();
-    }
-
+  void update() {  
     //start algoritme
     current.visited = true; 
 
@@ -84,6 +80,12 @@ class Grid {
       }
       tileSet.giveCellsID();
       tileSet.updateMazeTiles();
+    }
+    //tekenen van alle cellen in de lijst
+    if (showWalls) {
+      for (int i=0; i < grid.size(); i++) {
+        grid.get(i).show();
+      }
     }
   }
 
