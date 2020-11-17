@@ -22,7 +22,7 @@ void updateGame() {
     coinHandler.createCoin();
     tileSet.updateExit();
     prismStone.updatePrismStones();
-        keyHandler.updateKeys();
+    keyHandler.updateKeys();
     coinHandler.updateCoin();
     pathFinding.draw();
     pathFinding.update();

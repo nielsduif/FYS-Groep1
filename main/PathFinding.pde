@@ -14,7 +14,7 @@ class PathFinding {
   float Ex, Ey, Ew; //posities
   Cell current; //huidige cell van de enemy
 
-  float speed = 5 * grid.w / 100; //snelheid op basis van de spelgrootte
+  float speed = 2 * grid.w / 100; //snelheid op basis van de spelgrootte
 
   Cell lastCell; //cell van vorige bezochte cell
 
@@ -73,16 +73,38 @@ class PathFinding {
         lastCell = current;
         moving = true;
       }
-    } 
-    
+    } else {
+      if (pathNeighbors.size() > 0 && !moving) { //bepalen volgende cell
+        lastCell = current;
+
+        if (current != grid.grid.get(grid.index(floor(player.x / grid.w), floor(player.y / grid.w)))) {
+          nextCell = grid.grid.get(grid.index(floor(player.x / grid.w), floor(player.y / grid.w)));
+          moving = true;
+        } else {
+          moving = false;
+          if (Ex + Ew < player.x) {
+            Ex += speed;
+          } else if (Ex > player.x + player.playerW) {
+            Ex -= speed;
+          } else if (Ey + Ew < player.y) {
+            Ey += speed;
+          } else if (Ey > player.y + player.playerH) {
+            Ey -= speed;
+          } else {
+            println("colliding");
+          }
+        }
+      }
+    }
+
     //movement vijand WIP
-    if (nextCell != null && Ex < nextCell.x * grid.w + grid.w * .5) {
+    if (nextCell != null && Ex < nextCell.x * grid.w + grid.w * .5 && moving) {
       Ex += speed;
-    } else if (nextCell != null && Ex > nextCell.x * grid.w + grid.w * .5) {
+    } else if (nextCell != null && Ex > nextCell.x * grid.w + grid.w * .5 && moving) {
       Ex -= speed;
-    } else if (nextCell != null && Ey < nextCell.y * grid.w + grid.w * .5) {
+    } else if (nextCell != null && Ey < nextCell.y * grid.w + grid.w * .5 && moving) {
       Ey += speed;
-    } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5) {
+    } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5 && moving) {
       Ey -= speed;
     } else if (nextCell != null) {
       moving = false;
