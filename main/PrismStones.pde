@@ -5,6 +5,7 @@ purpose:   This script makes you able to use prism stones and keeps track of how
 
 PrismStones prismStone = new PrismStones();
 
+//class van de prismstones
 class PrismStones {
   int stoneCount = 10;
   PImage prismStoneImage;
@@ -15,7 +16,8 @@ class PrismStones {
 
   float prismStoneX, prismStoneY;
   float prismStoneTileX, prismStoneTileY;
-
+  
+  //Functie om een lege prismstone aan te maken en hem de locatie geven van de speler
   void usePrismStone() {
     if (stoneCount > 0) {
       prismStones[stoneCount - 1] = new PrismStones();
@@ -27,6 +29,7 @@ class PrismStones {
     }
   }
 
+  //Funtie om alle prismstones te drawen als ze in zicht zijn
   void updatePrismStones() {
     checkInputPrismStone();
     for (int i = 0; i < prismStones.length; i++) {
@@ -36,13 +39,15 @@ class PrismStones {
     }
   }
 
+  //Functie om alle prismstones te resetten
   void resetPrismStones() {
     for (int i = 0; i < prismStones.length; i++) {
       prismStones[i] = null;
     }
     stoneCount = 10;
   }
-
+  
+  //Functie om te checken of er input is. Zo ja, gebruik een prismstone
   void checkInputPrismStone() {
     if (keysPressed[65]) {
       if (prismStoneUsed == false) {
@@ -55,6 +60,7 @@ class PrismStones {
     }
   }
 
+  //Functie die de UI van de prismstones behandeld
   void prismStoneUI() {
     fill(255);
     textAlign(CORNER);

@@ -1,7 +1,6 @@
 Player player = new Player();
 
-class Player
-{
+class Player {
   PImage playerImage;
   float x = grid.w * .5; 
   float y = grid.w * .5;
@@ -12,16 +11,14 @@ class Player
   float playerH = playerW * 2;
   float speed = 3 * grid.w / 100;
 
-  void update()
-  {
+  void update() {
     move();
     collision();
     if (tileSet.exitGateOpen == true) {
     }
   }
 
-  void draw()
-  {
+  void draw() {
     fill(50, 50, 50, 100);
     circle(x, y, playerW); // player shadow
     imageMode(CENTER);
