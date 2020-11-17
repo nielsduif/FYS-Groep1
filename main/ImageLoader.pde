@@ -9,7 +9,7 @@ ImageLoader imageLoader = new ImageLoader();
 class ImageLoader {
 
   void loadTileImages() {
-    for (int i = 0; i < tileSet.tileAmount; i++) {
+    for (int i = 0; i < tileSet.tileAmount; i++) { //forloop om alle tile images in te laden
       tileSet.tileImages[i] = loadImage("Tile" + i + ".png");
     }
     prismStone.prismStoneImage = loadImage("PrismStone.png");
