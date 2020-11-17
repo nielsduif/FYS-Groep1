@@ -1,7 +1,8 @@
 /*
-author(s): Jordy Wolf [500848484], Tiara Vrossink [500857262]
-purpose:   This script handles with all the powerups.
-*/
+author(s): Jordy Wolf [500848484]
+ purpose:   This script handles with all the powerups.
+ */
+PowerUpHandler powerUpHandler = new PowerUpHandler();
 
 class PowerUpHandler {
   int powerupID;
@@ -29,17 +30,15 @@ class PowerUpHandler {
   }
 
   void powerupRadar() {
+   
   }
 
   void powerupWhistle() {
   }
 
-//Tiara
   void powerupPotion() {
-    player.speed = player.speed * 2;
   }
 
   void powerupArrow() {
-    
   }
 }
