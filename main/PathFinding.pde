@@ -79,22 +79,21 @@ class PathFinding {
 
         if (current != grid.grid.get(grid.index(floor(player.x / grid.w), floor(player.y / grid.w)))) {
           nextCell = grid.grid.get(grid.index(floor(player.x / grid.w), floor(player.y / grid.w)));
+          moving = true;
         } else {
-          println("bruh");
-          //nextCell = null;
+          moving = false;
           if (Ex + Ew < player.x) {
             Ex += speed;
           } else if (Ex > player.x + player.playerW) {
             Ex -= speed;
-          }
-          if (Ey + Ew < player.y) {
+          } else if (Ey + Ew < player.y) {
             Ey += speed;
           } else if (Ey > player.y + player.playerH) {
             Ey -= speed;
+          } else {
+            println("colliding");
           }
         }
-
-        moving = true;
       }
     }
 
