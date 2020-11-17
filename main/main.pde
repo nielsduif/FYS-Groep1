@@ -5,11 +5,14 @@ PFont font;
 
 void setup() {
   size(1600, 800);
-  imageLoader.loadTileImages();
   //grid.start();
   levelSizer.generateStart();
   println(grid.w, player.x);
-  pathFinding.start();
+  for (int i = 0; i < pathFinding.length; i++) {
+    pathFinding[i] = new PathFinding();
+    pathFinding[i].start();
+  }
+  imageLoader.loadTileImages();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
 }
@@ -23,9 +26,11 @@ void updateGame() {
     tileSet.updateExit();
     prismStone.updatePrismStones();
     keyHandler.updateKeys();
-    coinHandler.updateCoin();
-    pathFinding.draw();
-    pathFinding.update();
+    coinHandler.updateCoin();  
+    for (int i = 0; i < pathFinding.length; i++) {
+      pathFinding[i].draw();
+      pathFinding[i].update();
+    }
     player.update();
     player.draw();
     prismStone.prismStoneUI();

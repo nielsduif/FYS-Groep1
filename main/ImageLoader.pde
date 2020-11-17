@@ -1,7 +1,7 @@
 /*
 author(s): Jordy Wolf [500848484]
-purpose:   This script loads in all images needed for the game.
-*/
+ purpose:   This script loads in all images needed for the game.
+ */
 
 ImageLoader imageLoader = new ImageLoader();
 
@@ -14,7 +14,9 @@ class ImageLoader {
     }
     prismStone.prismStoneImage = loadImage("PrismStone.png");
     player.playerImage = loadImage("player.png");
-    pathFinding.monsterImage = loadImage("monster.png");
+    for (int i = 0; i < pathFinding.length; i++) {
+      pathFinding[i].monsterImage = loadImage("monster.png");
+    }    
     coinHandler.coinImage = loadImage("Coin.png");
     keyHandler.keyImage = loadImage("Key.png");
   }

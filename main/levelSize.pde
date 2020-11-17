@@ -20,7 +20,9 @@ class LevelSizer {
       currentSize++;
       grid.w = cellSizePerLevel[currentSize];
       grid.start();
-      pathFinding.start();
+      for (int i = 0; i < pathFinding.length; i++) {
+        pathFinding[i].start();
+      }
     }
   }
 }
