@@ -1,3 +1,6 @@
+//author = Tiara Vrossink, 500857262
+//purpose = Creation of the keys needed to open the exit
+
 KeyHandler keyHandler = new KeyHandler();
 boolean createKeyOnce;
 //Maak class aan om de keys aan te maken en te updaten
@@ -11,7 +14,7 @@ class KeyHandler {
   void createKeys() {
     if (createKeyOnce == false) { //Check of er al een key is op de plaats waar de key wil spawnen, plaats de key alleen op plekken waar er nog geen andere key is
       for (int i = 0; i < keyAmount; i++) { //Bepaal random plaats in het grid waar de key spawned
-        keys[i] = new Keys();
+        keys[i] = new Keys(); //Maak de keys aan
         int randomGetal = int(random(grid.grid.size()/3 * (i + 1)));
         keys[i].keyLocation = randomGetal;
         keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
@@ -23,7 +26,7 @@ class KeyHandler {
   }
 
   void updateKeys() {
-    for (int i = 0; i < keyAmount; i++) { //Maak de keys aan
+    for (int i = 0; i < keyAmount; i++) {
       if (keys[i] != null) {
         float afstandX = abs(keys[i].keyX - player.x);
         float afstandY = abs(keys[i].keyY - player.y);

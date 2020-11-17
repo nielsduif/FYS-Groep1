@@ -1,3 +1,6 @@
+//authors = Andrew Silos
+//
+
 Score score = new Score();
 
 //Maak variabelen voor de score aan
