@@ -11,6 +11,7 @@ class Cell {
   boolean[] walls = {true, true, true, true}; //waarde van alle muren, van 0 tm 3 = boven, rechts, onder, links
   boolean visited = false; //waarde of de cell al 'bezocht' is door het random algoritme
   boolean isDrawn; 
+  boolean isUsed;
 
   //plaatsing zodra cell wordt aangeroepen dmv parameters
   Cell(int _x, int _y, int _w) {

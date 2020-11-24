@@ -16,15 +16,14 @@ class CoinHandler {
     if (createCoinOnce == false) { //check of er al een coin is op de plaats waar de coin wil spawnen, plaats de coin alleen op plekken waar er nog geen andere coin is
       for (int i = 0; i < coinAmount; i++) { //bepaal random plaats in het grid waar de coin spawned
         coins[i] = new Coin(); //maak de coins aan
-        for (int j = 0; j < keyHandler.keyAmount; j++) {
-          int randomGetal = int(random(grid.grid.size()));
-          if (randomGetal == keyHandler.keys[j].keyLocation) { //zorg ervoor dat coins en keys niet op dezelfde plek komen te staan
-            createCoin();
-          } else {
-            coins[i].coinX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
-            coins[i].coinY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
-            coins[i].d = 15;
-          }
+        int randomGetal = getRandomUnUsedTile();
+        if (grid.grid.get(randomGetal).isUsed == true) { //zorg ervoor dat coins en keys niet op dezelfde plek komen te staan
+          createCoin();
+        } else {
+          grid.grid.get(randomGetal).isUsed = true;
+          coins[i].coinX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+          coins[i].coinY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+          coins[i].d = 15;
         }
       }
       createCoinOnce = true; //maak het zo dat de volgende coin weet dat op deze plaats al een coin staat
@@ -46,7 +45,23 @@ class CoinHandler {
       }
     }
   }
+
+  int getRandomUnUsedTile() {
+    int getal = getRandomTile();
+    while (grid.grid.get(getal).isUsed == true) {
+      getal = getRandomTile();
+    }
+    if (grid.grid.get(getal).isUsed == false) {
+      return getal;
+    }
+    return -1;
+  }
+
+  int getRandomTile() {
+    return int(random(1, grid.grid.size()));
+  }
 }
+
 
 //roep de variabelen in deze aparte class op, zodat alle coins hun eigen waarden kunnen hebben
 class Coin {
