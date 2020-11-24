@@ -41,22 +41,23 @@ class KeyHandler {
         }
       }
     }
-        float closestDistance = 999999999;
-        if(frameCount)
-    for (int i = 0; i < keyHandler.keys.length; i++) {
-      if (keyHandler.keys[i] != null) {
-        d = dist(player.x, player.y, keyHandler.keys[i].keyX, keyHandler.keys[i].keyY);
-        println(d);
-        if (d < closestDistance) {
-          closestKey = keyHandler.keys[i];
-          closestDistance = d;
-        }
-      }
-    }
-    if (closestKey != null) {
-      println(closestKey.keyX / grid.w+ "; " + closestKey.keyY / grid.w);
-      image(keyHandler.keyImage, closestKey.keyX, closestKey.keyY, keyHandler.keyW, keyHandler.keyH);
-    }
+    float closestDistance = 999999999;
+    //if (frameCount) {
+    //  for (int i = 0; i < keyHandler.keys.length; i++) {
+    //    if (keyHandler.keys[i] != null) {
+    //      d = dist(player.x, player.y, keyHandler.keys[i].keyX, keyHandler.keys[i].keyY);
+    //      println(d);
+    //      if (d < closestDistance) {
+    //        closestKey = keyHandler.keys[i];
+    //        closestDistance = d;
+    //      }
+    //    }
+    //  }
+    //}
+    //if (closestKey != null) {
+    //  println(closestKey.keyX / grid.w+ "; " + closestKey.keyY / grid.w);
+    //  image(keyHandler.keyImage, closestKey.keyX, closestKey.keyY, keyHandler.keyW, keyHandler.keyH);
+    //}
   }
 
   void updateKeyUI() {
