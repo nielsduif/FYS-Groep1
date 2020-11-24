@@ -1,14 +1,15 @@
-//authors = Andrew Silos
-//
+/*
+author(s): Andrew Silos [500849454]
+purpose: De score word gehouden en opbeeld gezet in deze script 
+*/
 
-Score score = new Score();
-
-//Maak variabelen voor de score aan
+//Er word een class aan gemaakt om de score bij te kunnen houden
+Score score= new Score();
 class Score {
   int score;
   float textSpace = 35;
 
-  //Laat de score zien
+// De text word op het scherm geplaatst 
   void draw() {
     textAlign(CORNER);
     textSize(30);
