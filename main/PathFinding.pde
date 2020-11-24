@@ -4,7 +4,8 @@ author(s): Niels Duivenvoorden [500847100]
  */
 
 //aanmaken object
-PathFinding pathFinding = new PathFinding();
+int monsterAmount;
+PathFinding[] pathFinding;
 
 class PathFinding {
   PImage monsterImage; //plaatje vijand
@@ -23,6 +24,9 @@ class PathFinding {
 
   boolean inSight = false; //speler en vijand zien elkander
 
+  int startTime, powerUpFrames = 180; 
+  boolean showEnemie;
+
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size()))); //spawncell vijand op een random cell in het grid
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell x-as
@@ -36,6 +40,19 @@ class PathFinding {
     for (int i=0; i<grid.grid.size(); i++) {
       if (grid.grid.get(i).x == floor(Ex / grid.w) && grid.grid.get(i).y == floor(Ey / grid.w)) {
         current = grid.grid.get(i); //huidige cell bijhouden op basis van positie
+      }
+    }
+
+    if (showEnemie) {     
+      fill(50, 50, 50, 100);
+      circle(Ex, Ey, Ew);   
+      imageMode(CENTER);
+      //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
+      image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+      imageMode(CORNER);
+      if (frameCount > startTime + powerUpFrames) {
+        startTime = 0;
+        showEnemie = false;
       }
     }
 
@@ -141,6 +158,7 @@ class PathFinding {
       if (grid.grid.get(i).x == monsterTileX && grid.grid.get(i).y == monsterTileY && grid.grid.get(i).isDrawn == true) {
         inSight = true;
         imageMode(CENTER);
+        //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
         image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
         imageMode(CORNER);
         fill(50, 50, 50, 100);

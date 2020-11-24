@@ -31,9 +31,16 @@ class PowerUpHandler {
 
 
   void powerupPing() {
+    for (int i = 0; i < pathFinding.length; i++) {
+      pathFinding[i].showEnemy = true;
+      pathFinding[i].startTime = frameCount;
+    }
   }
 
   void powerupRadar() {
+
+    grid.showWalls = true;
+    grid.startTimer = frameCount;
   }
 
   void powerupWhistle() {
