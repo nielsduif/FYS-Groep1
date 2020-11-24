@@ -25,8 +25,8 @@ class Player {
   void update() {
     move();
     collision();
-    if (frameCount >= powerUpHandler.potionTime + 180 && powerUpHandler.potionTimer == true) {
-      powerUpHandler.potionTimer = false;
+    if (frameCount >= powerUpHandler.potionTime + 180 && powerUpHandler.startPotionTimer == true) {
+      powerUpHandler.startPotionTimer = false;
     }
   }
 
@@ -43,12 +43,11 @@ class Player {
     tileLocationX = floor(player.x / grid.w);
     tileLocationY = floor(player.y / grid.w);
     float walkSpeed;
-    if (powerUpHandler.potionTimer == true) {
+    if (powerUpHandler.startPotionTimer == true) {
       walkSpeed = potionSpeed;
     } else {
       walkSpeed = speed;
     }
-    println(walkSpeed);
 
     if (keysPressed[37]) {
       x-=walkSpeed;
