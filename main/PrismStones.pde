@@ -10,7 +10,7 @@ class PrismStones {
   int stoneCount = 10;
   PImage prismStoneImage;
   boolean prismStoneUsed = false;
-  int prismStonePixelSize = (grid.w / 3) - 10;
+  int prismStonePixelSize;
   int textY = 60;
   PrismStones[] prismStones = new PrismStones[stoneCount];
 

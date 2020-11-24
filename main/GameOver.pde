@@ -29,7 +29,7 @@ class GameOver {
 
     if (keyPressed) {
       if (key == 'z' || key == 'Z') {
-        //ga naar beginscherm
+        levelSizer.generateStart();
       }
       if (key == 'x' || key == 'X') {
         exit();

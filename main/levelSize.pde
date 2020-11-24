@@ -6,6 +6,12 @@ LevelSizer levelSizer = new LevelSizer();
 
 class LevelSizer {
   void generateStart() {
+    grid.grid.clear();
+    grid.stack.clear();
+    grid.deletedWalls = false;
+    grid.doneGenerating = false;
+    tileSet.idGiven = false;
+    tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
     monsterAmount = currentSize + 1;
@@ -30,6 +36,7 @@ class LevelSizer {
     grid.deletedWalls = false;
     grid.doneGenerating = false;
     tileSet.idGiven = false;
+    tileSet.exitGateOpen = false;
     if (currentSize+1 < cellSizePerLevel.length) {
       currentSize++;
       grid.w = cellSizePerLevel[currentSize];
@@ -42,7 +49,6 @@ class LevelSizer {
         pathFinding[i].start();
         pathFinding[i].monsterImage = loadImage("monster.png");
       }
-      tileSet.exitGateOpen = false;
     }
   }
 }
