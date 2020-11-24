@@ -10,6 +10,7 @@ void setup() {
   levelSizer.generateStart();
   println(grid.w, player.x);
   pathFinding.start();
+  player.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
 }
@@ -45,8 +46,10 @@ void draw() {
 
 // Keyboard handling...
 void keyPressed() {   
-  if (key == 'q') {
+  if (key == 'q' || key == 'Q') {
     powerUpHandler.powerupRadar();
+//    powerUpHandler.powerupArrow();
+    powerUpHandler.powerupPotion();
   }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true

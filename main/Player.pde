@@ -2,19 +2,31 @@ Player player = new Player();
 
 class Player {
   PImage playerImage;
-  float x = grid.w * .5; 
-  float y = grid.w * .5;
-  float prevX = x, prevY = y;
+  float x;
+  float y;
+  float prevX, prevY;
   float tileLocationX;
   float tileLocationY;
-  float playerW = (grid.w / 3) - 10;
-  float playerH = playerW * 2;
-  float speed = 3 * grid.w / 100;
+  float playerW;
+  float playerH;
+  float speed;
+  float potionSpeed;
 
+  void start() {
+    x = grid.w * .5; 
+    y = grid.w * .5;
+    prevX = x;
+    prevY = y;
+    playerW = (grid.w / 3) - 10;
+    playerH = playerW * 2;
+    speed = 3 * grid.w / 100;
+    potionSpeed = 5 * grid.w / 100;
+  }
   void update() {
     move();
     collision();
-    if (tileSet.exitGateOpen == true) {
+    if (frameCount >= powerUpHandler.potionTime + 180 && powerUpHandler.potionTimer == true) {
+      powerUpHandler.potionTimer = false;
     }
   }
 
@@ -30,18 +42,25 @@ class Player {
   void move() {
     tileLocationX = floor(player.x / grid.w);
     tileLocationY = floor(player.y / grid.w);
+    float walkSpeed;
+    if (powerUpHandler.potionTimer == true) {
+      walkSpeed = potionSpeed;
+    } else {
+      walkSpeed = speed;
+    }
+    println(walkSpeed);
 
     if (keysPressed[37]) {
-      x-=speed;
+      x-=walkSpeed;
     }  
     if (keysPressed[39]) {
-      x+=speed;
+      x+=walkSpeed;
     }  
     if (keysPressed[38]) {
-      y-=speed;
+      y-=walkSpeed;
     }  
     if (keysPressed[40]) {
-      y+=speed;
+      y+=walkSpeed;
     }
   }
 

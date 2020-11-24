@@ -9,7 +9,7 @@ class CoinHandler {
   int coinAmount = 10;
   PImage coinImage;
   int coinW = 10;
-  int coinH = 11;
+  int coinH = 10;
   Coin[] coins = new Coin[coinAmount];
 
   void createCoin() {

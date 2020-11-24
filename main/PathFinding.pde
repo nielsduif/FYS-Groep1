@@ -110,28 +110,28 @@ class PathFinding {
       moving = false;
     }
 
-    ////debug monster
-    //fill(255, 50);
-    //rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
-    //rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
-    //rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
-    //rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
+    //debug monster
+    fill(255, 50);
+    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
+    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
+    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
+    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
 
-    //for (int i = 0; i < pathNeighbors.size(); i++) {
-    //  fill(0, 255, 0, 50);
-    //  rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
-    //}
+    for (int i = 0; i < pathNeighbors.size(); i++) {
+      fill(0, 255, 0, 50);
+      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+    }
 
-    //fill(0, 0, 255, 50);
-    //rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
-    //if (!inSight) {
-    //  fill(255, 0, 0, 50);
-    //} else {
-    //  fill(255, 255, 0, 50);
-    //}
-    //if (nextCell != null) {
-    //  rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
-    //}
+    fill(0, 0, 255, 50);
+    rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
+    if (!inSight) {
+      fill(255, 0, 0, 50);
+    } else {
+      fill(255, 255, 0, 50);
+    }
+    if (nextCell != null) {
+      rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
+    }
   }
 
   void draw() {

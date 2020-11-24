@@ -14,15 +14,16 @@ class GameOver {
     restartY = gameoverY +100;
     quitX = gameoverX;
     quitY = restartY + 100;
+    player.speed = 0; //zorg ervoor dat de speler niet meer kan lopen zodat het spel niet meer gespeeld kan worden
     background(0); 
     fill(255, 0, 0);
     textSize(100);
     textAlign(CENTER, CENTER);
-    text("Gameover", gameoverX, gameoverY);
-    textSize(80);
+    text("GameOver", gameoverX, gameoverY);
+    textSize(50);
     textAlign(CENTER, CENTER);
     text("Press 'z' to restart", restartX, restartY);
-    textSize(80);
+    textSize(50);
     textAlign(CENTER, CENTER);
     text("Press 'x' to quit", quitX, quitY);
 

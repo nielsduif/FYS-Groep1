@@ -6,6 +6,9 @@ PowerUpHandler powerUpHandler = new PowerUpHandler();
 
 class PowerUpHandler {
   int powerupID;
+  float d;
+  boolean arrowTimer, potionTimer;
+  int arrowTime, potionTime;
 
   void usePowerup() {
     if (powerupID == 1) {
@@ -26,19 +29,24 @@ class PowerUpHandler {
     powerupID = 0;
   }
 
+
   void powerupPing() {
   }
 
   void powerupRadar() {
-   
   }
 
   void powerupWhistle() {
   }
 
   void powerupPotion() {
+    potionTimer = true;
+    potionTime= frameCount;
   }
-
   void powerupArrow() {
+    Keys closestKey = null;
+    arrowTimer = true;
+    arrowTime = frameCount;
+
   }
 }

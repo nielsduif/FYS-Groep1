@@ -2,6 +2,7 @@
 //purpose = Creation of the keys needed to open the exit
 
 KeyHandler keyHandler = new KeyHandler();
+Keys keys = new Keys();
 boolean createKeyOnce;
 //Maak class aan om de keys aan te maken en te updaten
 class KeyHandler {
@@ -20,7 +21,7 @@ class KeyHandler {
         keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
         keys[i].keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
         keys[i].d = 10;
-        createKeyOnce = true; //Maak het zo dat de volgende key weet dat op deze plaats al een coin staat
+        createKeyOnce = true; //Maak het zo dat de volgende key weet dat op deze plaats al een key staat
       }
     }
   }
@@ -39,6 +40,22 @@ class KeyHandler {
           keys[i] = null; //Verwijder de key
         }
       }
+    }
+        float closestDistance = 999999999;
+        if(frameCount)
+    for (int i = 0; i < keyHandler.keys.length; i++) {
+      if (keyHandler.keys[i] != null) {
+        d = dist(player.x, player.y, keyHandler.keys[i].keyX, keyHandler.keys[i].keyY);
+        println(d);
+        if (d < closestDistance) {
+          closestKey = keyHandler.keys[i];
+          closestDistance = d;
+        }
+      }
+    }
+    if (closestKey != null) {
+      println(closestKey.keyX / grid.w+ "; " + closestKey.keyY / grid.w);
+      image(keyHandler.keyImage, closestKey.keyX, closestKey.keyY, keyHandler.keyW, keyHandler.keyH);
     }
   }
 
