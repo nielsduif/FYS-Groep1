@@ -25,7 +25,7 @@ class Player {
   void update() {
     move();
     collision();
-    if (frameCount >= powerUpHandler.potionTime + 180 && powerUpHandler.startPotionTimer == true) {
+    if (frameCount >= powerUpHandler.potionTime + 180 && powerUpHandler.startPotionTimer == true) { //dit is de timer voor potion powerup, die loopt voor 3 seconde
       powerUpHandler.startPotionTimer = false;
     }
   }
@@ -43,7 +43,7 @@ class Player {
     tileLocationX = floor(player.x / grid.w);
     tileLocationY = floor(player.y / grid.w);
     float walkSpeed;
-    if (powerUpHandler.startPotionTimer == true) {
+    if (powerUpHandler.startPotionTimer == true) { //zorg ervoor dat de player met de speed van de powerup loopt als de powerup is geactiveerd
       walkSpeed = potionSpeed;
     } else {
       walkSpeed = speed;
