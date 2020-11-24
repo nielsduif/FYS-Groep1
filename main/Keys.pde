@@ -16,12 +16,16 @@ class KeyHandler {
     if (createKeyOnce == false) { //Check of er al een key is op de plaats waar de key wil spawnen, plaats de key alleen op plekken waar er nog geen andere key is
       for (int i = 0; i < keyAmount; i++) { //Bepaal random plaats in het grid waar de key spawned
         keys[i] = new Keys(); //Maak de keys aan
-        int randomGetal = int(random(grid.grid.size()/3 * (i + 1)));
-        keys[i].keyLocation = randomGetal;
-        keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
-        keys[i].keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
-        keys[i].d = 10;
-        createKeyOnce = true; //Maak het zo dat de volgende key weet dat op deze plaats al een key staat
+        int randomGetal = coinHandler.getRandomUnUsedTile();
+        if (grid.grid.get(randomGetal).isUsed == true) {
+          createKeys();
+        } else {
+          grid.grid.get(randomGetal).isUsed = true;
+          keys[i].keyX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+          keys[i].keyY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+          keys[i].d = 10;
+          createKeyOnce = true; //Maak het zo dat de volgende key weet dat op deze plaats al een key staat
+        }
       }
     }
   }
@@ -82,5 +86,4 @@ class KeyHandler {
 //Roep de variabelen in deze aparte class op, zodat alle keys hun eigen waarden kunnen hebben
 class Keys {
   float keyX, keyY, d;
-  int keyLocation;
 }

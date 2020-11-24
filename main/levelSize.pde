@@ -22,8 +22,6 @@ class LevelSizer {
     }
     player.start();
     imageLoader.loadTileImages();
-    font = createFont("Minecraftia-Regular.ttf", 32);
-    textFont(font);
   }
 
   void generateUpdate() {

@@ -8,7 +8,21 @@ class PowerUpHandler {
   int powerupID;
   float keyDistance;
   boolean startArrowTimer, startPotionTimer;
+  int powerupAmount = 5;
+  PImage[] powerupImages = new PImage[powerupAmount];
+  Powerup[] powerups = new Powerup[powerupAmount];
+  float d;
+  boolean arrowTimer, potionTimer;
   int arrowTime, potionTime;
+
+
+  void loadPowerups() {
+    for (int i = 0; i > powerupAmount; i++) {
+      powerups[i] = new Powerup();
+      powerups[i].powerupID = i;
+      powerups[i].powerupImage = powerupImages[i];
+    }
+  }
 
   void usePowerup() {
     if (powerupID == 1) {
@@ -47,12 +61,19 @@ class PowerUpHandler {
   }
 
   void powerupPotion() {
-    startPotionTimer = true;
+    potionTimer = true;
     potionTime= frameCount;
   }
   void powerupArrow() {
-    startArrowTimer = true;
+    Keys closestKey = null;
+    arrowTimer = true;
     arrowTime = frameCount;
+  }
 
+  class Powerup {
+    int powerupID;
+    PImage powerupImage;
+    float powerupX, powerupY, powerupW = 16, powerupH = 16;
+    int duration = 180;
   }
 }
