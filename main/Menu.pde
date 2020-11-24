@@ -24,6 +24,8 @@ class Menu {
   String[] tabTitles = {"Play", "Settings", "Highscores", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
+  boolean chosen;
+
   void start() {
     titleX = width * .5;
     titleY = height * .3;
@@ -36,17 +38,23 @@ class Menu {
     }
   }
   void display() {
-    textAlign(CENTER);
-    fill(255);
-    text(title, titleX, titleY);
-    for (int i = 0; i < mt.length; i++) {
-      mt[i].draw();
-    }    
-    for (int i = 0; i < mt.length; i++) {
-      if (i==selected) {
-        mt[selected].selected = true;
-      } else {
-        mt[i].selected=false;
+    if (!chosen) {
+      textAlign(CENTER);
+      fill(255);
+      text(title, titleX, titleY);
+      for (int i = 0; i < mt.length; i++) {
+        mt[i].draw();
+      }    
+      for (int i = 0; i < mt.length; i++) {
+        if (i==selected) {
+          mt[selected].selected = true;
+        } else {
+          mt[i].selected=false;
+        }
+      }
+      if (keyCode == ENTER && selected == 0) {
+        chosen = true;
+        levelSizer.generateStart();
       }
     }
   }

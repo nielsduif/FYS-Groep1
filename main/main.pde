@@ -6,28 +6,31 @@ Menu menu = new Menu();
 
 void setup() {
   size(1600, 800);
-  levelSizer.generateStart();
   menu.start();
+  font = createFont("Minecraftia-Regular.ttf", 32);
+  textFont(font);
 }
 
 void updateGame() {  
-  levelSizer.generateUpdate();
-  if (grid.doneGenerating) {
-    keyHandler.createKeys();
-    coinHandler.createCoin();
-    tileSet.updateExit();
-    prismStone.updatePrismStones();
-    keyHandler.updateKeys();
-    coinHandler.updateCoin();  
-    for (int i = 0; i < pathFinding.length; i++) {
-      pathFinding[i].draw();
-      pathFinding[i].update();
+  if (menu.chosen) {
+    levelSizer.generateUpdate();
+    if (grid.doneGenerating) {
+      keyHandler.createKeys();
+      coinHandler.createCoin();
+      tileSet.updateExit();
+      prismStone.updatePrismStones();
+      keyHandler.updateKeys();
+      coinHandler.updateCoin();  
+      for (int i = 0; i < pathFinding.length; i++) {
+        pathFinding[i].draw();
+        pathFinding[i].update();
+      }
+      player.update();
+      player.draw();
+      prismStone.prismStoneUI();
+      keyHandler.updateKeyUI();
+      score.draw();
     }
-    player.update();
-    player.draw();
-    prismStone.prismStoneUI();
-    keyHandler.updateKeyUI();
-    score.draw();
   }
 }
 
