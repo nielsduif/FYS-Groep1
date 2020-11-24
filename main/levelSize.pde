@@ -14,6 +14,9 @@ class LevelSizer {
     tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
+    score.score = 0;
+    prismStone.prismStonePixelSize = (grid.w / 3) - 10;
+    coinHandler.coins = new Coin[coinHandler.coinAmount];
     monsterAmount = currentSize + 1;
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {

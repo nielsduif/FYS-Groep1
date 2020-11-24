@@ -52,7 +52,7 @@ class Menu {
           mt[i].selected=false;
         }
       }
-      if (keyCode == ENTER && selected == 0) {
+      if (keyCode == 'A' && selected == 0) {
         chosen = true;
         levelSizer.generateStart();
       }
