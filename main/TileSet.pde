@@ -43,7 +43,7 @@ class TileSet {
     giveRandomTileExit();
     //drawVisionBlur();
   }
-  
+
   //Functie die in elke richting gelooped word tot er een muur is en drawed dan de tiles in visie.
   void drawTilesInView(int pTileID, boolean pWallU, boolean pWallR, boolean pWallD, boolean pWallL) {
     if (pWallU == false && capU < visionCap) {
@@ -51,6 +51,9 @@ class TileSet {
       int nextTile = pTileID - grid.cols;
       drawTile(nextTile, grid.grid.get(nextTile).tileID, grid.grid.get(nextTile).x * grid.grid.get(nextTile).w, grid.grid.get(nextTile).y * grid.grid.get(nextTile).w, grid.grid.get(nextTile).w);
       drawTilesInView(nextTile, grid.grid.get(nextTile).walls[0], true, true, true);
+      if (grid.grid.get(nextTile).x == grid.grid.get(randomTile).x && grid.grid.get(nextTile).y == grid.grid.get(randomTile).y) {
+        drawExit = true;
+      }
     }
     if (pWallR == false && capR < visionCap) {
       capR++;
