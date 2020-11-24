@@ -79,7 +79,6 @@ class Grid {
         }
         deletedWalls = true;
       }
-      println(frameCount, "oee");
       tileSet.giveCellsID();
       tileSet.updateMazeTiles();
     }
