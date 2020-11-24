@@ -79,9 +79,11 @@ class Grid {
         }
         deletedWalls = true;
       }
+      println(frameCount, "oee");
       tileSet.giveCellsID();
       tileSet.updateMazeTiles();
     }
+
     //tekenen van alle cellen in de lijst
     if (showWalls) {
       for (int i=0; i < grid.size(); i++) {

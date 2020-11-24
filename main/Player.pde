@@ -2,14 +2,22 @@ Player player = new Player();
 
 class Player {
   PImage playerImage;
-  float x = grid.w * .5; 
-  float y = grid.w * .5;
+  float x; 
+  float y;
   float prevX = x, prevY = y;
   float tileLocationX;
   float tileLocationY;
-  float playerW = (grid.w / 3) - 10;
-  float playerH = playerW * 2;
-  float speed = 3 * grid.w / 100;
+  float playerW;
+  float playerH;
+  float speed;
+
+  void start() {
+    x = grid.w * .5;
+    y = grid.w * .5;
+    playerW = (grid.w / 3) - 10;
+    playerH = playerW * 2;
+    speed = 3 * grid.w / 100;
+  }
 
   void update() {
     move();

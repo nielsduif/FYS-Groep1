@@ -154,5 +154,6 @@ class TileSet {
   }
   void escape() {
     print("Hier komt wat er moet gebeuren bij een escape");
+    levelSizer.rescaleLevel();
   }
 }
