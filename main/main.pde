@@ -1,3 +1,5 @@
+import processing.sound.*;
+
 // Arrays of booleans for Keyboard handling. One boolean for each keyCode
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
@@ -9,6 +11,7 @@ void setup() {
   menu.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
+  loadSound();
 }
 
 void updateGame() {  
@@ -17,10 +20,12 @@ void updateGame() {
     if (grid.doneGenerating) {
       keyHandler.createKeys();
       coinHandler.createCoin();
+      powerupHandler.loadPowerups();
       tileSet.updateExit();
       prismStone.updatePrismStones();
       keyHandler.updateKeys();
       coinHandler.updateCoin();  
+      powerupHandler.updatePowerup();
       for (int i = 0; i < pathFinding.length; i++) {
         pathFinding[i].draw();
         pathFinding[i].update();
@@ -43,12 +48,12 @@ void draw() {
 // Keyboard handling...
 void keyPressed() {   
   if (key == 'q' || key == 'Q') {
-    powerUpHandler.powerupRadar();
+    powerupHandler.powerupRadar();
     //    powerUpHandler.powerupArrow();
-    powerUpHandler.powerupPotion();
+    powerupHandler.powerupPotion();
   }
   if (key == 'p') {
-    powerUpHandler.powerupPing();
+    powerupHandler.powerupPing();
   }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true

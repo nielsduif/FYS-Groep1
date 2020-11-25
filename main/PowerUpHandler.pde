@@ -2,12 +2,13 @@
 author(s): Jordy Wolf [500848484]
  purpose:   This script handles with all the powerups.
  */
-PowerUpHandler powerUpHandler = new PowerUpHandler();
+PowerUpHandler powerupHandler = new PowerUpHandler();
 
 class PowerUpHandler {
   int powerupID;
   float keyDistance;
   boolean startArrowTimer, startPotionTimer;
+  boolean loadPowerupsOnce;
   int powerupAmount = 5;
   PImage[] powerupImages = new PImage[powerupAmount];
   Powerup[] powerups = new Powerup[powerupAmount];
@@ -15,12 +16,29 @@ class PowerUpHandler {
   boolean arrowTimer, potionTimer;
   int arrowTime, potionTime;
 
-
   void loadPowerups() {
-    for (int i = 0; i > powerupAmount; i++) {
-      powerups[i] = new Powerup();
-      powerups[i].powerupID = i;
-      powerups[i].powerupImage = powerupImages[i];
+    if (loadPowerupsOnce == false) {
+      for (int i = 0; i < powerupAmount; i++) {
+        powerups[i] = new Powerup();
+        powerups[i].powerupID = i;
+        powerups[i].powerupImage = powerupImages[i];
+
+        int randomGetal = coinHandler.getRandomUnUsedTile();
+        if (grid.grid.get(randomGetal).isUsed == true) { //zorg ervoor dat powerups niet op dezelfde plek komen te staan
+          loadPowerups();
+        } else {
+          grid.grid.get(randomGetal).isUsed = true;
+          powerups[i].powerupX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+          powerups[i].powerupY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+        }
+      }
+      loadPowerupsOnce = true;
+    }
+  }
+
+  void updatePowerup() {
+    for (int i = 0; i < powerups.length; i++) {
+      player.drawObjectInView(powerups[i].powerupImage, powerups[i].powerupX, powerups[i].powerupY, powerups[i].powerupW, powerups[i].powerupH);
     }
   }
 
@@ -73,7 +91,7 @@ class PowerUpHandler {
   class Powerup {
     int powerupID;
     PImage powerupImage;
-    float powerupX, powerupY, powerupW = 16, powerupH = 16;
+    float powerupX, powerupY, powerupW = grid.w / 3 - 10, powerupH =  grid.w / 3 - 10;
     int duration = 180;
   }
 }

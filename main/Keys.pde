@@ -47,17 +47,17 @@ class KeyHandler {
     }
     Keys closestKey = null;
     float closestDistance = 999999999; //deze moet de eerste keer altijd hoger zijn dan de afstand tot de key
-    if (frameCount >= powerUpHandler.arrowTime + 180 && powerUpHandler.startArrowTimer == true) { //dit is de timer voor de arrow powerup, de timer loopt voor 3 seconden
-      powerUpHandler.startArrowTimer = false;
+    if (frameCount >= powerupHandler.arrowTime + 180 && powerupHandler.startArrowTimer == true) { //dit is de timer voor de arrow powerup, de timer loopt voor 3 seconden
+      powerupHandler.startArrowTimer = false;
     }
-    if (powerUpHandler.startArrowTimer == true) {
+    if (powerupHandler.startArrowTimer == true) {
       for (int i = 0; i < keys.length; i++) { //check elke key
         if (keys[i] != null) { //zorg ervoor dat het checken ook mogelijk is met minder dan 3 keys in het spel
-          powerUpHandler.keyDistance = dist(player.x, player.y, keys[i].keyX, keys[i].keyY); //bepaal de afstand tussen de player en de keys
-          println(powerUpHandler.keyDistance);
-          if (powerUpHandler.keyDistance < closestDistance) { //check of de key die gechecked wordt dichter bij de speler is dan de vorige die gechecked werd
+          powerupHandler.keyDistance = dist(player.x, player.y, keys[i].keyX, keys[i].keyY); //bepaal de afstand tussen de player en de keys
+          println(powerupHandler.keyDistance);
+          if (powerupHandler.keyDistance < closestDistance) { //check of de key die gechecked wordt dichter bij de speler is dan de vorige die gechecked werd
             closestKey = keys[i];
-            closestDistance = powerUpHandler.keyDistance;  //stel de nieuwe afstand vast als dichtst bijzijnde
+            closestDistance = powerupHandler.keyDistance;  //stel de nieuwe afstand vast als dichtst bijzijnde
           }
         }
       }

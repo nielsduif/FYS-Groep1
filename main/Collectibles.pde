@@ -57,7 +57,7 @@ class CoinHandler {
     return -1;
   }
 
-  int getRandomTile() {
+  private int getRandomTile() {
     return int(random(1, grid.grid.size()));
   }
 }

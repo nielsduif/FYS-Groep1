@@ -20,10 +20,10 @@ class ImageLoader {
     coinHandler.coinImage = loadImage("Coin.png");
     keyHandler.keyImage = loadImage("Key.png");
 
-    powerUpHandler.powerupImages[0] = loadImage("ping.png");
-    powerUpHandler.powerupImages[4] = loadImage("vision.png");
-    powerUpHandler.powerupImages[1] = loadImage("whistle.png");
-    powerUpHandler.powerupImages[2] = loadImage("potion.png");
-    powerUpHandler.powerupImages[3] = loadImage("xray.png");
+    powerupHandler.powerupImages[0] = loadImage("ping.png");
+    powerupHandler.powerupImages[4] = loadImage("vision.png");
+    powerupHandler.powerupImages[1] = loadImage("whistle.png");
+    powerupHandler.powerupImages[2] = loadImage("potion.png");
+    powerupHandler.powerupImages[3] = loadImage("xray.png");
   }
 }
