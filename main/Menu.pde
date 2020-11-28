@@ -1,3 +1,5 @@
+Menu menu = new Menu();
+
 class MenuTab {
   float x, y, w = 300, h=50;
   String itemTitle;

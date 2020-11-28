@@ -21,7 +21,7 @@ class PrismStones {
   void usePrismStone() {
     if (stoneCount > 0) {
       prismStones[stoneCount - 1] = new PrismStones();
-      prismStones[stoneCount - 1].prismStoneX = player.x - prismStonePixelSize / 2;
+      prismStones[stoneCount - 1].prismStoneX = player.x;
       prismStones[stoneCount - 1].prismStoneY = player.y - prismStonePixelSize / 2;
       prismStones[stoneCount - 1].prismStoneTileX = floor(prismStones[stoneCount - 1].prismStoneX / grid.w);
       prismStones[stoneCount - 1].prismStoneTileY = floor(prismStones[stoneCount - 1].prismStoneY / grid.w);

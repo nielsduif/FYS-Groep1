@@ -54,14 +54,13 @@ class CoinHandler {
     if (grid.grid.get(getal).isUsed == false) {
       return getal;
     }
-    return -1;
+    return 0;
   }
 
   int getRandomTile() {
     return int(random(1, grid.grid.size()));
   }
 }
-
 
 //roep de variabelen in deze aparte class op, zodat alle coins hun eigen waarden kunnen hebben
 class Coin {

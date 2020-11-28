@@ -2,7 +2,6 @@
 final int KEY_LIMIT = 1024;
 boolean[] keysPressed = new boolean[KEY_LIMIT];
 PFont font;
-Menu menu = new Menu();
 
 void setup() {
   size(1600, 800);
@@ -15,8 +14,6 @@ void updateGame() {
   if (menu.chosen) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
-      keyHandler.createKeys();
-      coinHandler.createCoin();
       tileSet.updateExit();
       prismStone.updatePrismStones();
       keyHandler.updateKeys();
@@ -44,7 +41,7 @@ void draw() {
 void keyPressed() {   
   if (key == 'q' || key == 'Q') {
     powerUpHandler.powerupRadar();
-    //    powerUpHandler.powerupArrow();
+    //powerUpHandler.powerupArrow();
     powerUpHandler.powerupPotion();
   }
   if (key == 'p') {

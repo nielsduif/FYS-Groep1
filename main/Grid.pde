@@ -9,7 +9,7 @@ Grid grid = new Grid();
 
 class Grid {
   int cols, rows; //aantal colommen en rijen
-  int w = 100; //breedte van 1 grid cell
+  int w; //breedte van 1 grid cell
   int deletedWallsCount = 10; //aantal willekeurige muren dat verwijdert zal worden
   boolean deletedWalls;
   boolean showWalls = false;
@@ -29,6 +29,7 @@ class Grid {
 
   //functie om de lijst die de cellen bevat te vullen, en het aantal rijen en colommen berekent
   void start() {
+    deletedWalls = false;
     doneGenerating = false; 
     cols = floor(width/w); //aantal cellen op de x-as
     rows = floor(height/w); //aantal cellen op de y-as
@@ -44,7 +45,6 @@ class Grid {
     }
     current = grid.get(0); //huidige cell is waar het doolhof begint, oftewel positie (0,0)
   }
-
 
   void update() {  
     //start algoritme
