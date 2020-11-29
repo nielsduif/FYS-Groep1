@@ -4,14 +4,15 @@ boolean[] keysPressed = new boolean[KEY_LIMIT];
 PFont font;
 
 void setup() {
-  size(1600, 800);
+  //size(1600, 800);
+  fullScreen();
   menu.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
 }
 
 void updateGame() {  
-  if (menu.chosen) {
+  if (menu.start) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
       tileSet.updateExit();
@@ -49,16 +50,6 @@ void keyPressed() {
   }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true
-  if (keyCode == DOWN) {
-    if (menu.selected + 1 < menu.tabAmount) {
-      menu.selected++;
-    }
-  }
-  if (keyCode == UP) {
-    if (menu.selected - 1 >= 0) {
-      menu.selected--;
-    }
-  }
 }
 
 //..and with each key Released vice versa

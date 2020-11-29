@@ -1,3 +1,8 @@
+/*
+author: Niels Duivenvoorden[500847100]
+ purpose:   menu ui om het spel te starten, kan naar verschillende paginas voordat het spel echt begint
+ */
+
 Menu menu = new Menu();
 
 class MenuTab {
@@ -26,7 +31,7 @@ class Menu {
   String[] tabTitles = {"Play", "Settings", "Highscores", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
-  boolean chosen;
+  boolean start, name, selectOnce;
 
   void start() {
     titleX = width * .5;
@@ -40,7 +45,8 @@ class Menu {
     }
   }
   void display() {
-    if (!chosen) {
+    if (!start) {
+      background(0);
       textAlign(CENTER);
       fill(255);
       text(title, titleX, titleY);
@@ -54,9 +60,31 @@ class Menu {
           mt[i].selected=false;
         }
       }
-      if (keyCode == 'A' && selected == 0) {
-        chosen = true;
-        levelSizer.generateStart();
+      if (keysPressed['A'] && selected == 0  && !selectOnce) {
+        if (!name) {
+          println(frameCount, "make name");
+        } else {
+          start = true;
+          levelSizer.generateStart();
+        }
+        selectOnce = true;
+      } else if (keysPressed['A'] && selected == 3) {
+        exit();
+      }
+      if (keysPressed[DOWN] && !selectOnce) {
+        if (menu.selected + 1 < menu.tabAmount) {
+          menu.selected++;
+        }
+        selectOnce = true;
+      }  
+      if (keysPressed[UP] && !selectOnce) {
+        if (menu.selected - 1 >= 0) {
+          menu.selected--;
+        }
+        selectOnce = true;
+      }
+      if (!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed['A']) {
+        selectOnce = false;
       }
     }
   }

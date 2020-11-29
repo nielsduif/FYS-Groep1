@@ -53,7 +53,7 @@ class Cell {
   //functie om de huidge drawing cell een kleur mee te geven
   void highlight() {
     noStroke();
-    fill(255);
+    fill(0);
     rect(x * w, y * w, w, w);
   }
 
