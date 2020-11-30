@@ -3,8 +3,8 @@ author: Niels Duivenvoorden[500847100]
  purpose:   regeling van verschillende groottes van de maze, en oneindig spelen tot je dood gaat
  */
 
-int[] cellSizePerLevel= {200, 200, 200};
-int[] enemiesPerLevel = {0, 0, 0};
+int[] cellSizePerLevel= {200, 175, 150};
+int[] enemiesPerLevel = {1, 2, 3};
 int currentSize = 0;
 
 LevelSizer levelSizer = new LevelSizer();
@@ -15,6 +15,7 @@ class LevelSizer {
     grid.stack.clear();
     grid.deletedWalls = false;
     grid.doneGenerating = false;
+    tileSet.tileAccepted = false;
     tileSet.idGiven = false;
     tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
@@ -58,6 +59,7 @@ class LevelSizer {
     prismStone.stoneCount = 10;
     prismStone.prismStones = new PrismStones[prismStone.stoneCount];
     createKeyOnce = false;
+    tileSet.tileAccepted = false;
     tileSet.idGiven = false;
     tileSet.exitGateOpen = false;
 
@@ -93,6 +95,7 @@ class LevelSizer {
       prismStone.stoneCount = 10;
       prismStone.prismStones = new PrismStones[prismStone.stoneCount];
       createKeyOnce = false;
+      tileSet.tileAccepted = false;
       tileSet.idGiven = false;
       tileSet.exitGateOpen = false;
       grid.w = cellSizePerLevel[currentSize];

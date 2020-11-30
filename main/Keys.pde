@@ -54,7 +54,7 @@ class KeyHandler {
       for (int i = 0; i < keys.length; i++) { //check elke key
         if (keys[i] != null) { //zorg ervoor dat het checken ook mogelijk is met minder dan 3 keys in het spel
           powerupHandler.keyDistance = dist(player.x, player.y, keys[i].keyX, keys[i].keyY); //bepaal de afstand tussen de player en de keys
-          println(powerupHandler.keyDistance);
+          //println(powerupHandler.keyDistance);
           if (powerupHandler.keyDistance < closestDistance) { //check of de key die gechecked wordt dichter bij de speler is dan de vorige die gechecked werd
             closestKey = keys[i];
             closestDistance = powerupHandler.keyDistance;  //stel de nieuwe afstand vast als dichtst bijzijnde
@@ -62,8 +62,9 @@ class KeyHandler {
         }
       }
       if (closestKey != null) { //zorg ervoor dat het volgende pas werkt als de key die het dichtst bij staat bepaald is
-        println(closestKey.keyX / grid.w+ "; " + closestKey.keyY / grid.w);
-        image(keyHandler.keyImage, closestKey.keyX, closestKey.keyY, keyHandler.keyW, keyHandler.keyH); //teken de key die het dichtst bij staat bij de player
+        //println(closestKey.keyX / grid.w+ "; " + closestKey.keyY / grid.w);
+        imageMode(CENTER);
+        image(keyHandler.keyImage, closestKey.keyX, closestKey.keyY, grid.w * keyW / 60, grid.w * keyH / 60); //teken de key die het dichtst bij staat bij de player
       }
     }
   }

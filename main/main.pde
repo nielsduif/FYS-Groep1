@@ -8,6 +8,7 @@ PFont font;
 void setup() {
   size(1600, 800);
   //fullScreen();
+  noCursor();
   menu.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
@@ -16,7 +17,7 @@ void setup() {
 
 void updateGame() { 
   menu.display();
-  if (menu.start) {
+  if (menu.start && !menu.name) {
     scroller.display();
   }
   if (menu.name) {
@@ -49,12 +50,13 @@ void draw() {
 // Keyboard handling...
 void keyPressed() {   
   if (key == 'q' || key == 'Q') {
-    powerupHandler.powerupRadar();
-    //powerUpHandler.powerupArrow();
-    powerupHandler.powerupPotion();
+    powerupHandler.powerupPing();
   }
   if (key == 'p') {
-    powerupHandler.powerupPing();
+    powerupHandler.powerupWhistle();
+  }
+  if (key == 'l') {
+    powerupHandler.powerupArrow();
   }
   if (keyCode >= KEY_LIMIT) return; //safety: if keycode exceeds limit, exit function ('return').
   keysPressed[keyCode] = true; // set its boolean to true

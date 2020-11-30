@@ -46,8 +46,8 @@ class Menu {
     scroller.start();
   }
   void display() {
+    background(0);
     if (!start) {
-      background(0);
       textAlign(CENTER);
       fill(255);
       text(title, titleX, titleY);
@@ -66,6 +66,8 @@ class Menu {
           start = true;
         }
         selectOnce = true;
+      } else if (keysPressed['A'] && selected == 2) {
+        println("hier komt de volume epic win");
       } else if (keysPressed['A'] && selected == 3) {
         exit();
       }
