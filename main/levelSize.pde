@@ -63,13 +63,12 @@ class LevelSizer {
     tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
-    monsterAmount = 1;
+    monsterAmount = currentSize + 1;
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i] = new PathFinding();
       pathFinding[i].start();
     }
-    score.score = 0;
     createKeyOnce = false;  
     createCoinOnce = false;
     coinHandler.coinAmount = 10;

@@ -43,7 +43,6 @@ class PathFinding {
         current = grid.grid.get(i); //huidige cell bijhouden op basis van positie
       }
     }
-    showEnemy = true;
     if (showEnemy) {     
       fill(50, 50, 50, 100);
       circle(Ex, Ey, Ew);   
@@ -51,10 +50,10 @@ class PathFinding {
       //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
       image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
       imageMode(CORNER);
-      //if (frameCount > startTime + powerUpFrames) {
-      //  startTime = 0;
-      //  showEnemy = false;
-      //}
+      if (frameCount > startTime + powerUpFrames) {
+        startTime = 0;
+        showEnemy = false;
+      }
     }
 
     //lijst voor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
@@ -141,27 +140,27 @@ class PathFinding {
     }
 
     //  debug monster
-    fill(255, 50);
-    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
-    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
-    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
-    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
+    //fill(255, 50);
+    //rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
+    //rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
+    //rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
+    //rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
 
-    for (int i = 0; i < pathNeighbors.size(); i++) {
-      fill(0, 255, 0, 50);
-      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
-    }
+    //for (int i = 0; i < pathNeighbors.size(); i++) {
+    //  fill(0, 255, 0, 50);
+    //  rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+    //}
 
-    fill(0, 0, 255, 50);
-    rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
-    if (!inSight) {
-      fill(255, 0, 0, 50);
-    } else {
-      fill(255, 255, 0, 50);
-    }
-    if (nextCell != null) {
-      rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
-    }
+    //fill(0, 0, 255, 50);
+    //rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
+    //if (!inSight) {
+    //  fill(255, 0, 0, 50);
+    //} else {
+    //  fill(255, 255, 0, 50);
+    //}
+    //if (nextCell != null) {
+    //  rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
+    //}
   }
 
   void draw() {
@@ -184,11 +183,11 @@ class PathFinding {
     //TODO zorgen dat het alleen werkt voor het dichts bijzijnde monster
 
     //Monster footstep sound effect
-    //float soundAmp = 20;
-    //float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
-    //if (distance > 0.5) distance = 0.5;
-    //if (distance < 0.02) distance = 0.01;
-    //monsterFootsteps.amp(distance);
-    //playSound(monsterFootsteps);
+    float soundAmp = 20;
+    float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
+    if (distance > 0.5) distance = 0.5;
+    if (distance < 0.02) distance = 0.01;
+    monsterFootsteps.amp(distance);
+    playSound(monsterFootsteps);
   }
 }
