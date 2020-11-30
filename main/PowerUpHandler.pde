@@ -57,11 +57,11 @@ class PowerUpHandler {
             currentPowerup = i;
             powerups[i].pickedUp = true;
           }
-          if (keysPressed['X']) {
-            usePowerup();
-          }
         }
       }
+    }
+    if (keysPressed['X']) {
+      usePowerup();
     }
   }
 
