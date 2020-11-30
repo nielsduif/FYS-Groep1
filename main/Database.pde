@@ -21,7 +21,7 @@ class Database {
     textSize(15);
 
     highscoreTable = connection.getTable("Highscore");  
-    highscoreTable = connection.runQuery("SELECT * FROM Highscore ORDER BY highscore DESC");
+    highscoreTable = connection.runQuery("SELECT * FROM Highscore ORDER BY highscore DESC LIMIT 10");
 
     fill(255);
 

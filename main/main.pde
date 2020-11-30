@@ -6,8 +6,8 @@ boolean[] keysPressed = new boolean[KEY_LIMIT];
 PFont font;
 
 void setup() {
-  size(1600, 800);
-  //fullScreen();
+  //size(1600, 800);
+  fullScreen();
   noCursor();
   menu.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
