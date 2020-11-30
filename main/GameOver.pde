@@ -28,10 +28,10 @@ class GameOver {
     text("Press 'x' to quit", quitX, quitY);
 
     if (keyPressed) {
-      if (key == 'z' || key == 'Z') {
+      if (key == 'z' || key == 'Z') { //restart de game door op z te drukken
         levelSizer.generateStart();
       }
-      if (key == 'x' || key == 'X') {
+      if (key == 'x' || key == 'X') { //sluit de game af door op x te drukken
         exit();
       }
     }

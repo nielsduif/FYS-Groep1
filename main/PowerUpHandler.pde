@@ -7,13 +7,12 @@ PowerUpHandler powerupHandler = new PowerUpHandler();
 class PowerUpHandler {
   int currentPowerup;
   float keyDistance;
-  boolean startArrowTimer, startPotionTimer;
   boolean loadPowerupsOnce;
-  int powerupAmount = 6; //amount of powerups in the game +1 empty one
+  boolean startArrowTimer, startPotionTimer, startWhistleTimer;
+  int powerupAmount = 6;
   PImage[] powerupImages = new PImage[powerupAmount];
   Powerup[] powerups = new Powerup[powerupAmount];
-  boolean arrowTimer, potionTimer;
-  int arrowTime, potionTime;
+  int arrowTime, potionTime, whistleTime;
 
   void loadPowerups() {
     if (loadPowerupsOnce == false) {
@@ -101,16 +100,17 @@ class PowerUpHandler {
   }
 
   void powerupWhistle() {
+    startWhistleTimer = true;
+    whistleTime = frameCount;
   }
 
   void powerupPotion() {
-    potionTimer = true;
-    potionTime = frameCount;
+    startPotionTimer = true;
+    potionTime= frameCount;
   }
 
   void powerupArrow() {
-    Keys closestKey = null;
-    arrowTimer = true;
+    startArrowTimer = true;
     arrowTime = frameCount;
   }
 
