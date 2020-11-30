@@ -75,6 +75,10 @@ class KeyHandler {
       textSize(30);
       text("Exit is open!", width - 325, prismStone.textY + score.textSpace*2);
       tileSet.exitGateOpen = true;
+      if (tileSet.playExitSoundOnce == false) {
+        playSound(exitOpen);
+        tileSet.playExitSoundOnce = true;
+      }
     } else {
       fill(255);
       textSize(30);

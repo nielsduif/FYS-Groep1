@@ -32,6 +32,7 @@ void updateGame() {
       }
       player.update();
       player.draw();
+      powerupHandler.powerupUI();
       prismStone.prismStoneUI();
       keyHandler.updateKeyUI();
       score.draw();
