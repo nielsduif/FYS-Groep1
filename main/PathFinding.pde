@@ -15,7 +15,7 @@ class PathFinding {
   float Ex, Ey, Ew; //posities
   Cell current; //huidige cell van de enemy
 
-  float walkSpeed = 2 * grid.w / 100;
+  float walkSpeed;
   float speed = 2 * grid.w / 100; //snelheid op basis van de spelgrootte
 
   Cell lastCell; //cell van vorige bezochte cell
@@ -43,7 +43,7 @@ class PathFinding {
         current = grid.grid.get(i); //huidige cell bijhouden op basis van positie
       }
     }
-
+    showEnemy = true;
     if (showEnemy) {     
       fill(50, 50, 50, 100);
       circle(Ex, Ey, Ew);   
@@ -51,15 +51,12 @@ class PathFinding {
       //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
       image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
       imageMode(CORNER);
-      if (frameCount > startTime + powerUpFrames) {
-        startTime = 0;
-        showEnemy = false;
-      }
+      //if (frameCount > startTime + powerUpFrames) {
+      //  startTime = 0;
+      //  showEnemy = false;
+      //}
     }
 
-    if (frameCount >= powerupHandler.whistleTime + 180 && powerupHandler.startWhistleTimer == true) {
-      powerupHandler.startWhistleTimer = false;
-    }
     //lijst voor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
     ArrayList<Cell> pathNeighbors = new ArrayList<Cell>();
 
@@ -81,12 +78,7 @@ class PathFinding {
       pathNeighbors.add(left);
     }
 
-    if (powerupHandler.startWhistleTimer == true) {
-      walkSpeed = 0;
-    } else {
-      println(frameCount, speed, walkSpeed, " cocaine");
-      walkSpeed = speed;
-    }
+    //println(frameCount, moving, walkSpeed, speed);
 
     if (!inSight) { //zien de speler en vijand elkaar niet
       if (pathNeighbors.size() > 1 && !moving) { //bepalen volgende cell
@@ -138,6 +130,16 @@ class PathFinding {
       moving = false;
     }
 
+    if (frameCount >= powerupHandler.whistleTime + 180 && powerupHandler.startWhistleTimer == true) {
+      powerupHandler.startWhistleTimer = false;
+    }
+
+    if (powerupHandler.startWhistleTimer == true) {
+      walkSpeed = 0;
+    } else {
+      walkSpeed = speed;
+    }
+
     //  debug monster
     fill(255, 50);
     rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
@@ -182,11 +184,11 @@ class PathFinding {
     //TODO zorgen dat het alleen werkt voor het dichts bijzijnde monster
 
     //Monster footstep sound effect
-    float soundAmp = 20;
-    float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
-    if (distance > 0.5) distance = 0.5;
-    if (distance < 0.02) distance = 0.01;
-    monsterFootsteps.amp(distance);
-    playSound(monsterFootsteps);
+    //float soundAmp = 20;
+    //float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
+    //if (distance > 0.5) distance = 0.5;
+    //if (distance < 0.02) distance = 0.01;
+    //monsterFootsteps.amp(distance);
+    //playSound(monsterFootsteps);
   }
 }
