@@ -15,6 +15,7 @@ class PathFinding {
   float Ex, Ey, Ew; //posities
   Cell current; //huidige cell van de enemy
 
+  float walkSpeed;
   float speed = 2 * grid.w / 100; //snelheid op basis van de spelgrootte
 
   Cell lastCell; //cell van vorige bezochte cell
@@ -56,6 +57,9 @@ class PathFinding {
       }
     }
 
+    if (frameCount >= powerUpHandler.whistleTime + 180 && powerUpHandler.startWhistleTimer == true) {
+      powerUpHandler.startWhistleTimer = false;
+    }
     //lijst voor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
     ArrayList<Cell> pathNeighbors = new ArrayList<Cell>();
 
@@ -75,6 +79,12 @@ class PathFinding {
     }  
     if (!current.walls[3] && !left.walls[1]) {
       pathNeighbors.add(left);
+    }
+
+    if (powerUpHandler.startWhistleTimer == true) {
+      walkSpeed = 0;
+    } else {
+      walkSpeed = speed;
     }
 
     if (!inSight) { //zien de speler en vijand elkaar niet
@@ -100,13 +110,13 @@ class PathFinding {
         } else {
           moving = false;
           if (Ex + Ew < player.x) {
-            Ex += speed;
+            Ex += walkSpeed;
           } else if (Ex > player.x + player.playerW) {
-            Ex -= speed;
+            Ex -= walkSpeed;
           } else if (Ey + Ew < player.y) {
-            Ey += speed;
+            Ey += walkSpeed;
           } else if (Ey > player.y + player.playerH) {
-            Ey -= speed;
+            Ey -= walkSpeed;
           } else {
             gameOver.showGameOver();
           }
@@ -116,13 +126,13 @@ class PathFinding {
 
     //movement vijand WIP
     if (nextCell != null && Ex < nextCell.x * grid.w + grid.w * .5 && moving) {
-      Ex += speed;
+      Ex += walkSpeed;
     } else if (nextCell != null && Ex > nextCell.x * grid.w + grid.w * .5 && moving) {
-      Ex -= speed;
+      Ex -= walkSpeed;
     } else if (nextCell != null && Ey < nextCell.y * grid.w + grid.w * .5 && moving) {
-      Ey += speed;
+      Ey += walkSpeed;
     } else if (nextCell != null && Ey > nextCell.y * grid.w + grid.w * .5 && moving) {
-      Ey -= speed;
+      Ey -= walkSpeed;
     } else if (nextCell != null) {
       moving = false;
     }
