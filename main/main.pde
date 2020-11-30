@@ -22,7 +22,6 @@ void updateGame() {
   if (menu.name) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
-      powerupHandler.loadPowerups();
       tileSet.updateExit();
       prismStone.updatePrismStones();
       keyHandler.updateKeys();

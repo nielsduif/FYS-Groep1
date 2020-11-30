@@ -57,8 +57,8 @@ class PathFinding {
       }
     }
 
-    if (frameCount >= powerUpHandler.whistleTime + 180 && powerUpHandler.startWhistleTimer == true) {
-      powerUpHandler.startWhistleTimer = false;
+    if (frameCount >= powerupHandler.whistleTime + 180 && powerupHandler.startWhistleTimer == true) {
+      powerupHandler.startWhistleTimer = false;
     }
     //lijst voor buurcellen om te bepalen waar de enemy heen mag bewegen, zie comments in de grid class
     ArrayList<Cell> pathNeighbors = new ArrayList<Cell>();
@@ -81,7 +81,7 @@ class PathFinding {
       pathNeighbors.add(left);
     }
 
-    if (powerUpHandler.startWhistleTimer == true) {
+    if (powerupHandler.startWhistleTimer == true) {
       walkSpeed = 0;
     } else {
       walkSpeed = speed;

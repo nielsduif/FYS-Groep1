@@ -31,6 +31,9 @@ class LevelSizer {
     prismStone.stoneCount = 10;
     prismStone.prismStones = new PrismStones[prismStone.stoneCount];
     prismStone.prismStonePixelSize = (grid.w / 6);
+    powerupHandler.loadPowerupsOnce = false;
+    powerupHandler.powerups = new PowerUpHandler.Powerup[powerupHandler.powerupAmount];
+    powerupHandler.currentPowerup = 0;
     monsterAmount = currentSize + 1;
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
@@ -39,6 +42,7 @@ class LevelSizer {
     }
     player.start();
     imageLoader.loadTileImages();
+    powerupHandler.loadPowerups();
   }
 
   void generateUpdate() {
@@ -77,6 +81,9 @@ class LevelSizer {
       keyHandler.count = 3;
       keyHandler.keys = new Keys[keyHandler.count];
       keyHandler.createKeys();
+      powerupHandler.loadPowerupsOnce = false;
+      powerupHandler.loadPowerups();
+      powerupHandler.currentPowerup = 0;
     } else {
       grid.grid.clear();
       grid.stack.clear();
@@ -106,6 +113,9 @@ class LevelSizer {
       keyHandler.count = 3;
       keyHandler.keys = new Keys[keyHandler.count];
       keyHandler.createKeys();
+      powerupHandler.loadPowerupsOnce = false;
+      powerupHandler.loadPowerups();
+      powerupHandler.currentPowerup = 0;
     }
   }
 }
