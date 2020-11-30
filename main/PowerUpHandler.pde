@@ -2,47 +2,91 @@
 author(s): Jordy Wolf [500848484]
  purpose:   This script handles with all the powerups.
  */
-PowerUpHandler powerUpHandler = new PowerUpHandler();
+PowerUpHandler powerupHandler = new PowerUpHandler();
 
 class PowerUpHandler {
-  int powerupID;
+  int currentPowerup;
   float keyDistance;
   boolean startArrowTimer, startPotionTimer;
-  int powerupAmount = 5;
+  boolean loadPowerupsOnce;
+  int powerupAmount = 6; //amount of powerups in the game +1 empty one
   PImage[] powerupImages = new PImage[powerupAmount];
   Powerup[] powerups = new Powerup[powerupAmount];
-  float d;
   boolean arrowTimer, potionTimer;
   int arrowTime, potionTime;
 
-
   void loadPowerups() {
-    for (int i = 0; i > powerupAmount; i++) {
-      powerups[i] = new Powerup();
-      powerups[i].powerupID = i;
-      powerups[i].powerupImage = powerupImages[i];
+    if (loadPowerupsOnce == false) {
+      for (int i = 0; i < powerupAmount; i++) {
+        powerups[i] = new Powerup();
+        powerups[i].pickedUp = false;
+        powerups[i].powerupID = i;
+        powerups[i].powerupImage = powerupImages[i];
+
+        int randomGetal = coinHandler.getRandomUnUsedTile();
+        if (grid.grid.get(randomGetal).isUsed == true) { //zorg ervoor dat powerups niet op dezelfde plek komen te staan
+          loadPowerups();
+        } else {
+          grid.grid.get(randomGetal).isUsed = true;
+          powerups[i].powerupX = grid.grid.get(randomGetal).x * grid.w + grid.w/2;
+          powerups[i].powerupY = grid.grid.get(randomGetal).y * grid.w + grid.w/2;
+        }
+      }
+      powerups[0].powerupName = "Empty";
+      powerups[1].powerupName = "Ping";
+      powerups[2].powerupName = "Radar";
+      powerups[3].powerupName = "Whistle";
+      powerups[4].powerupName = "Potion";
+      powerups[5].powerupName = "Xray";
+
+      loadPowerupsOnce = true;
+    }
+  }
+
+  void updatePowerup() {
+    for (int i = 1; i < powerups.length; i++) { //forloop starts with 1 because 0 is an empty powerup and does not need to be updated
+      if (powerups[i] != null && powerups[i].pickedUp == false) {
+        player.drawObjectInView(powerups[i].powerupImage, powerups[i].powerupX, powerups[i].powerupY, powerups[i].powerupW, powerups[i].powerupH);
+        float afstandX = abs(powerups[i].powerupX - player.x);
+        float afstandY = abs(powerups[i].powerupY - player.y);
+        if (afstandX <= powerups[i].powerupW/2 + player.playerW/2 && afstandY <= powerups[i].powerupW/2 + player.playerW) { //check of speler over de powerup heen loopt
+          textAlign(CORNER, CORNER);
+          fill(255);
+          textSize(30);
+          text("Press S to pick up", 10, 60);
+          if (keysPressed[83]) {
+            currentPowerup = i;
+            powerups[i].pickedUp = true;
+          }
+        }
+      }
     }
   }
 
   void usePowerup() {
-    if (powerupID == 1) {
+    if (currentPowerup == 1) {
       powerupPing();
     }
-    if (powerupID == 2) {
+    if (currentPowerup == 2) {
       powerupRadar();
     }
-    if (powerupID == 3) {
+    if (currentPowerup == 3) {
       powerupWhistle();
     }
-    if (powerupID == 4) {
+    if (currentPowerup == 4) {
       powerupPotion();
     }
-    if (powerupID == 5) {
+    if (currentPowerup == 5) {
       powerupArrow();
     }
-    powerupID = 0;
+    currentPowerup = 0;
   }
 
+  void powerupUI() {
+    if (currentPowerup != 0) {
+      image(powerups[currentPowerup].powerupImage, width - 110, height - 110, 100, 100);
+    }
+  }
 
   void powerupPing() {
     for (int i = 0; i < pathFinding.length; i++) {
@@ -52,7 +96,6 @@ class PowerUpHandler {
   }
 
   void powerupRadar() {
-
     grid.showWalls = true;
     grid.startTimer = frameCount;
   }
@@ -62,8 +105,9 @@ class PowerUpHandler {
 
   void powerupPotion() {
     potionTimer = true;
-    potionTime= frameCount;
+    potionTime = frameCount;
   }
+
   void powerupArrow() {
     Keys closestKey = null;
     arrowTimer = true;
@@ -72,8 +116,10 @@ class PowerUpHandler {
 
   class Powerup {
     int powerupID;
+    boolean pickedUp;
+    String powerupName;
     PImage powerupImage;
-    float powerupX, powerupY, powerupW = 16, powerupH = 16;
+    float powerupX, powerupY, powerupW = grid.w / 3 - 10, powerupH =  grid.w / 3 - 10;
     int duration = 180;
   }
 }

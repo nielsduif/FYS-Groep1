@@ -15,6 +15,7 @@ class TileSet {
   boolean tileAccepted = false;
   boolean exitGateOpen = false;
   boolean idGiven = false;
+  boolean playExitSoundOnce;
   PImage[] tileImages = new PImage[tileAmount];
 
   //Functie om een tile te drawen, geef het ID mee van de image en de X en Y positie
@@ -156,7 +157,6 @@ class TileSet {
     }
   }
   void escape() {
-    println("Hier komt wat er moet gebeuren bij een escape");
     levelSizer.rescaleLevel();
   }
 }

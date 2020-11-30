@@ -38,7 +38,7 @@ class CoinHandler {
         //fill(255, 255, 0);
         //circle(coins[i].coinX, coins[i].coinY, coins[i].d);
         player.drawObjectInView(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
-        if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) { //check of speler over coin heen loopt
+        if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) { //check of speler over een coin heen loopt
           score.score += 10; //verhoog de score
           coins[i] = null; //verwijder de coin
         }
@@ -57,7 +57,7 @@ class CoinHandler {
     return 0;
   }
 
-  int getRandomTile() {
+  private int getRandomTile() {
     return int(random(1, grid.grid.size()));
   }
 }
