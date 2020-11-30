@@ -26,12 +26,12 @@ class MenuTab {
 class Menu {
   String title;
   float titleX, titleY;
-  int tabAmount = 4;
+  int tabAmount = 3;
   MenuTab[] mt = new MenuTab[tabAmount];
-  String[] tabTitles = {"Play", "Settings", "Highscores", "Exit"};
+  String[] tabTitles = {"Play", "Highscores", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
-  boolean start, name, selectOnce;
+  boolean start, databaseShow, name, selectOnce;
 
   void start() {
     titleX = width * .5;
@@ -44,46 +44,52 @@ class Menu {
       mt[i].y = height * .5 + i * tabSpacing - mt[i].h * .5;
     }
     scroller.start();
+    database.start();
   }
   void display() {
     background(0);
     if (!start) {
-      textAlign(CENTER);
-      fill(255);
-      text(title, titleX, titleY);
-      for (int i = 0; i < mt.length; i++) {
-        mt[i].draw();
-      }    
-      for (int i = 0; i < mt.length; i++) {
-        if (i==selected) {
-          mt[selected].selected = true;
-        } else {
-          mt[i].selected=false;
+      if (databaseShow) {
+        database.display();
+      } else {
+        textAlign(CENTER);
+        fill(255);
+        text(title, titleX, titleY);
+        for (int i = 0; i < mt.length; i++) {
+          mt[i].draw();
+        }    
+        for (int i = 0; i < mt.length; i++) {
+          if (i==selected) {
+            mt[selected].selected = true;
+          } else {
+            mt[i].selected=false;
+          }
+        }
+        if (keysPressed['A'] && selected == 0  && !selectOnce) {
+          if (!name) {
+            start = true;
+          }
+          selectOnce = true;
+        } else if (keysPressed['A'] && selected == 1) {
+          selectOnce = true;
+          databaseShow = true;
+        } else if (keysPressed['A'] && selected == 2) {
+          exit();
+        }
+        if (keysPressed[DOWN] && !selectOnce) {
+          if (menu.selected + 1 < menu.tabAmount) {
+            menu.selected++;
+          }
+          selectOnce = true;
+        }  
+        if (keysPressed[UP] && !selectOnce) {
+          if (menu.selected - 1 >= 0) {
+            menu.selected--;
+          }
+          selectOnce = true;
         }
       }
-      if (keysPressed['A'] && selected == 0  && !selectOnce) {
-        if (!name) {
-          start = true;
-        }
-        selectOnce = true;
-      } else if (keysPressed['A'] && selected == 2) {
-        println("hier komt de volume epic win");
-      } else if (keysPressed['A'] && selected == 3) {
-        exit();
-      }
-      if (keysPressed[DOWN] && !selectOnce) {
-        if (menu.selected + 1 < menu.tabAmount) {
-          menu.selected++;
-        }
-        selectOnce = true;
-      }  
-      if (keysPressed[UP] && !selectOnce) {
-        if (menu.selected - 1 >= 0) {
-          menu.selected--;
-        }
-        selectOnce = true;
-      }
-    }
+    } 
     if (!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed['A']) {
       selectOnce = false;
     }

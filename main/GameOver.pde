@@ -27,8 +27,13 @@ class GameOver {
     textAlign(CENTER, CENTER);
     text("Press 'x' to quit", quitX, quitY);
 
+    if (!database.added) {
+      database.addToDB();
+    }
+
     if (keyPressed) {
       if (key == 'z' || key == 'Z') { //restart de game door op z te drukken
+        database.added = false;
         levelSizer.generateStart();
       }
       if (key == 'x' || key == 'X') { //sluit de game af door op x te drukken

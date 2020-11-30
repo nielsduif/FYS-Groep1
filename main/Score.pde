@@ -4,7 +4,7 @@ purpose: De score word gehouden en opbeeld gezet in deze script
 */
 
 //Er word een class aan gemaakt om de score bij te kunnen houden
-Score score= new Score();
+Score score = new Score();
 class Score {
   int score;
   float textSpace = 35;

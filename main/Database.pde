@@ -5,28 +5,47 @@ author: Niels Duivenvoorden[500847100]
 
 import samuelal.squelized.*;
 
+Database database = new Database();
+
 class Database {
+  Table highscoreTable;
   SQLConnection connection;
-  int ID;
-  String name;
+  boolean added;
 
   void start() {
-    connection = new MySQLConnection("root", "100%Koffie", "oege.ie.hva.nl/zduivenn2?serverTimezone=UTC");
-    ID = connection.runQuery("SELECT * from highscore;").getInt(0, 0);
-    randomName();
+    connection = new MySQLConnection("duivenn2", "cwLDxCm2ij$+50lh", "jdbc:mysql://oege.ie.hva.nl/zduivenn2?serverTimezone=UTC");
   }
 
-  void insertScore(String name) {
-    String update = "INSERT INTO highscore name, highscore VALUES (" + "'" + name + "'" + ", " + score.score + ");";
-    connection.updateQuery(update);
-  }
+  void display() {
+    background(0);
+    textSize(15);
 
-  void randomName() {
-    int length = int(random(3, 10));
-    String[] letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "o"};
-    name="";
-    for (int i = 0; i < length; i++) {
-      name += letters[int(random(0, length))];
+    highscoreTable = connection.getTable("Highscore");  
+    highscoreTable = connection.runQuery("SELECT * FROM Highscore ORDER BY highscore DESC");
+
+    fill(255);
+
+    text("ID", width * .5 - 150, 20);
+    text("NAME", width * .5, 20);
+    text("POINTS", width * .5 + 150, 20);
+    for (int i = 0; i < highscoreTable.getRowCount(); i++) {
+      TableRow row = highscoreTable.getRow(i);
+      for (int j = 0; j < row.getColumnCount(); j++) {
+        text(row.getString(j), width * .5 - 150 + 150 * j, 60 + 20 * i);
+      }
     }
+    text("Druk A om terug te gaan", width * .5, height - 50);
+    if (keysPressed['A'] && !menu.selectOnce) {
+      println("back");
+      menu.databaseShow = false;
+    }
+  }
+
+  void addToDB() {
+    String[] cols = {"name", "highscore"};
+    String update = "INSERT INTO Highscore (" + cols[0] + ", " + cols[1] + ") VALUES (" + "'" + scroller.name + "'" + ", " + score.score + ");";
+    println(update);
+    connection.updateQuery(update);
+    added = true;
   }
 }
