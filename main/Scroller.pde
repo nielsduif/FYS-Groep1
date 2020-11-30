@@ -65,6 +65,7 @@ class Scroller {
   int selectedScroller;
   String name;
   float[] nameColor = {255};
+  boolean selectOnce;
 
   void start() {
     x = width * .5;
@@ -80,18 +81,29 @@ class Scroller {
   void display() {
     background(0);
 
-    if (keysPressed[RIGHT] && scroller.selectedScroller + 1 < scroller.ls.length) {
-      println("bruh");
+    if (keysPressed[RIGHT] && scroller.selectedScroller + 1 < scroller.ls.length && !selectOnce) {
       scroller.selectedScroller++;
+      selectOnce = true;
     } 
-    if (keysPressed[LEFT] && scroller.selectedScroller - 1 >= 0) {
+    if (keysPressed[LEFT] && scroller.selectedScroller - 1 >= 0 && !selectOnce) {
       scroller.selectedScroller--;
+      selectOnce = true;
     }
-    if (keysPressed[UP]) {
+    if (keysPressed[UP] && !selectOnce) {
       scroller.ls[scroller.selectedScroller].Up();
+      selectOnce = true;
     }
-    if (keysPressed[DOWN]) {
+    if (keysPressed[DOWN] && !selectOnce) {
       scroller.ls[scroller.selectedScroller].Down();
+      selectOnce = true;
+    }
+    if (!keysPressed[DOWN] && !keysPressed[UP] && !keysPressed[LEFT] && !keysPressed[RIGHT]) {
+      selectOnce = false;
+    }
+    if (keysPressed['A'] && !menu.selectOnce) {
+      println("username: " + name);
+      menu.name = true;
+      levelSizer.generateStart();
     }
 
     ls[selectedScroller].selected = true;
@@ -104,7 +116,9 @@ class Scroller {
     buildString();
     textSize(50);
     fill(nameColor[0]);
-    text(name, x, y + spacing);
+    text("name: " + name, x, height - height * .1);
+    textSize(30);
+    text("Druk A om te bevestigen", x, height - height * .05);
   }
 
   void buildString() {

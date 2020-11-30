@@ -64,7 +64,6 @@ class Menu {
       if (keysPressed['A'] && selected == 0  && !selectOnce) {
         if (!name) {
           start = true;
-          scroller.display();
         }
         selectOnce = true;
       } else if (keysPressed['A'] && selected == 3) {
@@ -82,9 +81,9 @@ class Menu {
         }
         selectOnce = true;
       }
-      if (!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed['A']) {
-        selectOnce = false;
-      }
+    }
+    if (!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed['A']) {
+      selectOnce = false;
     }
   }
 }

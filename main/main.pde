@@ -11,7 +11,11 @@ void setup() {
   textFont(font);
 }
 
-void updateGame() {  
+void updateGame() { 
+  menu.display();
+  if (menu.start) {
+    scroller.display();
+  }
   if (menu.name) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
@@ -34,7 +38,6 @@ void updateGame() {
 
 void draw() {
   updateGame();
-  menu.display();
 }
 
 
