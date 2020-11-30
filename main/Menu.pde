@@ -43,6 +43,7 @@ class Menu {
       mt[i].x = width * .5 - mt[i].w * .5;
       mt[i].y = height * .5 + i * tabSpacing - mt[i].h * .5;
     }
+    scroller.start();
   }
   void display() {
     if (!start) {
@@ -62,10 +63,8 @@ class Menu {
       }
       if (keysPressed['A'] && selected == 0  && !selectOnce) {
         if (!name) {
-          println(frameCount, "make name");
-        } else {
           start = true;
-          levelSizer.generateStart();
+          scroller.display();
         }
         selectOnce = true;
       } else if (keysPressed['A'] && selected == 3) {

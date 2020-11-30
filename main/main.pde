@@ -4,15 +4,15 @@ boolean[] keysPressed = new boolean[KEY_LIMIT];
 PFont font;
 
 void setup() {
-  //size(1600, 800);
-  fullScreen();
+  size(1600, 800);
+  //fullScreen();
   menu.start();
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
 }
 
 void updateGame() {  
-  if (menu.start) {
+  if (menu.name) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
       tileSet.updateExit();

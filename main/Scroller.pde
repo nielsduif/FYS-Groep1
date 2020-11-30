@@ -78,6 +78,22 @@ class Scroller {
   }
 
   void display() {
+    background(0);
+
+    if (keysPressed[RIGHT] && scroller.selectedScroller + 1 < scroller.ls.length) {
+      println("bruh");
+      scroller.selectedScroller++;
+    } 
+    if (keysPressed[LEFT] && scroller.selectedScroller - 1 >= 0) {
+      scroller.selectedScroller--;
+    }
+    if (keysPressed[UP]) {
+      scroller.ls[scroller.selectedScroller].Up();
+    }
+    if (keysPressed[DOWN]) {
+      scroller.ls[scroller.selectedScroller].Down();
+    }
+
     ls[selectedScroller].selected = true;
     for (int i = 0; i < ls.length; i++) {
       if (i != selectedScroller) {
@@ -98,28 +114,3 @@ class Scroller {
     }
   }
 }
-
-//void setup() {
-//  size(800, 600);
-//  scroller.start();
-//}
-
-//void draw() {
-//  background(0);
-//  scroller.display();
-//}
-
-//void keyPressed() {
-//  if (keyCode == RIGHT && scroller.selectedScroller + 1 < scroller.ls.length) {
-//    scroller.selectedScroller++;
-//  } 
-//  if (keyCode == LEFT && scroller.selectedScroller - 1 >= 0) {
-//    scroller.selectedScroller--;
-//  }
-//  if (keyCode == UP) {
-//    scroller.ls[scroller.selectedScroller].Up();
-//  }
-//  if (keyCode == DOWN) {
-//    scroller.ls[scroller.selectedScroller].Down();
-//  }
-//}
