@@ -81,16 +81,16 @@ class Player {
           wallL = (grid.w * grid.grid.get(i).x) + (grid.w / 3);
         }
         if (
-          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
-          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y - playerW / 2 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
-          x - playerW / 2 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3) ||
-          x + playerW / 2 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
+          x - playerW / 3 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y - playerW / 3 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
+          x + playerW / 3 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y - playerW / 3 <= (grid.w * grid.grid.get(i).y) + (grid.w / 3) ||
+          x - playerW / 3 <= (grid.w * grid.grid.get(i).x) + (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3) ||
+          x + playerW / 3 >= (grid.w * (grid.grid.get(i).x + 1)) - (grid.w / 3) && y >= (grid.w * (grid.grid.get(i).y + 1)) - (grid.w / 3)
           ) {
           corner = true;
         }
       }
     }
-    if (x - playerW / 2 <= wallL || x + playerW / 2 >= wallR) {
+    if (x - playerW / 3 <= wallL || x + playerW / 3 >= wallR) {
       x = prevX;
     }
     if (y - playerW / 2 <= wallU || y >= wallD) {
