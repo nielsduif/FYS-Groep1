@@ -93,7 +93,7 @@ class Player {
     if (x - playerW / 3 <= wallL || x + playerW / 3 >= wallR) {
       x = prevX;
     }
-    if (y - playerW / 2 <= wallU || y >= wallD) {
+    if (y - playerW / 3 <= wallU || y >= wallD) {
       y = prevY;
     }
     if (corner == true) {
