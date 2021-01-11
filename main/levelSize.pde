@@ -4,8 +4,9 @@ author: Niels Duivenvoorden[500847100]
  */
 
 int[] cellSizePerLevel= {200, 140, 120};
-int[] enemiesPerLevel = {1, 2, 3};
+int[] enemiesPerLevel = {0, 0, 0};
 int currentSize = 0;
+int actualSize = 0;
 
 LevelSizer levelSizer = new LevelSizer();
 
@@ -19,6 +20,7 @@ class LevelSizer {
     tileSet.idGiven = false;
     tileSet.exitGateOpen = false;
     currentSize = 0;
+    actualSize = 0;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
     monsterAmount = enemiesPerLevel[currentSize];
@@ -33,7 +35,8 @@ class LevelSizer {
     coinHandler.coinAmount = 10;
     coinHandler.coins = new Coin[coinHandler.coinAmount];
     coinHandler.createCoin();
-    keyHandler.count = 3;
+    keyHandler.keyAmount = 3;
+    keyHandler.count = keyHandler.keyAmount;
     keyHandler.keys = new Keys[keyHandler.count];
     keyHandler.createKeys();
     prismStone.stoneCount = 10;
@@ -52,7 +55,6 @@ class LevelSizer {
   }
 
   void rescaleLevel() {
-    println("currentsize " + currentSize, cellSizePerLevel.length);
     if (currentSize + 1 < cellSizePerLevel.length) {
       currentSize++;
     }
@@ -76,7 +78,13 @@ class LevelSizer {
     coinHandler.coinAmount = 10;
     coinHandler.coins = new Coin[coinHandler.coinAmount];
     coinHandler.createCoin();
-    keyHandler.count = 3;
+    actualSize++;
+    if (actualSize > currentSize) {
+      keyHandler.keyAmount = actualSize;
+    } else {
+      keyHandler.keyAmount = 3;
+    }
+    keyHandler.count = keyHandler.keyAmount;
     keyHandler.keys = new Keys[keyHandler.count];
     keyHandler.createKeys();
     prismStone.stoneCount = 10;
