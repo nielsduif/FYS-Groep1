@@ -35,7 +35,6 @@ class Database {
     }
     text("Druk S om terug te gaan", width * .5, height - 50);
     if (keysPressed['S']) {
-      println("back");
       menu.databaseShow = false;
     }
   }
@@ -45,16 +44,17 @@ class Database {
     println(insert);
     connection.updateQuery(insert);
     id = connection.runQuery("SELECT id from Player ORDER BY id DESC;").getInt(0, 0);
-    println(id);
   }
 
   void addToHighscore() {
-    int highscore = connection.runQuery("SELECT highscore FROM Highscore WHERE idHighscore = " + id + ";").getInt(0, 0);
-    println(highscore, score.score);
-    if (score.score > highscore) {
-      String update = "UPDATE Highscore AS h SET h.highscore = " + score.score + " WHERE idName = " + id + ";";
-      println(update);
-      connection.updateQuery(update);
+    Table rs = connection.runQuery("SELECT highscore FROM Highscore WHERE idName = " + id + ";");
+    if (rs.getRowCount() > 0) {
+      int highscore = connection.runQuery("SELECT highscore FROM Highscore WHERE idHighscore = " + id + ";").getInt(0, 0);      
+      if (score.score > highscore) {
+        String update = "UPDATE Highscore AS h SET h.highscore = " + score.score + " WHERE idName = " + id + ";";
+        println(update);
+        connection.updateQuery(update);
+      }
     } else {
       String insert = "INSERT INTO Highscore (idName, highscore) VALUES (" + "'" + id + "'" + ", " + score.score + ");";
       println(insert);
