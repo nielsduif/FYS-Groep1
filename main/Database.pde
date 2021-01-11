@@ -49,7 +49,8 @@ class Database {
   void addToHighscore() {
     Table rs = connection.runQuery("SELECT highscore FROM Highscore WHERE idName = " + id + ";");
     if (rs.getRowCount() > 0) {
-      int highscore = connection.runQuery("SELECT highscore FROM Highscore WHERE idHighscore = " + id + ";").getInt(0, 0);      
+      //println("rc " + rs.getRowCount(), rs.getInt(0,0));
+      int highscore = rs.getInt(0, 0);      
       if (score.score > highscore) {
         String update = "UPDATE Highscore AS h SET h.highscore = " + score.score + " WHERE idName = " + id + ";";
         println(update);

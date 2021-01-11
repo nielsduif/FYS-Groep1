@@ -14,6 +14,11 @@ class MenuTab {
     if (!selected) {
       fill(255);
     } else {
+      fill(255, 0, 0);
+      circle(x + w + h, y + h * .5, h);
+      textAlign(CENTER, CENTER);
+      fill(0);
+      text("A", x + w + h, y + h * .5);
       fill(250, 175, 50);
     }
     rect(x, y, w, h);

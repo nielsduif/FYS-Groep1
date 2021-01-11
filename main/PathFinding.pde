@@ -16,7 +16,7 @@ class PathFinding {
   Cell current; //huidige cell van de enemy
 
   float walkSpeed;
-  float speed = 2 * grid.w / 100; //snelheid op basis van de spelgrootte
+  float speed = round(2 * grid.w / 100); //snelheid op basis van de spelgrootte
 
   Cell lastCell; //cell van vorige bezochte cell
 
@@ -33,7 +33,7 @@ class PathFinding {
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell x-as
     Ey = spawnCell.y * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell y-as
     Ew = spawnCell.w * .3;
-    println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y");
+    //println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
     current = spawnCell; //hudige cell bijwerken
   }
 
@@ -164,7 +164,7 @@ class PathFinding {
   }
 
   void draw() {
-    int monsterTileX = floor(Ex / grid.w);
+    int monsterTileX = floor(Ex / grid.w);  
     int monsterTileY = floor(Ey/ grid.w);
     for (int i = 0; i < grid.grid.size(); i++) {
       if (grid.grid.get(i).x == monsterTileX && grid.grid.get(i).y == monsterTileY && grid.grid.get(i).isDrawn == true) {

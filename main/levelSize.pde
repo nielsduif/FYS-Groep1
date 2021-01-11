@@ -3,7 +3,7 @@ author: Niels Duivenvoorden[500847100]
  purpose:   regeling van verschillende groottes van de maze, en oneindig spelen tot je dood gaat
  */
 
-int[] cellSizePerLevel= {200, 180, 140};
+int[] cellSizePerLevel= {200, 140, 120};
 int[] enemiesPerLevel = {1, 2, 3};
 int currentSize = 0;
 
@@ -18,9 +18,10 @@ class LevelSizer {
     tileSet.tileAccepted = false;
     tileSet.idGiven = false;
     tileSet.exitGateOpen = false;
+    currentSize = 0;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
-    monsterAmount = currentSize + 1;
+    monsterAmount = enemiesPerLevel[currentSize];
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i] = new PathFinding();
@@ -51,7 +52,8 @@ class LevelSizer {
   }
 
   void rescaleLevel() {
-    if (currentSize +1 < cellSizePerLevel.length) {
+    println("currentsize " + currentSize, cellSizePerLevel.length);
+    if (currentSize + 1 < cellSizePerLevel.length) {
       currentSize++;
     }
     grid.grid.clear();
@@ -63,7 +65,7 @@ class LevelSizer {
     tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
-    monsterAmount = currentSize + 1;
+    monsterAmount = enemiesPerLevel[currentSize];
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i] = new PathFinding();
