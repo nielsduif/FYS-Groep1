@@ -14,6 +14,10 @@ class PowerUpHandler {
   Powerup[] powerups = new Powerup[powerupAmount];
   int arrowTime, potionTime, whistleTime;
 
+  int visibleTime = 180;
+  float degrees;
+  boolean showTimeIcon;
+
   void loadPowerups() {
     if (loadPowerupsOnce == false) {
       for (int i = 0; i < powerupAmount; i++) {
@@ -63,25 +67,55 @@ class PowerUpHandler {
     if (keysPressed['X']) {
       usePowerup();
     }
+    //niels :D
+    if (showTimeIcon) {
+      showTimer();
+      if (degrees < visibleTime * 2) {
+        degrees += 2;
+      } else {
+        degrees = 0;
+        showTimeIcon = false;
+      }
+    }
   }
 
   void usePowerup() {
     if (currentPowerup == 1) {
+      showTimeIcon = true;
+      visibleTime = 180;
       powerupPing();
     }
     if (currentPowerup == 2) {
+      showTimeIcon = true;
+      visibleTime = 180;
       powerupRadar();
     }
     if (currentPowerup == 3) {
+      showTimeIcon = true;
+      visibleTime = 180;
       powerupWhistle();
     }
     if (currentPowerup == 4) {
+      showTimeIcon = true;
+      visibleTime = 180;
       powerupPotion();
     }
     if (currentPowerup == 5) {
+      showTimeIcon = true;
+      visibleTime = 180;
       powerupArrow();
     }
     currentPowerup = 0;
+  }
+
+  //niels :D
+  void showTimer() {
+    fill(255, 50);
+    float rad = radians(degrees);
+    arc(width - 110 + 50, height - 110 + 50, 100, 100, 0, rad, PIE);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text(round(4 - (rad) * .5), width - 110 + 50, height - 110 + 50);
   }
 
   void powerupUI() {

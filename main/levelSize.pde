@@ -4,7 +4,7 @@ author: Niels Duivenvoorden[500847100]
  */
 
 int[] cellSizePerLevel= {200, 140, 120};
-int[] enemiesPerLevel = {0, 0, 0};
+int[] enemiesPerLevel = {1, 2, 3};
 int currentSize = 0;
 int actualSize = 0;
 
