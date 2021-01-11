@@ -51,7 +51,7 @@ class LevelSizer {
   }
 
   void rescaleLevel() {
-    if(currentSize +1 < cellSizePerLevel.length){
+    if (currentSize +1 < cellSizePerLevel.length) {
       currentSize++;
     }
     grid.grid.clear();
@@ -86,5 +86,6 @@ class LevelSizer {
     player.start();
     imageLoader.loadTileImages();
     powerupHandler.loadPowerups();
+    tileSet.playExitSoundOnce = false;
   }
 }

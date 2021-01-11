@@ -1,7 +1,7 @@
 /*
 author(s): Jordy Wolf [500848484]
-purpose:   This script makes you able to use prism stones and keeps track of how many you have, UI included.
-*/
+ purpose:   This script makes you able to use prism stones and keeps track of how many you have, UI included.
+ */
 
 PrismStones prismStone = new PrismStones();
 
@@ -16,7 +16,7 @@ class PrismStones {
 
   float prismStoneX, prismStoneY;
   float prismStoneTileX, prismStoneTileY;
-  
+
   //Functie om een lege prismstone aan te maken en hem de locatie geven van de speler
   void usePrismStone() {
     if (stoneCount > 0) {
@@ -46,7 +46,7 @@ class PrismStones {
     }
     stoneCount = 10;
   }
-  
+
   //Functie om te checken of er input is. Zo ja, gebruik een prismstone
   void checkInputPrismStone() {
     if (keysPressed[65]) {
