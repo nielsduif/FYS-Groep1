@@ -180,8 +180,6 @@ class PathFinding {
       }
     }
 
-    //TODO zorgen dat het alleen werkt voor het dichts bijzijnde monster
-
     //Monster footstep sound effect
     float soundAmp = 20;
     float distance = soundAmp / dist(Ex, Ey, player.x, player.y);

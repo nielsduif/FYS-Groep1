@@ -72,6 +72,7 @@ class Menu {
           selectOnce = true;
         } else if (keysPressed['A'] && selected == 1) {
           selectOnce = true;
+          database.callData();
           databaseShow = true;
         } else if (keysPressed['A'] && selected == 2) {
           exit();

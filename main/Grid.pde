@@ -68,7 +68,7 @@ class Grid {
     } else {
       doneGenerating = true; //stack is leeg, dus het doolhof is klaar met genereren
       if (deletedWalls == false) { //check of er al willekeurige muren verwijdert zijn
-        for (int i = deletedWallsCount; i > 0; ) { //bro jordy wtf is deze forloop
+        for (int i = deletedWallsCount; i > 0; ) {
           int randomTileY = int(random(grid.size() - cols));
           if (grid.get(randomTileY).walls[2] == true) {
             removeWalls(grid.get(randomTileY), grid.get(randomTileY + cols));

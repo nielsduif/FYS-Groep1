@@ -28,7 +28,7 @@ class GameOver {
     text("Press 'x' to quit", quitX, quitY);
 
     if (!database.added) {
-      database.addToDB();
+      database.addToHighscore();
     }
 
     if (keyPressed) {

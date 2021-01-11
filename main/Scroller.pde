@@ -102,6 +102,7 @@ class Scroller {
     }
     if (keysPressed['A'] && !menu.selectOnce) {
       println("username: " + name);
+      database.addNameToDB(name);
       menu.name = true;
       levelSizer.generateStart();
     }
