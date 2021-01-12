@@ -11,6 +11,16 @@ int actualSize = 0;
 LevelSizer levelSizer = new LevelSizer();
 
 class LevelSizer {
+  void showMenu() {
+    menu.start();
+    font = createFont("Minecraftia-Regular.ttf", 32);
+    textFont(font);
+    loadSound();
+    tutorial.setup();
+    menu.start = menu.databaseShow = menu.name = menu.selectOnce = menu.tutorialShow = menu.storyShow = false;
+    menu.selected = 0;
+  }
+
   void generateStart() {
     grid.grid.clear();
     grid.stack.clear();

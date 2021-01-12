@@ -35,12 +35,11 @@ class PathFinding {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size()))); //spawncell vijand op een random cell in het grid
     if (spawnCell.x < player.tileLocationX + tileSet.visionCap && spawnCell.y < player.tileLocationY + tileSet.visionCap) {
       spawnCell = grid.grid.get(int(random(20, grid.grid.size())));
-      println("kut enemy");
     } 
     Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell x-as
     Ey = spawnCell.y * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell y-as
     Ew = spawnCell.w * .3;
-    println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
+    //println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
     current = spawnCell; //hudige cell bijwerken
     speed = round(2 * grid.w / 100);
   }

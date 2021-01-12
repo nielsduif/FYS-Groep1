@@ -50,7 +50,6 @@ class Menu {
       mt[i].y = height * .5 + i * tabSpacing - mt[i].h * .5;
     }
     scroller.start();
-    database.start();
   }
   void display() {
     background(0);

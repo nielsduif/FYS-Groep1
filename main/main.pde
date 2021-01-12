@@ -13,6 +13,7 @@ void setup() {
   textFont(font);
   loadSound();
   tutorial.setup();
+  database.start();
 }
 
 void updateGame() { 
