@@ -31,9 +31,9 @@ class MenuTab {
 class Menu {
   String title;
   float titleX, titleY;
-  int tabAmount = 3;
+  int tabAmount = 4;
   MenuTab[] mt = new MenuTab[tabAmount];
-  String[] tabTitles = {"Play", "Highscores", "Exit"};
+  String[] tabTitles = {"Play", "Highscores","Story", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
   boolean start, databaseShow, name, selectOnce;
