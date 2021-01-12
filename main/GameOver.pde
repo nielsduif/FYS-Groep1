@@ -4,14 +4,20 @@
 GameOver gameOver = new GameOver();
 //maak het gameover scherm aan
 class GameOver {
+  boolean gameIsOver;
+  boolean jumpscareIsPlaying;
   float gameoverX, gameoverY;
   float restartX, restartY;
   float quitX, quitY;
+  float jumpscareX, jumpscareY, jumpscareW = 100, jumpscareH;
+  PImage jumpscareImage;
   void showGameOver() {
+    gameIsOver = true;
+    jumpscareIsPlaying = false;
     gameoverX = width/2;
     gameoverY = height/2;
     restartX = gameoverX;
-    restartY = gameoverY +100;
+    restartY = gameoverY + 100;
     quitX = gameoverX;
     quitY = restartY + 100;
     player.speed = 0; //zorg ervoor dat de speler niet meer kan lopen zodat het spel niet meer gespeeld kan worden
@@ -48,6 +54,26 @@ class GameOver {
       if (key == 'x' || key == 'X') { //sluit de game af door op x te drukken
         exit();
       }
+    }
+  }
+
+  //speelt de jumpscare wanneer je gepakt bent
+  void jumpScare() { 
+    jumpscareIsPlaying = true;
+    monsterFootsteps.stop();
+    player.speed = 0;
+    if (jumpscare.isPlaying()) {
+      background(255, 0, 0);
+      jumpscareW += 3;
+      jumpscareH = jumpscareW * 2;
+      //shake effect
+      jumpscareX = random(width/2 - 10, width/2 + 10);
+      jumpscareY = random(height/2 + 200, height/2 + 20);
+      imageMode(CENTER);
+      image(jumpscareImage, jumpscareX, jumpscareY, jumpscareW, jumpscareH);
+      imageMode(CORNER);
+    } else {
+      showGameOver();
     }
   }
 }

@@ -20,7 +20,7 @@ class ImageLoader {
     }    
     coinHandler.coinImage = loadImage("Coin.png");
     keyHandler.keyImage = loadImage("Key.png");
-
+    gameOver.jumpscareImage = loadImage("monster.png");
     powerupHandler.powerupImages[1] = loadImage("ping.png");
     powerupHandler.powerupImages[2] = loadImage("vision.png");
     powerupHandler.powerupImages[3] = loadImage("whistle.png");

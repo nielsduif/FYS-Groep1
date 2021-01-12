@@ -51,6 +51,9 @@ class LevelSizer {
     player.start();
     imageLoader.loadTileImages();
     powerupHandler.loadPowerups();
+    gameOver.jumpscareW = 100;
+    gameOver.jumpscareIsPlaying = false;
+    gameOver.gameIsOver = false;
   }
 
   void generateUpdate() {
@@ -103,5 +106,8 @@ class LevelSizer {
     score.score += score.startScore;
     score.tracker = 0;
     score.startTime = millis();
+    gameOver.jumpscareW = 100;
+    gameOver.jumpscareIsPlaying = false;
+    gameOver.gameIsOver = false;
   }
 }

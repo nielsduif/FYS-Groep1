@@ -5,6 +5,7 @@ author(s): Niels Duivenvoorden [500847100]
 
 //aanmaken object
 int monsterAmount;
+PathFinding Monster = new PathFinding();
 PathFinding[] pathFinding;
 
 class PathFinding {
@@ -28,6 +29,7 @@ class PathFinding {
 
   int startTime, powerUpFrames = 180; 
   boolean showEnemy;
+  float enemyDistance;
 
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size()))); //spawncell vijand op een random cell in het grid
@@ -126,7 +128,11 @@ class PathFinding {
       }
       //collision met speler
       if (Ex < player.x + player.playerW && Ex + Ew > player.x && Ey < player.y + player.playerW && Ey + Ew > player.y) {
-        gameOver.showGameOver();
+        if (gameOver.gameIsOver == false) {    
+          playSound(jumpscare);
+        }
+        gameOver.gameIsOver = true;
+        gameOver.jumpScare();
       }
     }
 
@@ -202,13 +208,25 @@ class PathFinding {
         inSight = false;
       }
     }
-
-    //Monster footstep sound effect
-    float soundAmp = 20;
-    float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
-    if (distance > 0.5) distance = 0.5;
-    if (distance < 0.02) distance = 0.01;
-    monsterFootsteps.amp(distance);
-    playSound(monsterFootsteps);
+    PathFinding closestEnemy = null;
+    float closestDistance = 999999999; //deze moet de eerste keer altijd hoger zijn dan de afstand tot de enemy
+    for (int i = 0; i < pathFinding.length; i++) { //check elke enemy
+      if (pathFinding[i] != null) { //zorg ervoor dat het checken ook mogelijk is met minder dan 3 enemy's in het spel
+        enemyDistance = dist(player.x, player.y, pathFinding[i].Ex, pathFinding[i].Ey); //bepaal de afstand tussen de player en de enemy
+        if (enemyDistance < closestDistance) { //check of de enemy die gechecked wordt dichter bij de speler is dan de vorige die gechecked werd
+          closestEnemy = pathFinding[i];
+          closestDistance = enemyDistance;  //stel de nieuwe afstand vast als dichtst bijzijnde
+        }
+      }
+    }
+    if (gameOver.gameIsOver == false && this == closestEnemy) {
+      //Monster footstep sound effect
+      float soundAmp = 20;
+      float distance = soundAmp / dist(Ex, Ey, player.x, player.y);
+      if (distance > 0.5) distance = 0.5;
+      if (distance < 0.02) distance = 0.01;
+      monsterFootsteps.amp(distance);
+      playSound(monsterFootsteps);
+    }
   }
 }

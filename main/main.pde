@@ -37,10 +37,14 @@ void updateGame() {
         pathFinding[i].draw();
         pathFinding[i].update();
       }
-      powerupHandler.powerupUI();
-      prismStone.prismStoneUI();
-      keyHandler.updateKeyUI();
-      score.draw();
+      player.update();
+      player.draw();
+      if (gameOver.jumpscareIsPlaying == false) {
+        powerupHandler.powerupUI();
+        prismStone.prismStoneUI();
+        keyHandler.updateKeyUI();
+        score.draw();
+      }
     }
   }
 }

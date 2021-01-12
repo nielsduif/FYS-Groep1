@@ -16,8 +16,9 @@ class Score {
     alive = true;
   }
 
-  // De text wordt op het scherm geplaatst 
+  // De text word op het scherm geplaatst 
   void draw() {
+    fill(255, 255, 255, player.returnUiAlpha());
     textAlign(CORNER);
     textSize(30);
     if (tracker < duration && alive) {

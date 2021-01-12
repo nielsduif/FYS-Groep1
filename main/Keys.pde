@@ -42,6 +42,7 @@ class KeyHandler {
         if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) { //Check of de player over de key heen loopt
           count--; //Verlaag aantal benodigde keys met 1
           keys[i] = null; //Verwijder de key
+          playSound(keyPickup);
         }
       }
     }
@@ -72,7 +73,7 @@ class KeyHandler {
   void updateKeyUI() {
     //Laat zien hoeveel keys je nog moet vinden en laat het zien dat de exit opent als je alle keys hebt
     if (count == 0) {
-      fill(255);
+      fill(255, 255, 255, player.returnUiAlpha());
       textSize(30);
       text("Exit is open!", width - 325, prismStone.textY + score.textSpace*2);
       tileSet.exitGateOpen = true;
@@ -81,7 +82,7 @@ class KeyHandler {
         tileSet.playExitSoundOnce = true;
       }
     } else {
-      fill(255);
+      fill(255, 255, 255, player.returnUiAlpha());
       textSize(30);
       text("Keys needed: " + count, width - 325, prismStone.textY + score.textSpace*2);
     }
