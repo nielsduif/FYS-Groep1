@@ -3,9 +3,10 @@ author: Niels Duivenvoorden[500847100]
  purpose:   regeling van verschillende groottes van de maze, en oneindig spelen tot je dood gaat
  */
 
-int[] cellSizePerLevel= {200, 180, 140};
+int[] cellSizePerLevel= {200, 140, 120};
 int[] enemiesPerLevel = {1, 2, 3};
 int currentSize = 0;
+int actualSize = 0;
 
 LevelSizer levelSizer = new LevelSizer();
 
@@ -18,9 +19,11 @@ class LevelSizer {
     tileSet.tileAccepted = false;
     tileSet.idGiven = false;
     tileSet.exitGateOpen = false;
+    currentSize = 0;
+    actualSize = 0;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
-    monsterAmount = currentSize + 1;
+    monsterAmount = enemiesPerLevel[currentSize];
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i] = new PathFinding();
@@ -32,7 +35,8 @@ class LevelSizer {
     coinHandler.coinAmount = 10;
     coinHandler.coins = new Coin[coinHandler.coinAmount];
     coinHandler.createCoin();
-    keyHandler.count = 3;
+    keyHandler.keyAmount = 3;
+    keyHandler.count = keyHandler.keyAmount;
     keyHandler.keys = new Keys[keyHandler.count];
     keyHandler.createKeys();
     prismStone.stoneCount = 10;
@@ -53,7 +57,7 @@ class LevelSizer {
   }
 
   void rescaleLevel() {
-    if (currentSize +1 < cellSizePerLevel.length) {
+    if (currentSize + 1 < cellSizePerLevel.length) {
       currentSize++;
     }
     grid.grid.clear();
@@ -65,7 +69,7 @@ class LevelSizer {
     tileSet.exitGateOpen = false;
     grid.w = cellSizePerLevel[currentSize];
     grid.start();
-    monsterAmount = currentSize + 1;
+    monsterAmount = enemiesPerLevel[currentSize];
     pathFinding = new PathFinding[monsterAmount];
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i] = new PathFinding();
@@ -76,7 +80,13 @@ class LevelSizer {
     coinHandler.coinAmount = 10;
     coinHandler.coins = new Coin[coinHandler.coinAmount];
     coinHandler.createCoin();
-    keyHandler.count = 3;
+    actualSize++;
+    if (actualSize > currentSize) {
+      keyHandler.keyAmount = actualSize;
+    } else {
+      keyHandler.keyAmount = 3;
+    }
+    keyHandler.count = keyHandler.keyAmount;
     keyHandler.keys = new Keys[keyHandler.count];
     keyHandler.createKeys();
     prismStone.stoneCount = 10;

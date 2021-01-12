@@ -9,7 +9,7 @@ class LetterScroller {
   float x, y;
   int textSize = 20, textSizeSelected = 30;
   int[] textColor = {255, 255, 255}, textColorSelected = {200, 200, 0}, textColorSide = {100, 100, 100, 75};
-  String letters = "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
+  String letters = " ,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
   String[] allLetters;
   int selectedLetter;
   boolean selected;
@@ -29,11 +29,13 @@ class LetterScroller {
     if (selected) {
       textSize(textSizeSelected);
       fill(textColorSelected[0], textColorSelected[1], textColorSelected[2]);
+      triangle(x, y - textSize * 3, x + textSize, y - textSize * 3, x + textSize * .5, y - textSize * 4);
+      triangle(x, y + textSize * 3, x + textSize, y + textSize * 3, x + textSize * .5, y + textSize * 4);
     } else {
       textSize(textSize);
       fill(textColor[0], textColor[1], textColor[2]);
     }
-    textAlign(CENTER, CENTER);
+    textAlign(LEFT, CENTER);
     text(allLetters[selectedLetter], x, y);
     fill(textColorSide[0], textColorSide[1], textColorSide[2], textColorSide[3]);
     if (selectedLetter - 1 >= 0) {
@@ -76,6 +78,7 @@ class Scroller {
       ls[i].start();
     }
     selectedScroller = 0;
+    buildString();
   }
 
   void display() {
@@ -100,11 +103,14 @@ class Scroller {
     if (!keysPressed[DOWN] && !keysPressed[UP] && !keysPressed[LEFT] && !keysPressed[RIGHT]) {
       selectOnce = false;
     }
-    if (keysPressed['A'] && !menu.selectOnce) {
-      println("username: " + name);
+    if (keysPressed['A'] && !menu.selectOnce && !name.contains(" ")) {
+      //println("username: " + name);
       database.addNameToDB(name);
       menu.name = true;
       levelSizer.generateStart();
+    } else if (keysPressed['A'] && !menu.selectOnce && name.contains(" ")) {
+      fill(255, 0, 0);
+      text("Maak een naam zonder spaties!", x, height - height * .2);
     }
 
     ls[selectedScroller].selected = true;
@@ -117,6 +123,7 @@ class Scroller {
     buildString();
     textSize(50);
     fill(nameColor[0]);
+    textAlign(CENTER, CENTER);
     text("name: " + name, x, height - height * .1);
     textSize(30);
     text("Druk A om te bevestigen", x, height - height * .05);
