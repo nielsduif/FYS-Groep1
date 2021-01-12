@@ -114,12 +114,6 @@ class PowerUpHandler {
     currentPowerup = 0;
   }
 
-  void powerupUI() {
-    if (currentPowerup != 0) {
-      image(powerups[currentPowerup].powerupImage, width - 110, height - 110, 100, 100);
-    }
-  }
-
   //niels :D
   void showTimer() {
     fill(255, 90);
