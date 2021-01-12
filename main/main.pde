@@ -23,6 +23,9 @@ void updateGame() {
   if (menu.databaseShow) {
     database.display();
   }
+  if (menu.storyShow) {
+    story.typewriteText();
+  }
   if (menu.name) {
     levelSizer.generateUpdate();
     if (grid.doneGenerating) {
