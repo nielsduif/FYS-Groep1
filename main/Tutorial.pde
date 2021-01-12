@@ -1,23 +1,24 @@
 
 Tutorial tutorial = new Tutorial();
 class Tutorial {
-  PImage tutorialPlayerImage, tutorialMonsterImage, 
+  PImage tutorialPlayerImage, tutorialMonsterImage, tutorialMonsterImage2, 
     tutorialPowerup1, tutorialPowerup2, tutorialPowerup3, tutorialPowerup4, tutorialPowerup5, 
-    tutorialCoin, tutorialKey, tutorialPrismstone;
+    tutorialCoin, tutorialKey, tutorialPrismstone, tutorialExitClosed, tutorialExitOpen;
   float playerX, playerY, playerW, playerH;
   float monsterX, monsterY, monsterW, monsterH;
-  float powerupX, powerupY, powerupSpacing, powerupW;
-  float coinX, coinY, keyX, keyY, prismstoneX, prismstoneY, tutorial3W;
+  float keyW, exitW;
+  float tutorial34X, tutorial34Y, tutorial34Spacing, tutorial34W;
   float textRightX, textRightY, textLeftX, textLeftY, textUpX, textUpY, textDownX, textDownY;
   float textMonster1X, textMonster1Y, textMonster2X, textMonster2Y, textMonster3X, textMonster3Y;
-  float textPowerupX, textPowerupX2;
-  float textContinueX, textContinueY, textExitX, textExitY;
+  float textTutorial34X, textTutorial34X2;
+  float textContinueX, textContinueY, textGobackX, textGobackY, textExitX, textExitY;
   int powerupAmount = 5;
   boolean tutorial1, tutorial2, tutorial3, tutorial4;
   boolean keyPressedOnce;
   void setup() {
     tutorialPlayerImage = loadImage("player.png");
     tutorialMonsterImage = loadImage("monster.png");
+    tutorialMonsterImage2 = loadImage("monsterMad.png");
     tutorialPowerup1 = loadImage("ping.png"); 
     tutorialPowerup2 = loadImage("vision.png");
     tutorialPowerup3 = loadImage("whistle.png"); 
@@ -26,6 +27,8 @@ class Tutorial {
     tutorialCoin = loadImage("Coin.png");
     tutorialKey = loadImage("Key.png");
     tutorialPrismstone = loadImage("PrismStone.png");
+    tutorialExitClosed = loadImage("Tile15.png");
+    tutorialExitOpen = loadImage("Tile16.png");
     playerX = width/2;
     playerY = height/2 - playerH;
     playerW = width/10;
@@ -34,11 +37,12 @@ class Tutorial {
     monsterY = height/2;
     monsterW = width/10;
     monsterH = playerW *2;
-    powerupX = width/4;
-    powerupY = height/7 + powerupW;
-    powerupSpacing = height/7;
-    powerupW = height/8;
-
+    tutorial34X = width/6;
+    tutorial34Y = height/7 + tutorial34W;
+    tutorial34Spacing = height/7;
+    tutorial34W = height/8;
+    keyW = tutorial34W/2;
+    exitW = tutorial34W * 3;
     textRightX = playerX + playerW;
     textRightY = playerY;
     textLeftX = playerX - playerW;
@@ -52,13 +56,15 @@ class Tutorial {
     textMonster2X = monsterX;
     textMonster2Y = textMonster1Y;
     textMonster3X = monsterX;
-    textMonster3Y = monsterY + monsterH;
-    textPowerupX = width/2;
-    textPowerupX2 = powerupX + powerupW;
-    textContinueX = playerX;
-    textContinueY = playerY + playerH;
-    textExitX = 0;
-    textExitY = 0;
+    textMonster3Y = monsterY + monsterH/2;
+    textTutorial34X = width/2;
+    textTutorial34X2 = tutorial34X + tutorial34W;
+    textContinueX = width;
+    textContinueY = height;
+    textGobackX = 0;
+    textGobackY = height;
+    textExitX = width * .5;
+    textExitY = height - height * .1;
   }
 
   void display() {
@@ -69,13 +75,19 @@ class Tutorial {
     if (tutorial2) {
       tutorial1 = false;
       tutorial3 = false;
+      tutorial4 = false;
       if (keyPressedOnce == false) {
         if (keysPressed['X']) {
           keyPressedOnce = true;
           tutorial2 = false;
           tutorial3 = true;
         }
-        if (!keysPressed['X']) {
+        if (keysPressed['S']) {
+          keyPressedOnce = true;
+          tutorial1 = true;
+          tutorial2 = false;
+        }
+        if (!keysPressed['X'] && !keysPressed['S']) {
           keyPressedOnce = false;
         }
       }
@@ -89,7 +101,12 @@ class Tutorial {
           tutorial3 = false;
           tutorial4 = true;
         }
-        if (!keysPressed['X']) {
+        if (keysPressed['S']) {
+          keyPressedOnce = true;
+          tutorial2 = true;
+          tutorial3 = false;
+        }
+        if (!keysPressed['X'] && !keysPressed['S']) {
           keyPressedOnce = false;
         }
       }
@@ -102,22 +119,27 @@ class Tutorial {
           keyPressedOnce = true;
           menu.tutorialShow = false;
         }
-        if (!keysPressed['X']) {
+        if (keysPressed['S']) {
+          keyPressedOnce = true;
+          tutorial3 = true;
+          tutorial4 = false;
+        }
+        if (!keysPressed['X'] && !keysPressed['S']) {
           keyPressedOnce = false;
         }
       }
-    }
-    { 
+    } else { 
       tutorial1 = true;
     }
     if (tutorial1) {
       tutorial2 = false;
       tutorial3 = false;
+      tutorial4 = false;
       background(0);
       image(tutorialPlayerImage, playerX, playerY, playerW, playerH);
       imageMode(CENTER);
 
-      textSize(20);
+      textSize(25);
       fill(255);
       textAlign(LEFT, CENTER);
       text("Press → to move right", textRightX, textRightY);
@@ -127,9 +149,10 @@ class Tutorial {
       text("Press ↑ to move up", textUpX, textUpY);
       textAlign(CENTER, TOP);
       text("Press ↓ to move down", textDownX, textDownY);
-      textAlign(CENTER);
+      textAlign(RIGHT, BOTTOM);
+
       text("Press X to continue", textContinueX, textContinueY);
-      textAlign(LEFT, TOP);
+      textAlign(CENTER, CENTER);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
@@ -154,30 +177,35 @@ class Tutorial {
       image(tutorialMonsterImage, monsterX, monsterY, monsterW, monsterH);
       imageMode(CENTER);
 
-      textSize(30);
+      textSize(40);
       fill(255, 0, 0);
       textAlign(CENTER, BOTTOM);
       text("This is the enemy!", textMonster1X, textMonster1Y);
       textAlign(CENTER, TOP);
       text("The enemy will chase you and kill you immediately!", textMonster2X, textMonster2Y);
-      textAlign(CENTER, BOTTOM);
-      textSize(20);
+      textSize(25);
       fill(255);
-      text("Press A to preview how the enemy looks while chasing you", textMonster3X, textMonster3Y);
       textAlign(CENTER, TOP);
+      text("Press A to preview how the enemy looks while chasing you", textMonster3X, textMonster3Y);
+      textAlign(RIGHT, BOTTOM);
+
       text("Press X to continue", textContinueX, textContinueY);
-      textAlign(LEFT, TOP);
+      textAlign(LEFT, BOTTOM);
+      text("Press S to go back", textGobackX, textGobackY);
+      textAlign(CENTER, CENTER);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
         if (keysPressed['A']) {
           keyPressedOnce = true;
+          image(tutorialMonsterImage2, monsterX, monsterY, monsterW, monsterH);
+          imageMode(CENTER);
         }
         if (keysPressed['Z']) {
           keyPressedOnce = true;
           menu.tutorialShow = false;
         }
-        if (!keysPressed['A'] && !keysPressed['Z']) {
+        if (!keysPressed['Z']) {
           keyPressedOnce = false;
         }
       }
@@ -185,32 +213,79 @@ class Tutorial {
 
     if (tutorial3) {
       background(0);
-      image(tutorialCoin, coinX, coinY, tutorial3W, tutorial3W);
-      image(tutorialKey, keyX, keyY, tutorial3W, tutorial3W);
-      image(tutorialPrismstone, prismstoneX, prismstoneY, tutorial3W, tutorial3W);
       imageMode(CENTER);
+      image(tutorialCoin, tutorial34X, tutorial34Y + tutorial34Spacing, tutorial34W, tutorial34W);
+      image(tutorialKey, tutorial34X, tutorial34Y + tutorial34Spacing * 2, keyW, tutorial34W);
+      image(tutorialPrismstone, tutorial34X, tutorial34Y + tutorial34Spacing * 3, tutorial34W, tutorial34W);
+      image(tutorialExitClosed, tutorial34X, tutorial34Y + tutorial34Spacing * 5, exitW, exitW);
+      image(tutorialExitOpen, tutorial34X, tutorial34Y + tutorial34Spacing * 6, exitW, exitW);
+
+      textSize(25);
+      textAlign(CENTER, BOTTOM);
+      text("These are things you can find and/or use in the maze", textTutorial34X, tutorial34Y);
+      textAlign(LEFT, CENTER);
+      text("COIN: increases score by 10.", textTutorial34X2, tutorial34Y + tutorial34Spacing);
+      text("KEY: Collect 3 of these to open the exit gate.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 2);
+      text("PRISMSTONE: Drop these by pressing A, to remember where to go or not to go.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 3);
+      text("EXITGATE-CLOSED: The exit gate before you find all the keys.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 4);
+      text("EXITGATE-OPEN: Press S to enter the gate and move on to the next level.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 5);
+
+      textAlign(RIGHT, BOTTOM);
+      text("Press X to continue", textContinueX, textContinueY);
+      textAlign(LEFT, BOTTOM);
+      text("Press S to go back", textGobackX, textGobackY);
+      textAlign(CENTER, CENTER);
+      text("Press Z to exit", textExitX, textExitY);
+
+      if (keyPressedOnce == false) {
+        if (keysPressed['Z']) {
+          keyPressedOnce = true;
+          menu.tutorialShow = false;
+        }
+        if (!keysPressed['Z']) {
+          keyPressedOnce = false;
+        }
+      }
     }
 
     if (tutorial4) {
       background(0);
-      image(tutorialPowerup1, powerupX, powerupY + powerupSpacing, powerupW, powerupW);
-      image(tutorialPowerup2, powerupX, powerupY + powerupSpacing * 2, powerupW, powerupW);
-      image(tutorialPowerup3, powerupX, powerupY + powerupSpacing * 3, powerupW, powerupW);
-      image(tutorialPowerup4, powerupX, powerupY + powerupSpacing * 4, powerupW, powerupW);
-      image(tutorialPowerup5, powerupX, powerupY + powerupSpacing * 5, powerupW, powerupW);
+      image(tutorialPowerup1, tutorial34X, tutorial34Y + tutorial34Spacing, tutorial34W, tutorial34W);
+      image(tutorialPowerup2, tutorial34X, tutorial34Y + tutorial34Spacing * 2, tutorial34W, tutorial34W);
+      image(tutorialPowerup3, tutorial34X, tutorial34Y + tutorial34Spacing * 3, tutorial34W, tutorial34W);
+      image(tutorialPowerup4, tutorial34X, tutorial34Y + tutorial34Spacing * 4, tutorial34W, tutorial34W);
+      image(tutorialPowerup5, tutorial34X, tutorial34Y + tutorial34Spacing * 5, tutorial34W, tutorial34W);
       imageMode(CENTER);
 
+      textSize(25);
       textAlign(CENTER, BOTTOM);
-      text("These are the powerups. Every powerup lasts for 5 seconds.", textPowerupX, powerupY);
+      text("These are the powerups. Every powerup lasts for 5 seconds.", textTutorial34X, tutorial34Y);
       textAlign(CENTER, TOP);
-      text("Press S to pick a powerup up. Then press X to activate a powerup.", textPowerupX, powerupY);
+      text("Press S to pick up a powerup. Then press X to activate a powerup.", textTutorial34X, tutorial34Y);
       textAlign(LEFT, CENTER);
-      text("RADAR: Shows the location of the enemy(s).", textPowerupX2, powerupY + powerupSpacing);
-      text("LIGHT: Shows the location of the walls of the maze.", textPowerupX2, powerupY + powerupSpacing * 2);
-      text("WHISTLE: Stuns the enemy, so it can't move or kill you.", textPowerupX2, powerupY + powerupSpacing * 3);
-      text("POTION: Increases your walk speed.", textPowerupX2, powerupY + powerupSpacing * 4);
-      text("X-RAY: Shows the location of the nearest key.", textPowerupX2, powerupY + powerupSpacing * 5);
+      text("RADAR: Shows the location of the enemy(s).", textTutorial34X2, tutorial34Y + tutorial34Spacing);
+      text("LIGHT: Shows the location of the walls of the maze.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 2);
+      text("WHISTLE: Stuns the enemy, so it can't move", textTutorial34X2, tutorial34Y + tutorial34Spacing * 3);
+      text("POTION: Increases your walk speed.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 4);
+      text("X-RAY: Shows the location of the nearest key.", textTutorial34X2, tutorial34Y + tutorial34Spacing * 5);
+
+      textAlign(RIGHT, BOTTOM);
+      text("Press X to continue", textContinueX, textContinueY);
+      textAlign(LEFT, BOTTOM);
+      text("Press S to go back", textGobackX, textGobackY);
+      textAlign(CENTER, CENTER);
+      text("Press Z to exit", textExitX, textExitY);
+
+      if (keyPressedOnce == false) {
+        if (keysPressed['Z']) {
+          keyPressedOnce = true;
+          menu.tutorialShow = false;
+        }
+        if (!keysPressed['Z']) {
+          keyPressedOnce = false;
+        }
+      }
+      textSize(25);
     }
-    textSize(25);
   }
 }
