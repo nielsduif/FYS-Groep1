@@ -31,12 +31,12 @@ class MenuTab {
 class Menu {
   String title;
   float titleX, titleY;
-  int tabAmount = 3;
+  int tabAmount = 4;
   MenuTab[] mt = new MenuTab[tabAmount];
-  String[] tabTitles = {"Play", "Highscores", "Exit"};
+  String[] tabTitles = {"Play", "Tutorial", "Highscores", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
-  boolean start, databaseShow, name, selectOnce;
+  boolean start, databaseShow, name, selectOnce, tutorialShow;
 
   void start() {
     titleX = width * .5;
@@ -56,6 +56,8 @@ class Menu {
     if (!start) {
       if (databaseShow) {
         database.display();
+      } else if (tutorialShow) {
+        tutorial.display();
       } else {
         textAlign(CENTER);
         fill(255);
@@ -76,10 +78,12 @@ class Menu {
           }
           selectOnce = true;
         } else if (keysPressed['A'] && selected == 1) {
+          tutorialShow = true;
+        } else if (keysPressed['A'] && selected == 2) {
           selectOnce = true;
           database.callData();
           databaseShow = true;
-        } else if (keysPressed['A'] && selected == 2) {
+        } else if (keysPressed['A'] && selected == 3) {
           exit();
         }
         if (keysPressed[DOWN] && !selectOnce) {

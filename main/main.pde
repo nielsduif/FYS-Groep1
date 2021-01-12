@@ -12,6 +12,7 @@ void setup() {
   font = createFont("Minecraftia-Regular.ttf", 32);
   textFont(font);
   loadSound();
+  tutorial.setup();
 }
 
 void updateGame() { 

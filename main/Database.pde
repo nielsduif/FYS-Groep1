@@ -33,8 +33,8 @@ class Database {
         text(row.getString(j), width * .5 -150 + 300 * j, 80 + 40 * i);
       }
     }
-    text("Druk S om terug te gaan", width * .5, height - 50);
-    if (keysPressed['S']) {
+    text("Press Z to exit", width * .5, height - 50);
+    if (keysPressed['Z']) {
       menu.databaseShow = false;
     }
   }
