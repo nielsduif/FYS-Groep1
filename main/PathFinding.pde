@@ -117,10 +117,11 @@ class PathFinding {
             Ey += walkSpeed;
           } else if (Ey > player.y + player.playerH) {
             Ey -= walkSpeed;
-          } else {
-            gameOver.showGameOver();
           }
         }
+      }
+      if (Ex < player.x + player.playerW && Ex + Ew > player.x && Ey < player.y + player.playerH && Ey + monsterH > player.y) {
+        gameOver.showGameOver();
       }
     }
 
