@@ -1,3 +1,8 @@
+/*
+author(s): Niels Duivenvoorden [500847100], Andrew Silos
+ purpose:   show a version of the story like a typewriter
+ */
+
 Story story= new Story();
 
 class Story
@@ -16,11 +21,14 @@ class Story
     text(text1.substring(0, round(counter)), width * .2, height * .3, width * .6, height);
 
     textSize(25);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER, CENTER);
     text("Press Z to exit", width * .5, height - height * .1);
- 
+
     if (keysPressed['Z']) {
       menu.storyShow = false;
+    }
+    if (keysPressed['S']) {
+      counter = text1.length();
     }
   }
 }

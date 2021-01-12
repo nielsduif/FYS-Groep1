@@ -112,6 +112,9 @@ class Scroller {
       fill(255, 0, 0);
       text("Maak een naam zonder spaties!", x, height - height * .2);
     }
+    if (keysPressed['Z']) {
+      menu.start = false;
+    }
 
     ls[selectedScroller].selected = true;
     for (int i = 0; i < ls.length; i++) {
@@ -124,9 +127,10 @@ class Scroller {
     textSize(50);
     fill(nameColor[0]);
     textAlign(CENTER, CENTER);
-    text("name: " + name, x, height - height * .1);
-    textSize(30);
-    text("Druk A om te bevestigen", x, height - height * .05);
+    text("name: " + name, x, height - height * .2);
+    textSize(25);
+    text("Press A to confirm", x, height - height * .15);
+    text("Press Z to exit", x, height - height * .1);
   }
 
   void buildString() {
