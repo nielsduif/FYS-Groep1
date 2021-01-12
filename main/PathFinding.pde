@@ -41,6 +41,7 @@ class PathFinding {
       Ew = spawnCell.w * .3;
       //println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
       current = spawnCell; //hudige cell bijwerken
+      speed = round(2 * grid.w / 100);
     }
   }
 

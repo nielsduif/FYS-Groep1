@@ -63,9 +63,9 @@ class GameOver {
     monsterFootsteps.stop();
     player.speed = 0;    
     player.potionSpeed = 0;
-    for(int i = 0; pathFinding.length < i; i++){
+    for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i].walkSpeed = 0;
-      pathFinding[i].speed = 0;      
+      pathFinding[i].speed = 0;
     }
     if (jumpscare.isPlaying()) {
       background(255, 0, 0);
