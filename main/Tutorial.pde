@@ -64,12 +64,12 @@ class Tutorial {
     textGobackX = 0;
     textGobackY = height;
     textExitX = width * .5;
-    textExitY = height - height * .1;
+    textExitY = height;
   }
 
   void display() {
-    println(tutorial1, tutorial2, tutorial3, keyPressedOnce);
-    if (!keysPressed['X']) {
+    //println(tutorial1, tutorial2, tutorial3, keyPressedOnce);
+    if (!keysPressed['X'] && !keysPressed['S']) {
       keyPressedOnce = false;
     }
     if (tutorial2) {
@@ -78,17 +78,14 @@ class Tutorial {
       tutorial4 = false;
       if (keyPressedOnce == false) {
         if (keysPressed['X']) {
-          keyPressedOnce = true;
           tutorial2 = false;
           tutorial3 = true;
+          keyPressedOnce = true;
         }
         if (keysPressed['S']) {
-          keyPressedOnce = true;
           tutorial1 = true;
           tutorial2 = false;
-        }
-        if (!keysPressed['X'] && !keysPressed['S']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     } else if (tutorial3) {
@@ -97,17 +94,14 @@ class Tutorial {
       tutorial4 = false;
       if (keyPressedOnce == false) {
         if (keysPressed['X']) {
-          keyPressedOnce = true;
           tutorial3 = false;
           tutorial4 = true;
+          keyPressedOnce = true;
         }
         if (keysPressed['S']) {
-          keyPressedOnce = true;
           tutorial2 = true;
           tutorial3 = false;
-        }
-        if (!keysPressed['X'] && !keysPressed['S']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     } else if (tutorial4) {
@@ -116,16 +110,13 @@ class Tutorial {
       tutorial3 = false;
       if (keyPressedOnce == false) {
         if (keysPressed['X']) {
-          keyPressedOnce = true;
           menu.tutorialShow = false;
+          keyPressedOnce = true;
         }
         if (keysPressed['S']) {
-          keyPressedOnce = true;
           tutorial3 = true;
           tutorial4 = false;
-        }
-        if (!keysPressed['X'] && !keysPressed['S']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     } else { 
@@ -157,20 +148,16 @@ class Tutorial {
 
       if (keyPressedOnce == false) {
         if (keysPressed['Z']) {
-          keyPressedOnce = true;
           menu.tutorialShow = false;
+          keyPressedOnce = true;
         }
         if (keysPressed['X']) {
-          keyPressedOnce = true;
           tutorial1 = false;
           tutorial2 = true;
-        }
-        if (!keysPressed['X'] && !keysPressed['Z']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     }
-
 
     if (tutorial2) {
       background(0);
@@ -197,16 +184,13 @@ class Tutorial {
 
       if (keyPressedOnce == false) {
         if (keysPressed['A']) {
-          keyPressedOnce = true;
           image(tutorialMonsterImage2, monsterX, monsterY, monsterW, monsterH);
           imageMode(CENTER);
+          keyPressedOnce = true;
         }
         if (keysPressed['Z']) {
-          keyPressedOnce = true;
           menu.tutorialShow = false;
-        }
-        if (!keysPressed['Z']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     }
@@ -239,11 +223,8 @@ class Tutorial {
 
       if (keyPressedOnce == false) {
         if (keysPressed['Z']) {
-          keyPressedOnce = true;
           menu.tutorialShow = false;
-        }
-        if (!keysPressed['Z']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
     }
@@ -278,11 +259,8 @@ class Tutorial {
 
       if (keyPressedOnce == false) {
         if (keysPressed['Z']) {
-          keyPressedOnce = true;
           menu.tutorialShow = false;
-        }
-        if (!keysPressed['Z']) {
-          keyPressedOnce = false;
+          keyPressedOnce = true;
         }
       }
       textSize(25);

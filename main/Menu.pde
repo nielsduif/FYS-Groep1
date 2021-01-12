@@ -82,6 +82,10 @@ class Menu {
           selectOnce = true;
         } else if (keysPressed['A'] && selected == 1) {
           tutorialShow = true;
+          tutorial.tutorial1 = true;
+          tutorial.tutorial2 = false;
+          tutorial.tutorial3 = false;
+          tutorial.tutorial4 = false;
         } else if (keysPressed['A'] && selected == 2) {
           selectOnce = true;
           database.callData();
