@@ -20,8 +20,8 @@ class Player {
     prevY = y;
     playerW = (grid.w / 3) - 10;
     playerH = playerW * 2;
-    speed = 3 * grid.w / 100;
-    potionSpeed = 5 * grid.w / 100;
+    speed = 2 * grid.w / 100;
+    potionSpeed = 3 * grid.w / 100;
   }
   void update() {
     move();

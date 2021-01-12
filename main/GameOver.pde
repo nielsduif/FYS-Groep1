@@ -61,7 +61,12 @@ class GameOver {
   void jumpScare() { 
     jumpscareIsPlaying = true;
     monsterFootsteps.stop();
-    player.speed = 0;
+    player.speed = 0;    
+    player.potionSpeed = 0;
+    for(int i = 0; pathFinding.length < i; i++){
+      pathFinding[i].walkSpeed = 0;
+      pathFinding[i].speed = 0;      
+    }
     if (jumpscare.isPlaying()) {
       background(255, 0, 0);
       jumpscareW += 3;
