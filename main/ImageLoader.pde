@@ -16,6 +16,7 @@ class ImageLoader {
     player.playerImage = loadImage("player.png");
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i].monsterImage = loadImage("monster.png");
+      pathFinding[i].monsterImageMad = loadImage("monsterMad.png");
     }    
     coinHandler.coinImage = loadImage("Coin.png");
     keyHandler.keyImage = loadImage("Key.png");

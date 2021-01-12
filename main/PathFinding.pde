@@ -9,6 +9,7 @@ PathFinding[] pathFinding;
 
 class PathFinding {
   PImage monsterImage; //plaatje vijand
+  PImage monsterImageMad; //plaatje vijand mad
   float monsterW = (grid.w / 3) - 5;
   float monsterH = monsterW * 2;
 
@@ -48,7 +49,14 @@ class PathFinding {
       circle(Ex, Ey, Ew);   
       imageMode(CENTER);
       //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
-      image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+      if (nextCell.x * nextCell.w + nextCell.w * .5 >= Ex) {
+        image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+      } else if (nextCell.x * nextCell.w + nextCell.w * .5 < Ex) {
+        pushMatrix();
+        scale( -1, 1 );
+        image(monsterImage, -Ex, Ey- monsterH / 2, monsterW, monsterH);
+        popMatrix();
+      }
       imageMode(CORNER);
       if (frameCount > startTime + powerUpFrames) {
         startTime = 0;
@@ -171,7 +179,17 @@ class PathFinding {
         inSight = true;
         imageMode(CENTER);
         //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
-        image(monsterImage, Ex, Ey- monsterH / 2, monsterW, monsterH);
+        if (current != null && nextCell != null) {
+          //println(nextCell.x * nextCell.w + nextCell.w * .5, Ex);
+        }
+        if (nextCell.x * nextCell.w + nextCell.w * .5 >= Ex) {
+          image(monsterImageMad, Ex, Ey- monsterH / 2, monsterW, monsterH);
+        } else if (nextCell.x * nextCell.w + nextCell.w * .5 < Ex) {
+          pushMatrix();
+          scale( -1, 1 );
+          image(monsterImageMad, -Ex, Ey- monsterH / 2, monsterW, monsterH);
+          popMatrix();
+        }
         imageMode(CORNER);
         fill(50, 50, 50, 100);
         circle(Ex, Ey, Ew);
