@@ -85,6 +85,8 @@ class Menu {
           databaseShow = true;
         } else if (keysPressed['A'] && selected == 3) {
           exit();
+        } else if (keysPressed['A'] && selected == 4) {
+          exit();
         }
         if (keysPressed[DOWN] && !selectOnce) {
           if (menu.selected + 1 < menu.tabAmount) {
