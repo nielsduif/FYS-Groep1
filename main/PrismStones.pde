@@ -62,7 +62,7 @@ class PrismStones {
 
   //Functie die de UI van de prismstones behandeld
   void prismStoneUI() {
-    fill(255);
+    fill(255, 255, 255, player.returnUiAlpha());
     textAlign(CORNER);
     textSize(30);
     text("Prismstones: " + stoneCount, width - 325, textY);

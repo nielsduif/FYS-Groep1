@@ -120,7 +120,18 @@ class PowerUpHandler {
 
   void powerupUI() {
     if (currentPowerup != 0) {
-      image(powerups[currentPowerup].powerupImage, width - 110, height - 110, 100, 100);
+      int powerupUiX = width - 110;
+      int powerupUiY = height - 110;
+      int powerupUiAlpha;
+      
+      if (player.x > powerupUiX && player.y > powerupUiY) {
+        powerupUiAlpha = 100;
+      } else {        
+        powerupUiAlpha = 255;
+      }
+      tint(255, powerupUiAlpha);
+      image(powerups[currentPowerup].powerupImage, powerupUiX, powerupUiY, 100, 100);
+      tint(255, 255);
     }
   }
 

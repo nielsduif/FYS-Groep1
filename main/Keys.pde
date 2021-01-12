@@ -72,7 +72,7 @@ class KeyHandler {
   void updateKeyUI() {
     //Laat zien hoeveel keys je nog moet vinden en laat het zien dat de exit opent als je alle keys hebt
     if (count == 0) {
-      fill(255);
+      fill(255, 255, 255, player.returnUiAlpha());
       textSize(30);
       text("Exit is open!", width - 325, prismStone.textY + score.textSpace*2);
       tileSet.exitGateOpen = true;
@@ -81,7 +81,7 @@ class KeyHandler {
         tileSet.playExitSoundOnce = true;
       }
     } else {
-      fill(255);
+      fill(255, 255, 255, player.returnUiAlpha());
       textSize(30);
       text("Keys needed: " + count, width - 325, prismStone.textY + score.textSpace*2);
     }

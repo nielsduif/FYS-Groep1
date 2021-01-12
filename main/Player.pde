@@ -104,6 +104,7 @@ class Player {
     prevY = y;
   }
 
+  //funcit die er voor zorgt dat objecten alleen worden gedrawed als ze in de spelers visie zijn, parameters zijn de image van het object, de locatie en de grootte.
   void drawObjectInView(PImage pImage, float pObjectX, float pObjectY, float pObjectW, float pObjectH) {
     for (int i = 0; i < grid.grid.size(); i++) {
       float objectTileX = floor(pObjectX / grid.w);
@@ -113,6 +114,15 @@ class Player {
         image(pImage, pObjectX, pObjectY, pObjectW, pObjectH);
         imageMode(CORNER);
       }
+    }
+  }
+
+  //functie om een int te returnen die de alpha van de UI aanpast voor als de speler er voor loopt.
+  int returnUiAlpha() {
+    if (x > width - 325 && y < prismStone.textY + score.textSpace * 2 + playerH) {
+      return 100;
+    } else {
+      return 255;
     }
   }
 }
