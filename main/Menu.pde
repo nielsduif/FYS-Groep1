@@ -36,7 +36,7 @@ class Menu {
   String[] tabTitles = {"Play", "Tutorial", "Highscores", "Story", "Exit"};
   int tabSpacing = 75;
   int selected = 0;
-  boolean start, databaseShow, name, selectOnce, tutorialShow;
+  boolean start, databaseShow, name, selectOnce, tutorialShow, storyShow;
 
   void start() {
     titleX = width * .5;
@@ -58,6 +58,8 @@ class Menu {
         database.display();
       } else if (tutorialShow) {
         tutorial.display();
+      } else if (storyShow) {
+        story.typewriteText();
       } else {
         textAlign(CENTER);
         fill(255);
@@ -84,7 +86,8 @@ class Menu {
           database.callData();
           databaseShow = true;
         } else if (keysPressed['A'] && selected == 3) {
-          exit();
+          story.counter = 0;
+          storyShow = true;
         } else if (keysPressed['A'] && selected == 4) {
           exit();
         }
