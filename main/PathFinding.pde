@@ -180,15 +180,15 @@ class PathFinding {
         imageMode(CENTER);
         //println(monsterImage, Ex, Ey - monsterH / 2, monsterW, monsterH);
         if (current != null && nextCell != null) {
-          //println(nextCell.x * nextCell.w + nextCell.w * .5, Ex);
-        }
-        if (nextCell.x * nextCell.w + nextCell.w * .5 >= Ex) {
-          image(monsterImageMad, Ex, Ey- monsterH / 2, monsterW, monsterH);
-        } else if (nextCell.x * nextCell.w + nextCell.w * .5 < Ex) {
-          pushMatrix();
-          scale( -1, 1 );
-          image(monsterImageMad, -Ex, Ey- monsterH / 2, monsterW, monsterH);
-          popMatrix();
+
+          if (nextCell.x * nextCell.w + nextCell.w * .5 >= Ex) {
+            image(monsterImageMad, Ex, Ey- monsterH / 2, monsterW, monsterH);
+          } else if (nextCell.x * nextCell.w + nextCell.w * .5 < Ex) {
+            pushMatrix();
+            scale( -1, 1 );
+            image(monsterImageMad, -Ex, Ey- monsterH / 2, monsterW, monsterH);
+            popMatrix();
+          }
         }
         imageMode(CORNER);
         fill(50, 50, 50, 100);

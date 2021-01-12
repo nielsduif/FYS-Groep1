@@ -83,45 +83,50 @@ class PowerUpHandler {
     if (currentPowerup == 1) {
       showTimeIcon = true;
       visibleTime = 180;
+      degrees = 0;
       powerupPing();
     }
     if (currentPowerup == 2) {
       showTimeIcon = true;
       visibleTime = 180;
+      degrees = 0;
       powerupRadar();
     }
     if (currentPowerup == 3) {
       showTimeIcon = true;
       visibleTime = 180;
+      degrees = 0;
       powerupWhistle();
     }
     if (currentPowerup == 4) {
       showTimeIcon = true;
       visibleTime = 180;
+      degrees = 0;
       powerupPotion();
     }
     if (currentPowerup == 5) {
       showTimeIcon = true;
       visibleTime = 180;
+      degrees = 0;
       powerupArrow();
     }
     currentPowerup = 0;
-  }
-
-  //niels :D
-  void showTimer() {
-    fill(255, 50);
-    float rad = radians(degrees);
-    arc(width - 110 + 50, height - 110 + 50, 100, 100, 0, rad, PIE);
-    fill(255);
-    textAlign(CENTER, CENTER);
-    text(round(4 - (rad) * .5), width - 110 + 50, height - 110 + 50);
   }
 
   void powerupUI() {
     if (currentPowerup != 0) {
       image(powerups[currentPowerup].powerupImage, width - 110, height - 110, 100, 100);
     }
+  }
+
+  //niels :D
+  void showTimer() {
+    fill(255, 90);
+    float rad = radians(degrees);
+    arc(width - 110 + 50, height - 110 + 50, 100, 100, 0, rad, PIE);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text(round(4 - (rad) * .5), width - 110 + 50, height - 110 + 50);
   }
 
   void powerupPing() {
