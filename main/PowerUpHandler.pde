@@ -60,6 +60,7 @@ class PowerUpHandler {
           if (keysPressed[83]) {
             currentPowerup = i;
             powerups[i].pickedUp = true;
+            playSound(powerupPickup);
           }
         }
       }
@@ -123,7 +124,7 @@ class PowerUpHandler {
       int powerupUiX = width - 110;
       int powerupUiY = height - 110;
       int powerupUiAlpha;
-      
+
       if (player.x > powerupUiX && player.y > powerupUiY) {
         powerupUiAlpha = 100;
       } else {        
@@ -139,27 +140,32 @@ class PowerUpHandler {
     for (int i = 0; i < pathFinding.length; i++) {
       pathFinding[i].showEnemy = true;
       pathFinding[i].startTime = frameCount;
+      playSound(radar);
     }
   }
 
   void powerupRadar() {
     grid.showWalls = true;
     grid.startTimer = frameCount;
+    playSound(light);
   }
 
   void powerupWhistle() {
     startWhistleTimer = true;
     whistleTime = frameCount;
+    playSound(whistle);
   }
 
   void powerupPotion() {
     startPotionTimer = true;
     potionTime= frameCount;
+    playSound(potion);
   }
 
   void powerupArrow() {
     startArrowTimer = true;
     arrowTime = frameCount;
+    playSound(xray);
   }
 
   class Powerup {

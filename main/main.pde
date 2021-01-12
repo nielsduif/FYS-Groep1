@@ -36,10 +36,12 @@ void updateGame() {
       }
       player.update();
       player.draw();
-      powerupHandler.powerupUI();
-      prismStone.prismStoneUI();
-      keyHandler.updateKeyUI();
-      score.draw();
+      if (gameOver.jumpscareIsPlaying == false) {
+        powerupHandler.powerupUI();
+        prismStone.prismStoneUI();
+        keyHandler.updateKeyUI();
+        score.draw();
+      }
     }
   }
 }

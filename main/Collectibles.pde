@@ -43,6 +43,7 @@ class CoinHandler {
           score.score += 10; //verhoog de score
           coinCount -= 1;
           coins[i] = null; //verwijder de coin
+          playSound(coinPickup);
         }
       }
     }

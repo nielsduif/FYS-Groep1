@@ -32,12 +32,14 @@ class Player {
   }
 
   void draw() {
-    fill(50, 50, 50, 100);
-    circle(x, y, playerW); // player shadow
-    imageMode(CENTER);
-    //circle(x, y, playerW); collision reference
-    image(playerImage, x, y - playerH / 2, playerW, playerH);
-    imageMode(CORNER);
+    if (gameOver.gameIsOver == false) {
+      fill(50, 50, 50, 100);
+      circle(x, y, playerW); // player shadow
+      imageMode(CENTER);
+      //circle(x, y, playerW); collision reference
+      image(playerImage, x, y - playerH / 2, playerW, playerH);
+      imageMode(CORNER);
+    }
   }
 
   void move() {

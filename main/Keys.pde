@@ -42,6 +42,7 @@ class KeyHandler {
         if (afstandX <= keys[i].d/2 + player.playerW/2 && afstandY <= keys[i].d/2 + player.playerW/2) { //Check of de player over de key heen loopt
           count--; //Verlaag aantal benodigde keys met 1
           keys[i] = null; //Verwijder de key
+          playSound(keyPickup);
         }
       }
     }
