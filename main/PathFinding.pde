@@ -220,7 +220,7 @@ class PathFinding {
         }
       }
     }
-    if (gameOver.gameIsOver == false && this == closestEnemy) {
+    if (gameOver.gameIsOver == false && this == closestEnemy && powerupHandler.startWhistleTimer == false) {
       //Monster footstep sound effect
       float soundAmp = 20;
       float distance = soundAmp / dist(Ex, Ey, player.x, player.y);

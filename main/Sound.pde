@@ -10,6 +10,8 @@ SoundFile xray;
 SoundFile whistle;
 SoundFile light;
 SoundFile jumpscare;
+SoundFile click;
+SoundFile typeWriter;
 
 void loadSound() {
   ambience = new SoundFile(this, "audio/ambience.wav");
@@ -24,6 +26,8 @@ void loadSound() {
   whistle = new SoundFile(this, "audio/whistle.wav");
   light = new SoundFile(this, "audio/light.wav");
   jumpscare = new SoundFile(this, "audio/jumpscare.wav");
+  click = new SoundFile(this, "audio/menuclick.wav");
+  typeWriter = new SoundFile(this, "audio/typewriter.wav");
 
   ambience.play();
   ambience.loop();
