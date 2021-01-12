@@ -30,12 +30,12 @@ void updateGame() {
       keyHandler.updateKeys();
       coinHandler.updateCoin();  
       powerupHandler.updatePowerup();
+      player.update();
+      player.draw();
       for (int i = 0; i < pathFinding.length; i++) {
         pathFinding[i].draw();
         pathFinding[i].update();
       }
-      player.update();
-      player.draw();
       powerupHandler.powerupUI();
       prismStone.prismStoneUI();
       keyHandler.updateKeyUI();

@@ -29,7 +29,8 @@ class LevelSizer {
       pathFinding[i] = new PathFinding();
       pathFinding[i].start();
     }
-    score.score = 0;
+    score = new Score();
+    score.start();
     createKeyOnce = false;  
     createCoinOnce = false;
     coinHandler.coinAmount = 10;
@@ -99,5 +100,8 @@ class LevelSizer {
     imageLoader.loadTileImages();
     powerupHandler.loadPowerups();
     tileSet.playExitSoundOnce = false;
+    score.score += score.startScore;
+    score.tracker = 0;
+    score.startTime = millis();
   }
 }

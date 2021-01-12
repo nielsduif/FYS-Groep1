@@ -51,7 +51,7 @@ class Database {
     if (rs.getRowCount() > 0) {
       //println("rc " + rs.getRowCount(), rs.getInt(0,0));
       int highscore = rs.getInt(0, 0);      
-      if (score.score > highscore) {
+      if (score.newScore > highscore) {
         String update = "UPDATE Highscore AS h SET h.highscore = " + score.score + " WHERE idName = " + id + ";";
         println(update);
         connection.updateQuery(update);
