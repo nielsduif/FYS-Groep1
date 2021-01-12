@@ -27,8 +27,12 @@ class Story
     if (keysPressed['Z']) {
       menu.storyShow = false;
     }
-    if (keysPressed['S']) {
-      counter = text1.length();
+
+    if (counter < text1.length()) {
+      text("Press S to skip", width * .5, height - height * .15);
+      if (keysPressed['S']) {
+        counter = text1.length();
+      }
     }
   }
 }
