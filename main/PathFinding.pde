@@ -34,15 +34,15 @@ class PathFinding {
   void start() {
     Cell spawnCell = grid.grid.get(int(random(grid.grid.size()))); //spawncell vijand op een random cell in het grid
     if (spawnCell.x < player.tileLocationX + tileSet.visionCap && spawnCell.y < player.tileLocationY + tileSet.visionCap) {
-      start();
-    } else {
-      Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell x-as
-      Ey = spawnCell.y * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell y-as
-      Ew = spawnCell.w * .3;
-      //println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
-      current = spawnCell; //hudige cell bijwerken
-      speed = round(2 * grid.w / 100);
-    }
+      spawnCell = grid.grid.get(int(random(20, grid.grid.size())));
+      println("kut enemy");
+    } 
+    Ex = spawnCell.x * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell x-as
+    Ey = spawnCell.y * spawnCell.w + spawnCell.w * .5; //plaatsing in het midden van de cell y-as
+    Ew = spawnCell.w * .3;
+    println("spawn enemy " + spawnCell.x + "x ", spawnCell.y + "y", "speed " + speed);
+    current = spawnCell; //hudige cell bijwerken
+    speed = round(2 * grid.w / 100);
   }
 
   void update() {
@@ -161,27 +161,27 @@ class PathFinding {
     }
 
     //  debug monster
-    //  fill(255, 50);
-    //  rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
-    //  rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
-    //  rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
-    //  rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
+    fill(255, 50);
+    rect(top.x * grid.w, top.y * grid.w, grid.w, grid.w);
+    rect(right.x * grid.w, right.y * grid.w, grid.w, grid.w);
+    rect(bottom.x * grid.w, bottom.y * grid.w, grid.w, grid.w);
+    rect(left.x * grid.w, left.y * grid.w, grid.w, grid.w);
 
-    //  for (int i = 0; i < pathNeighbors.size(); i++) {
-    //    fill(0, 255, 0, 50);
-    //    rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
-    //  }
+    for (int i = 0; i < pathNeighbors.size(); i++) {
+      fill(0, 255, 0, 50);
+      rect(pathNeighbors.get(i).x * grid.w, pathNeighbors.get(i).y * grid.w, grid.w, grid.w);
+    }
 
-    //  fill(0, 0, 255, 50);
-    //  rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
-    //  if (!inSight) {
-    //    fill(255, 0, 0, 50);
-    //  } else {
-    //    fill(255, 255, 0, 50);
-    //  }
-    //  if (nextCell != null) {
-    //    rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
-    //  }
+    fill(0, 0, 255, 50);
+    rect(current.x * grid.w, current.y * grid.w, grid.w, grid.w);
+    if (!inSight) {
+      fill(255, 0, 0, 50);
+    } else {
+      fill(255, 255, 0, 50);
+    }
+    if (nextCell != null) {
+      rect(nextCell.x * grid.w, nextCell.y * grid.w, grid.w, grid.w);
+    }
   }
 
   void draw() {
