@@ -50,6 +50,7 @@ class GameOver {
 
     if (!database.added) {
       database.addToHighscore();
+      score.score = score.newScore;
     }
 
     if (keyPressed) {
@@ -62,6 +63,7 @@ class GameOver {
         levelSizer.showMenu();
       }
       if (key == 'x' || key == 'X') { //sluit de game af door op x te drukken
+        database.added = false;
         exit();
       }
     }

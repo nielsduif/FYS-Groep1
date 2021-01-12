@@ -34,7 +34,7 @@ class Grid {
     cols = floor(width/w); //aantal cellen op de x-as
     rows = floor(height/w); //aantal cellen op de y-as
 
-    println(cols + " x " + rows + " = " + cols * rows + " cells"); //debug voor spelveld grootte
+    //println(cols + " x " + rows + " = " + cols * rows + " cells"); //debug voor spelveld grootte
 
     //vullen van de lijst met alle cellen
     for (int y=0; y < rows; y++) {
