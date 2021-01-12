@@ -15,6 +15,7 @@ class GameOver {
     quitX = gameoverX;
     quitY = restartY + 100;
     player.speed = 0; //zorg ervoor dat de speler niet meer kan lopen zodat het spel niet meer gespeeld kan worden
+    player.potionSpeed = 0; //doe dit ook met de snelheid die je van de potion krijgt, zodat de speler niet opeens weer kan lopen als de potion voorbij is, terwijl de speler dood is
     background(0); 
     fill(255, 0, 0);
     textSize(100);
