@@ -46,8 +46,8 @@ class LevelSizer {
     powerupHandler.loadPowerupsOnce = false;
     powerupHandler.powerups = new PowerUpHandler.Powerup[powerupHandler.powerupAmount];
     powerupHandler.currentPowerup = 0;
-    player.speed = 3 * grid.w / 100;
-    player.potionSpeed = 5 * grid.w / 100;
+    player.speed = 2 * grid.w / 100;
+    player.potionSpeed = 3 * grid.w / 100;
     player.start();
     imageLoader.loadTileImages();
     powerupHandler.loadPowerups();
