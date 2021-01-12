@@ -17,7 +17,7 @@ class LevelSizer {
     textFont(font);
     loadSound();
     tutorial.setup();
-    menu.start = menu.databaseShow = menu.selectOnce = menu.tutorialShow = menu.storyShow = false;
+    menu.start = menu.databaseShow = menu.name = menu.selectOnce = menu.tutorialShow = menu.storyShow = false;
     menu.selected = 0;
   }
 
