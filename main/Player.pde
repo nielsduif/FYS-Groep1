@@ -50,7 +50,6 @@ class Player {
     } else {
       walkSpeed = speed;
     }
-
     if (keysPressed[37]) {
       x-=walkSpeed;
     }  

@@ -77,6 +77,7 @@ class GameOver {
       imageMode(CENTER);
       image(jumpscareImage, jumpscareX, jumpscareY, jumpscareW, jumpscareH);
       imageMode(CORNER);
+      tileSet.randomTile = 0;
     } else {
       showGameOver();
     }
