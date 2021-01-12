@@ -75,7 +75,7 @@ class GameOver {
       jumpscareX = random(width/2 - 10, width/2 + 10);
       jumpscareY = random(height/2 + 200, height/2 + 20);
       imageMode(CENTER);
-      image(jumpscareImage, jumpscareX, jumpscareY, jumpscareW, jumpscareH);
+      image(pathFinding[0].monsterImageMad, jumpscareX, jumpscareY, jumpscareW, jumpscareH);
       imageMode(CORNER);
       tileSet.randomTile = 0;
     } else {

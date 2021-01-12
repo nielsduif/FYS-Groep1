@@ -11,10 +11,13 @@ class Story
   float counter;
 
   void typewriteText() {
+    playSound(typeWriter);
     background(0);
     fill(255);
     if (counter < text1.length()) {
       counter+=.3;
+    } else {      
+      typeWriter.stop();
     }
     textAlign(LEFT);
     textSize(20);
@@ -26,9 +29,11 @@ class Story
 
     if (keysPressed['Z']) {
       menu.storyShow = false;
+      typeWriter.stop();
     }
     if (keysPressed['S']) {
       counter = text1.length();
+      typeWriter.stop();
     }
   }
 }

@@ -41,7 +41,6 @@ class Cell {
     if (left != null && !left.visited) {
       neighbors.add(left);
     }
-
     if (neighbors.size() > 0) { //kijk of er uberhaupt onbezochte buurcellen zijn
       int r = floor(random(0, neighbors.size())); 
       return neighbors.get(r); //zo ja, pak een willekeurige uit de opties
@@ -77,7 +76,7 @@ class Cell {
 
     if (visited) {
       noStroke();
-      fill(0, 0, 0, 50);
+      fill(0, 0, 0, 0);
       rect(xL, yL, w, w);
     }
   }

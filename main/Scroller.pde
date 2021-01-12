@@ -87,24 +87,29 @@ class Scroller {
     if (keysPressed[RIGHT] && scroller.selectedScroller + 1 < scroller.ls.length && !selectOnce) {
       scroller.selectedScroller++;
       selectOnce = true;
+      playSound(click);
     } 
     if (keysPressed[LEFT] && scroller.selectedScroller - 1 >= 0 && !selectOnce) {
       scroller.selectedScroller--;
       selectOnce = true;
+      playSound(click);
     }
     if (keysPressed[UP] && !selectOnce) {
       scroller.ls[scroller.selectedScroller].Up();
       selectOnce = true;
+      playSound(click);
     }
     if (keysPressed[DOWN] && !selectOnce) {
       scroller.ls[scroller.selectedScroller].Down();
       selectOnce = true;
+      playSound(click);
     }
     if (!keysPressed[DOWN] && !keysPressed[UP] && !keysPressed[LEFT] && !keysPressed[RIGHT]) {
       selectOnce = false;
     }
     if (keysPressed['A'] && !menu.selectOnce && !name.contains(" ")) {
       //println("username: " + name);
+      playSound(click);
       database.addNameToDB(name);
       menu.name = true;
       levelSizer.generateStart();
@@ -114,6 +119,7 @@ class Scroller {
     }
     if (keysPressed['Z']) {
       menu.start = false;
+      playSound(click);
     }
 
     ls[selectedScroller].selected = true;

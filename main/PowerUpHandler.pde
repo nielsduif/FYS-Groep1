@@ -158,6 +158,7 @@ class PowerUpHandler {
   void powerupWhistle() {
     startWhistleTimer = true;
     whistleTime = frameCount;
+    monsterFootsteps.stop();
     playSound(whistle);
   }
 

@@ -37,6 +37,7 @@ class Menu {
   int tabSpacing = 75;
   int selected = 0;
   boolean start, databaseShow, name, selectOnce, tutorialShow, storyShow;
+  boolean clicked;
 
   void start() {
     titleX = width * .5;
@@ -103,6 +104,12 @@ class Menu {
           }
           selectOnce = true;
         }
+      }
+      if (keyPressed && clicked == false) {
+        playSound(click);
+        clicked = true;
+      } else if (!keyPressed) {
+        clicked = false;
       }
     } 
     if (!keysPressed[UP] && !keysPressed[DOWN] && !keysPressed['A']) {
