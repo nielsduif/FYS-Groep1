@@ -140,10 +140,10 @@ class Tutorial {
       text("Press ↑ to move up", textUpX, textUpY);
       textAlign(CENTER, TOP);
       text("Press ↓ to move down", textDownX, textDownY);
+      
       textAlign(RIGHT, BOTTOM);
-
       text("Press X to continue", textContinueX, textContinueY);
-      textAlign(CENTER, CENTER);
+      textAlign(CENTER, BOTTOM);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
@@ -179,7 +179,7 @@ class Tutorial {
       text("Press X to continue", textContinueX, textContinueY);
       textAlign(LEFT, BOTTOM);
       text("Press S to go back", textGobackX, textGobackY);
-      textAlign(CENTER, CENTER);
+      textAlign(CENTER, BOTTOM);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
@@ -218,7 +218,7 @@ class Tutorial {
       text("Press X to continue", textContinueX, textContinueY);
       textAlign(LEFT, BOTTOM);
       text("Press S to go back", textGobackX, textGobackY);
-      textAlign(CENTER, CENTER);
+      textAlign(CENTER, BOTTOM);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
@@ -254,7 +254,7 @@ class Tutorial {
       text("Press X to continue", textContinueX, textContinueY);
       textAlign(LEFT, BOTTOM);
       text("Press S to go back", textGobackX, textGobackY);
-      textAlign(CENTER, CENTER);
+      textAlign(CENTER, BOTTOM);
       text("Press Z to exit", textExitX, textExitY);
 
       if (keyPressedOnce == false) {
