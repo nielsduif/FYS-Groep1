@@ -115,7 +115,7 @@ class Scroller {
       levelSizer.generateStart();
     } else if (keysPressed['A'] && !menu.selectOnce && name.contains(" ")) {
       fill(255, 0, 0);
-      text("Maak een naam zonder spaties!", x, height - height * .3);
+      text("No spaces allowed in a name!", x, height - height * .3);
     }
     if (keysPressed['Z']) {
       menu.start = false;

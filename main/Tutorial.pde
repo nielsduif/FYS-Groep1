@@ -68,7 +68,6 @@ class Tutorial {
   }
 
   void display() {
-    //println(tutorial1, tutorial2, tutorial3, keyPressedOnce);
     if (!keysPressed['X'] && !keysPressed['S']) {
       keyPressedOnce = false;
     }
