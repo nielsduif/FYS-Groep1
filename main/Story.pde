@@ -7,7 +7,7 @@ Story story= new Story();
 
 class Story
 {
-  String text1 = "A couple who travels the world over, to see the wonders that it has to offer, find themselves in a castle in a remote spot on the countryside. While exploring the castle, the couple gets separated because of the poor condition the castle is left in. The husband falls down into the depths of the castle. Without proper lighting, the husband can’t see further than 6 ft around him. He soon finds himself in an underground maze and needs to get back up to his wife. But in the shadows, he hears noises, a chill down his spine informs him that he is not alone in the maze.";
+  String text1 = "A couple who travels the world over, to see the wonders that it has to offer, find themselves in a castle in a remote spot on the countryside. While exploring the castle, the couple gets separated because of the poor condition the castle is left in. The husband falls down into the depths of the castle. Without proper lighting, the husband can’t see clearly. He soon finds himself in an underground maze and needs to get back up to his wife. But in the shadows, he hears noises, a chill down his spine informs him that he is not alone in the maze.";
   float counter;
 
   void typewriteText() {
