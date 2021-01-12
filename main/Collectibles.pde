@@ -10,6 +10,7 @@ class CoinHandler {
   PImage coinImage;
   int coinW = 10;
   int coinH = 10;
+  int coinCount;
   Coin[] coins = new Coin[coinAmount];
 
   void createCoin() {
@@ -40,6 +41,7 @@ class CoinHandler {
         player.drawObjectInView(coinImage, coins[i].coinX, coins[i].coinY, grid.w * coinW / 60, grid.w * coinH / 60);
         if (afstandX <= coins[i].d/2 + player.playerW/2 && afstandY <= coins[i].d/2 + player.playerW) { //check of speler over een coin heen loopt
           score.score += 10; //verhoog de score
+          coinCount -= 1;
           coins[i] = null; //verwijder de coin
         }
       }

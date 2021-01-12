@@ -41,6 +41,8 @@ class LevelSizer {
     powerupHandler.loadPowerupsOnce = false;
     powerupHandler.powerups = new PowerUpHandler.Powerup[powerupHandler.powerupAmount];
     powerupHandler.currentPowerup = 0;
+    player.speed = 3 * grid.w / 100;
+    player.potionSpeed = 5 * grid.w / 100;
     player.start();
     imageLoader.loadTileImages();
     powerupHandler.loadPowerups();
@@ -51,7 +53,7 @@ class LevelSizer {
   }
 
   void rescaleLevel() {
-    if(currentSize +1 < cellSizePerLevel.length){
+    if (currentSize +1 < cellSizePerLevel.length) {
       currentSize++;
     }
     grid.grid.clear();
