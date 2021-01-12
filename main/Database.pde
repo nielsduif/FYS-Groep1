@@ -52,12 +52,12 @@ class Database {
       //println("rc " + rs.getRowCount(), rs.getInt(0,0));
       int highscore = rs.getInt(0, 0);      
       if (score.newScore > highscore) {
-        String update = "UPDATE Highscore AS h SET h.highscore = " + score.score + " WHERE idName = " + id + ";";
+        String update = "UPDATE Highscore AS h SET h.highscore = " + score.newScore + " WHERE idName = " + id + ";";
         println(update);
         connection.updateQuery(update);
       }
     } else {
-      String insert = "INSERT INTO Highscore (idName, highscore) VALUES (" + "'" + id + "'" + ", " + score.score + ");";
+      String insert = "INSERT INTO Highscore (idName, highscore) VALUES (" + "'" + id + "'" + ", " + score.newScore + ");";
       println(insert);
       connection.updateQuery(insert);
     }

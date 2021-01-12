@@ -58,6 +58,7 @@ class GameOver {
         levelSizer.generateStart();
       }
       if (key == 's' || key == 'S') { //menu door S
+        database.added = false;
         levelSizer.showMenu();
       }
       if (key == 'x' || key == 'X') { //sluit de game af door op x te drukken
