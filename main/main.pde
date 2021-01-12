@@ -54,7 +54,10 @@ void updateGame() {
 }
 
 void draw() {
-  updateGame();
+  warning.showWarning();
+  if (warning.warningScreen == false) {
+    updateGame();
+  }
 }
 
 

@@ -12,6 +12,7 @@ SoundFile light;
 SoundFile jumpscare;
 SoundFile click;
 SoundFile typeWriter;
+SoundFile prismstone;
 
 void loadSound() {
   ambience = new SoundFile(this, "audio/ambience.wav");
@@ -28,6 +29,7 @@ void loadSound() {
   jumpscare = new SoundFile(this, "audio/jumpscare.wav");
   click = new SoundFile(this, "audio/menuclick.wav");
   typeWriter = new SoundFile(this, "audio/typewriter.wav");
+  prismstone = new SoundFile(this, "audio/prismstone.wav");
 
   ambience.play();
   ambience.loop();

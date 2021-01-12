@@ -139,7 +139,7 @@ class Tutorial {
       text("Press ↑ to move up", textUpX, textUpY);
       textAlign(CENTER, TOP);
       text("Press ↓ to move down", textDownX, textDownY);
-      
+
       textAlign(RIGHT, BOTTOM);
       text("Press X to continue", textContinueX, textContinueY);
       textAlign(CENTER, BOTTOM);
