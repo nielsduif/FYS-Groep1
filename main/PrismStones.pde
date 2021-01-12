@@ -25,6 +25,7 @@ class PrismStones {
       prismStones[stoneCount - 1].prismStoneY = player.y - prismStonePixelSize / 2;
       prismStones[stoneCount - 1].prismStoneTileX = floor(prismStones[stoneCount - 1].prismStoneX / grid.w);
       prismStones[stoneCount - 1].prismStoneTileY = floor(prismStones[stoneCount - 1].prismStoneY / grid.w);
+      playSound(prismstone);
       stoneCount--;
     }
   }
