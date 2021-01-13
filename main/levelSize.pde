@@ -16,7 +16,7 @@ class LevelSizer {
     font = createFont("Minecraftia-Regular.ttf", 32);
     textFont(font);
     loadSound();
-    tutorial.setup();
+    //tutorial.setup();
     menu.start = menu.databaseShow = menu.name = menu.selectOnce = menu.tutorialShow = menu.storyShow = false;
     menu.selected = 0;
   }
